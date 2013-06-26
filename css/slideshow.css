@@ -1,0 +1,405 @@
+/*
+	Example Styling for a Slideshow
+
+*/
+@media all {
+  /*
+  	Slides
+  */
+  div.slideshow {
+    font-size: 12px;
+    height: 512px;
+    overflow: hidden;
+    position: relative;
+    visibility: hidden;
+    width: 512px;
+  }
+  div.slideshow figure {
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    background: #000;
+    height: 70%;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  div.slideshow figure img {
+    -ms-interpolation-mode: bicubic;
+    margin: auto;
+  }
+  div.slideshow figure figcaption {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.5);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000');
+    bottom: 0;
+    color: #fff;
+    left: 0;
+    padding: 1.4em;
+    position: absolute;
+    width: 100%;
+  }
+  div.slideshow figure.wipe_previous {
+    left: -100%;
+  }
+  div.slideshow figure.wipe_current {
+    left: 0%;
+  }
+  div.slideshow figure.wipe_next {
+    left: 100%;
+  }
+  div.slideshow figure.fade_previous {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    z-index: 9;
+  }
+  div.slideshow figure.fade_current {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+    z-index: 10;
+  }
+  div.slideshow figure.fade_next {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    z-index: 9;
+  }
+
+  /*
+  	Slides Captions
+  */
+  div.slideshow.captions_hover figure figcaption {
+    visibility: hidden;
+  }
+  div.slideshow.captions_hover figure:hover figcaption {
+    visibility: visible;
+  }
+
+  div.slideshow.captions_hide figure figcaption {
+    display: none;
+  }
+
+  /*
+  	Slides Scaling
+  */
+  div.slideshow.scaling_fill figure img {
+    float: none;
+    left: 50%;
+    margin: auto;
+    top: 50%;
+    position: absolute;
+  }
+  div.slideshow.scaling_fill figure img.ratio_landscape {
+    height: auto;
+    width: 100%;
+  }
+  div.slideshow.scaling_fill figure img.ratio_portrait {
+    height: 100%;
+    width: auto;
+  }
+
+  div.slideshow.scaling_fit figure img {
+    float: none;
+    left: 50%;
+    /* margins need to be set programatically to provide centering */
+    margin: auto;
+    top: 50%;
+    position: absolute;
+  }
+  div.slideshow.scaling_fit figure img.ratio_landscape {
+    height: 100%;
+    width: auto;
+  }
+  div.slideshow.scaling_fit figure img.ratio_portrait {
+    height: auto;
+    width: 100%;
+  }
+
+  /*
+  	Slide Controls
+  */
+  div.slideshow menu.pager {
+    position: absolute;
+    height: 70%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 100%;
+  }
+  div.slideshow menu.pager button {
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0px, #ffffff), color-stop(1px, #ffffff), color-stop(1px, #ebebeb), color-stop(100%, #9f9f9f));
+    background: -webkit-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
+    background: -moz-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
+    background: -o-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
+    background: linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 3px black;
+    -moz-box-shadow: 0 1px 3px black;
+    box-shadow: 0 1px 3px black;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    background-color: #999;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    margin-top: -20px;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    visibility: hidden;
+    width: 40px;
+    z-index: 20;
+  }
+  div.slideshow menu.pager button span {
+    background: Transparent url(../img/slideshow.png) no-repeat 0 0;
+    display: inline-block;
+    height: 40px;
+    text-indent: -999em;
+    width: 15px;
+  }
+  div.slideshow menu.pager button.previous {
+    left: 2%;
+  }
+  div.slideshow menu.pager button.previous span {
+    background-position: 0 -64px;
+  }
+  div.slideshow menu.pager button.next {
+    right: 2%;
+  }
+  div.slideshow menu.pager button.next span {
+    background-position: 0 0;
+  }
+  div.slideshow menu.pager button.disabled {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  div.slideshow:hover menu.pager button {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+    opacity: 0.9;
+    visibility: visible;
+  }
+  div.slideshow:hover menu.pager button.disabled {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  /*
+  	Thumbnails
+  */
+  div.slideshow nav {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    bottom: 0;
+    height: 28%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+  }
+  div.slideshow nav div {
+    height: 100%;
+    margin: 0 35px 0 35px;
+    position: relative;
+    overflow: hidden;
+  }
+  div.slideshow nav div ul {
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 1000%;
+    z-index: 10;
+  }
+  div.slideshow nav div ul li {
+    display: inline;
+    list-style-type: none;
+  }
+  div.slideshow nav div ul li a img {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    cursor: pointer;
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+    -ms-interpolation-mode: bicubic;
+  }
+  div.slideshow nav div ul li a:hover img {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+    filter: none;
+  }
+  div.slideshow nav div ul li a.thumbnails_active img {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+    border: solid 2px #a4a4a4;
+    filter: none;
+    height: 95%;
+  }
+
+  /*
+  	Thumbnails Controls
+  */
+  div.slideshow nav menu.scroller {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 100%;
+  }
+  div.slideshow nav menu.scroller button {
+    background-color: #9f9f9f;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 100%;
+    line-height: 20px;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 25px;
+    z-index: 20;
+  }
+  div.slideshow nav menu.scroller button span {
+    background: Transparent url(../img/slideshow.png) no-repeat 0 0;
+    display: inline-block;
+    height: 40px;
+    text-indent: -999em;
+    width: 15px;
+  }
+  div.slideshow nav menu.scroller button.previous {
+    left: 0;
+  }
+  div.slideshow nav menu.scroller button.previous span {
+    background-position: 0 -192px;
+  }
+  div.slideshow nav menu.scroller button.next {
+    right: 0;
+  }
+  div.slideshow nav menu.scroller button.next span {
+    background-position: 0 -128px;
+  }
+  div.slideshow nav menu.scroller button.disabled {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  /*
+  	Thumbtacks
+  */
+  div.slideshow nav.navigation_thumbtacks {
+    background: Transparent;
+    height: 32px;
+    opacity: 0.8;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    z-index: 11;
+  }
+  div.slideshow nav.navigation_thumbtacks ul {
+    line-height: 0;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 0%;
+    width: 100%;
+  }
+  div.slideshow nav.navigation_thumbtacks ul li {
+    border: solid 2px #000;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 4px;
+    padding: 0;
+  }
+  div.slideshow nav.navigation_thumbtacks ul a {
+    background: Transparent;
+    border: solid 2px #000;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    float: none;
+    height: 10px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-indent: 16px;
+    white-space: nowrap;
+    width: 10px;
+  }
+  div.slideshow nav.navigation_thumbtacks ul a img {
+    display: none;
+  }
+  div.slideshow nav.navigation_thumbtacks ul a.thumbtacks_active {
+    background: #000;
+    border: solid 2px #000;
+  }
+  div.slideshow nav.navigation_thumbtacks menu {
+    display: none;
+  }
+}

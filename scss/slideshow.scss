@@ -1,0 +1,410 @@
+/*
+	Example Styling for a Slideshow
+
+*/
+
+@media all {
+
+	@import "compass/css3";
+	@import "compass/utilities";
+
+	/*
+		Slides
+	*/
+	div.slideshow {
+		font-size : 12px;
+		height : 512px;
+		overflow : hidden;
+		position : relative;
+		visibility : hidden;
+		width : 512px;
+
+		figure {
+			@include transition-property(all);
+			@include transition-duration(0.3s);
+			@include transition-timing-function(ease);
+			background : #000;
+			height : 70%;
+			margin : 0;
+			overflow : hidden;
+			position : absolute;
+			text-align : center;
+			top : 0;
+			width : 100%;
+			z-index : 10;
+			img {
+				-ms-interpolation-mode: bicubic;
+				margin : auto;
+			}
+			figcaption {
+				@include box-sizing(border-box);
+				background : rgba(0, 0, 0, 0.5);
+				filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000');
+				bottom : 0;
+				color : #fff;
+				left : 0;
+				padding : 1.4em;
+				position : absolute;
+				width : 100%;
+			}
+		}
+		figure.wipe_previous {
+			left : -100%;
+		}
+		figure.wipe_current {
+			left : 0%;
+		}
+		figure.wipe_next {
+			left : 100%;
+		}
+		figure.fade_previous {
+			@include opacity(0);
+			z-index : 9;
+		}
+		figure.fade_current {
+			@include opacity(1);
+			z-index : 10;
+		}
+		figure.fade_next {
+			@include opacity(0);
+			z-index : 9;
+		}
+	}
+
+	/*
+		Slides Captions
+	*/
+	div.slideshow.captions_hover {
+		figure {
+			figcaption {
+				visibility : hidden;
+			}
+		}
+		figure:hover {
+			figcaption {
+				visibility : visible;
+			}
+		}
+	}
+	div.slideshow.captions_hide {
+		figure {
+			figcaption {
+				display : none;
+			}
+		}
+	}
+
+	/*
+		Slides Scaling
+	*/
+	div.slideshow.scaling_fill {
+		figure {
+			img {
+				float : none;
+				left : 50%;
+				margin : auto;
+				top : 50%;
+				position : absolute;
+			}
+			img.ratio_landscape {
+				height : auto;
+				width : 100%;
+			}
+			img.ratio_portrait {
+				height : 100%;
+				width : auto;
+			}
+		}
+	}
+	div.slideshow.scaling_fit {
+		figure {
+			img {
+				float : none;
+				left : 50%;
+				/* margins need to be set programatically to provide centering */
+				margin : auto;
+				top : 50%;
+				position : absolute;
+			}
+			img.ratio_landscape {
+				height : 100%;
+				width : auto;
+			}
+			img.ratio_portrait {
+				height : auto;
+				width : 100%;
+			}
+		}
+	}
+
+	/*
+		Slide Controls
+	*/
+	div.slideshow {
+		menu.pager {
+			position : absolute;
+			height : 70%;
+			left : 0;
+			margin : 0;
+			padding : 0;
+			top : 0;
+			width : 100%;
+
+			button {
+				@include background(linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%));
+				@include border-radius(5px);
+				@include box-shadow(0 1px 3px #000000);
+				@include transition-property(all);
+				@include transition-duration(0.3s);
+				@include transition-timing-function(ease);
+				@include opacity(0);
+				background-color : #999;
+				border : none;
+				cursor : pointer;
+				height : 40px;
+				margin-top : -20px;
+				overflow : visible;
+				padding : 0;
+				position : absolute;
+				text-align : center;
+				top : 50%;
+				visibility : hidden;
+				width : 40px;
+				z-index : 20;
+
+				span {
+					background : Transparent url(../img/slideshow.png) no-repeat 0 0;
+					display : inline-block;
+					height : 40px;
+					text-indent : -999em;
+					width : 15px;
+				}
+			}
+			button.previous {
+				left : 2%;
+
+				span {
+					background-position : 0 -64px;
+				}
+			}
+			button.next {
+				right : 2%;
+
+				span {
+					background-position : 0 0;
+				}
+			}
+			button.disabled {
+				@include opacity(0.3);
+				cursor : default;
+			}
+		}
+	}
+	div.slideshow:hover {
+		menu.pager {
+			button {
+				@include opacity(0.9);
+				visibility : visible;
+			}
+			button.disabled {
+				@include opacity(0.3);
+				cursor : default;
+			}
+		}
+	}
+
+	/*
+		Thumbnails
+	*/
+	div.slideshow {
+		nav {
+			@include box-sizing(border-box);
+			bottom : 0;
+			height : 28%;
+			left : 0;
+			overflow : hidden;
+			position : absolute;
+			width : 100%;
+
+			div {
+				height : 100%;
+				margin : 0 35px 0 35px;
+				position : relative;
+				overflow : hidden;
+
+				ul {
+					@include transition-property(all);
+					@include transition-duration(0.3s);
+					@include transition-timing-function(ease);
+					height : 100%;
+					margin : 0;
+					padding : 0;
+					position : relative;
+					width : 1000%;
+					z-index : 10;
+
+					li {
+						display : inline;
+						list-style-type : none;
+
+						a {
+							img {
+								@include opacity(0.7);
+								@include transition-property(opacity);
+								@include transition-duration(0.3s);
+								@include transition-timing-function(ease);
+								cursor : pointer;
+								float : left;
+								height : 100%;
+								margin-right : 10px;
+								-ms-interpolation-mode: bicubic;
+							}
+						}
+						a:hover {
+							img {
+								@include opacity(1);
+								filter : none;
+							}
+						}
+						a.thumbnails_active {
+							img {
+								@include opacity(1);
+								border : solid 2px #a4a4a4;
+								filter : none;
+								height : 95%;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/*
+		Thumbnails Controls
+	*/
+	div.slideshow {
+		nav {
+			menu.scroller {
+				position : absolute;
+				height : 100%;
+				left : 0;
+				margin : 0;
+				padding : 0;
+				top : 0;
+				width : 100%;
+
+				button {
+					background-color : #9f9f9f;
+					border : none;
+					color : #fff;
+					cursor : pointer;
+					height : 100%;
+					line-height : 20px;
+					margin : 0;
+					overflow : visible;
+					padding : 0;
+					position : absolute;
+					text-align : center;
+					top : 0;
+					width : 25px;
+					z-index : 20;
+
+					span {
+						background : Transparent url(../img/slideshow.png) no-repeat 0 0;
+						display : inline-block;
+						height : 40px;
+						text-indent : -999em;
+						width : 15px;
+					}
+				}
+				button.previous {
+					left : 0;
+
+					span {
+						background-position : 0 -192px;
+					}
+				}
+				button.next {
+					right : 0;
+
+					span {
+						background-position : 0 -128px;
+					}
+				}
+				button.disabled {
+					@include opacity(0.3);
+					cursor : default;
+				}
+			}
+		}
+	}
+
+	/*
+		Thumbtacks
+	*/
+	div.slideshow {
+		nav.navigation_thumbtacks {
+			background : Transparent;
+			height : 32px;
+			opacity : 0.8;
+			padding : 0;
+			position : absolute;
+			bottom : 0;
+			z-index : 11;
+			ul {
+				line-height : 0;
+				margin : 0;
+				position : absolute;
+				text-align : center;
+				top : 0%;
+				width : 100%;
+				li {
+					border : solid 2px #000;
+					border-radius : 50%;
+					display : inline-block;
+					margin : 4px;
+					padding : 0;
+				}
+				a {
+					background : Transparent;
+					border : solid 2px #000;
+					border-radius : 50%;
+					cursor : pointer;
+					display : inline-block;
+					float : none;
+					height : 10px;
+					margin : 0;
+					padding : 0;
+					overflow : hidden;
+					text-indent : 16px;
+					white-space : nowrap;
+					width : 10px;
+					img {
+						display : none;
+					}
+				}
+				a.thumbtacks_active {
+					background : #000;
+					border : solid 2px #000;
+				}
+			}
+			menu {
+				display : none;
+			}
+		}
+	}
+
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 980px) and (max-width: 1199px) {}
+
+@media (min-width: 768px) and (max-width: 979px) {}
+
+@media (max-width: 767px) {}
+
+@media (max-width: 480px) {}
+
+@media print {}

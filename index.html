@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>useful.slideshow.js: Animated Slideshow</title>
+		<style>
+			html { font-family:Sans-Serif; font-size:75%; height:100%; }
+			body { _height:100%; line-height:180%; margin:0; min-height:100%; padding:0; }
+			.padded { padding:2em; }
+		</style>
+		<!--[if lte IE 9]>
+			<meta http-equiv="imagetoolbar" content="no"/>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<section class="example rightExample clearfix">
+			<article class="example">
+				<h2>Animated Slideshow</h2>
+				<p>This slideshow uses CSS3 transitions for smooth animations, especially on mobile devices. Using CSS3, makes it easy to customise the effect.</p>
+				<p>Internet Explorer (<10) doesn't support CSS3 transitions, but the animations are emulated using the same stylesheet rules.</p>
+				<p><a class="button downloadButton" href="http://www.woollymittens.nl/downloads/slideshow.zip" target="_blank">Download</a></p>
+			</article>
+			<aside class="example">
+
+				<!-- Cut below this -->
+				<style>@import url("./css/slideshow.css")</style>
+				<div id="slideshowa" class="slideshow">
+					<ul>
+						<li><a href="./img/figure_0a.jpg"><img title="Lorem Ipsum" alt="Lorem ipsum dolor sit amet" src="./img/figure_0.jpg"/></a></li>
+						<li><a href="./img/figure_1a.jpg"><img title="Ut Enim" alt="Ut enim ad minim veniam" src="./img/figure_1.jpg"/></a></li>
+						<li><a href="./img/figure_2a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_2.jpg"/></a></li>
+						<li><a href="./img/figure_3a.jpg"><img title="Excepteur" alt="Excepteur sint occaecat" src="./img/figure_3.jpg"/></a></li>
+						<li><a href="./img/figure_4a.jpg"><img title="Lorem Ipsum" alt="Lorem ipsum dolor sit amet" src="./img/figure_4.jpg"/></a></li>
+						<li><a href="./img/figure_5a.jpg"><img title="Ut Enim" alt="Ut enim ad minim veniam" src="./img/figure_5.jpg"/></a></li>
+						<li><a href="./img/figure_6a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_6.jpg"/></a></li>
+						<li><a href="./img/figure_7a.jpg"><img title="Excepteur" alt="Excepteur sint occaecat" src="./img/figure_7.jpg"/></a></li>
+						<li><a href="./img/figure_8a.jpg"><img title="Ut Enim" alt="Ut enim ad minim veniam" src="./img/figure_8.jpg"/></a></li>
+						<li><a href="./img/figure_9a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_9.jpg"/></a></li>
+					</ul>
+				</div>
+				<script src="./js/useful.slideshow.js"></script>
+				<script>
+				//<!--
+					useful.css.select({
+						rule : '#slideshowa',
+						handler : useful.slideshow.start,
+						data : {
+							'width' : 100,
+							'widthUnit' : '%',
+							'height' : 512,
+							'heightUnit' : 'px',
+							'divide' : '80%',
+							'margin' : '2%',
+							'preload' : 2,
+							'idle' : 4000,
+							'speed' : 300,
+							'highlight' : 'Grey',
+							'hover' : 'pause',				// pause | ignore
+							'scaling' : 'fill', 			// none | fit | fill
+							'captions' : 'show', 			// show | hide | hover
+							'navigation' : 'thumbnails', 	// thumbnails | thumbtacks
+							'transition' : 'wipe', 			// wipe | fade
+							'ease' : 'ease-in-out' 			// linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
+						}
+					});
+				//-->
+				</script>
+				<!-- Cut above this -->
+
+			</aside>
+		</section>
+		<section class="example leftExample clearfix">
+			<article class="example">
+				<p>This example shows icons instead of thumbnails.</p>
+			</article>
+			<aside class="example">
+
+				<!-- Cut below this -->
+				<style>@import url("./css/slideshow.css")</style>
+				<div id="slideshowb" class="slideshow">
+					<ul>
+						<li><a href="./img/figure_0a.jpg"><img title="Lorem Ipsum" alt="Lorem ipsum dolor sit amet" src="./img/figure_0.jpg"/></a></li>
+						<li><a href="./img/figure_1a.jpg"><img title="Ut Enim" alt="Ut enim ad minim veniam" src="./img/figure_1.jpg"/></a></li>
+						<li><a href="./img/figure_2a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_2.jpg"/></a></li>
+						<li><a href="./img/figure_3a.jpg"><img title="Excepteur" alt="Excepteur sint occaecat" src="./img/figure_3.jpg"/></a></li>
+						<li><a href="./img/figure_4a.jpg"><img title="Lorem Ipsum" alt="Lorem ipsum dolor sit amet" src="./img/figure_4.jpg"/></a></li>
+						<li><a href="./img/figure_5a.jpg"><img title="Ut Enim" alt="Ut enim ad minim veniam" src="./img/figure_5.jpg"/></a></li>
+						<li><a href="./img/figure_6a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_6.jpg"/></a></li>
+						<li><a href="./img/figure_7a.jpg"><img title="Excepteur" alt="Excepteur sint occaecat" src="./img/figure_7.jpg"/></a></li>
+						<li><a href="./img/figure_8a.jpg"><img title="Ut Enim" alt="Ut enim ad minim veniam" src="./img/figure_8.jpg"/></a></li>
+						<li><a href="./img/figure_9a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_9.jpg"/></a></li>
+					</ul>
+				</div>
+				<script src="./js/useful.slideshow.js"></script>
+				<script>
+				//<!--
+					useful.css.select({
+						rule : '#slideshowb',
+						handler : useful.slideshow.start,
+						data : {
+							'width' : 100,
+							'widthUnit' : '%',
+							'height' : 450,
+							'heightUnit' : 'px',
+							'divide' : '100%',
+							'margin' : '0',
+							'preload' : 2,
+							'idle' : 4000,
+							'speed' : 300,
+							'highlight' : 'White',
+							'hover' : 'pause',				// pause | ignore
+							'scaling' : 'fill', 			// none | fit | fill
+							'captions' : 'hide', 			// show | hide | hover
+							'navigation' : 'thumbtacks', 	// thumbnails | thumbtacks
+							'transition' : 'fade', 			// wipe | fade
+							'ease' : 'ease-in-out' 			// linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
+						}
+					});
+				//-->
+				</script>
+				<!-- Cut above this -->
+
+			</aside>
+		</section>
+	</body>
+</html>
