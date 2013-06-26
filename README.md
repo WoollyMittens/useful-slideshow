@@ -53,49 +53,56 @@ useful.slideshow.start(parent, {
 ```
 
 **id : {string}** - The ID attribute of an element somewhere in the document.
+
 **parent : {DOM node}** - The DOM element around which the functionality is centred.
+
 **width : {integer}** - The width of the slideshow.
 
 **widthUnit : {string}**
-*px* - The width would be applied in pixels.
-*%* - The width would be applied as a percentage of the available space.
-*em* - The width would be applied relative to the text size.
++ *px* - The width would be applied in pixels.
++ *%* - The width would be applied as a percentage of the available space.
++ *em* - The width would be applied relative to the text size.
 
 **height : {integer}** - The width of the slideshow.
 
 **heightUnit : {string}**
-*px* - The height would be applied in pixels.
-*%* - The height would be applied as a percentage of the available space. The parent element needs to have a defined height.
-*em* - The height would be applied relative to the text size.
++ *px* - The height would be applied in pixels.
++ *%* - The height would be applied as a percentage of the available space. The parent element needs to have a defined height.
++ *em* - The height would be applied relative to the text size.
 
 **divide : {percentage}** - The percentage of the height devoted to the slides. The rest is reserved for the thumbnails.
+
 **margin : {percentage}** - The space separating the slides and the thumbnails.
+
 **preload : {integer}** - The amount of full sized images to preload before they come into view.
+
 **idle : {integer}** - The time to wait before the slideshow start cycling through the slides automatically. A negative value disables auto-play.
+
 **speed : {integer}** - The transition time between slides in milliseconds.
+
 **highlight : {color}** - A color name, hex or rgba value  used to highlight the active thumbnail.
 
 **hover : {string}**
-*pause* - Pauses the slideshow upon interaction.
-*ignore* - Ignores interaction.
++ *pause* - Pauses the slideshow upon interaction.
++ *ignore* - Ignores interaction.
 
 **scaling : {string}**
-*none* - Use the images in the dimensions they come in.
-*fit* - Fit the complete image, leaving black space.
-*fill* - Fill the complete slide with the image, leaving no black space, but cropping the image.
++ *none* - Use the images in the dimensions they come in.
++ *fit* - Fit the complete image, leaving black space.
++ *fill* - Fill the complete slide with the image, leaving no black space, but cropping the image.
 
 **captions : {string}**
-*show* - Always shows the caption, based on the title and alt attributes.
-*hide* - Never show the caption.
-*hover* - Show the caption during interaction.
++ *show* - Always shows the caption, based on the title and alt attributes.
++ *hide* - Never show the caption.
++ *hover* - Show the caption during interaction.
 
 **navigation : {string}**
-*thumbnails* - Uses thumbnails of the images for navigating the slides.
-*thumbtacks* - Shows a small bar of icons as navigation, allowing more space for the slides.
++ *thumbnails* - Uses thumbnails of the images for navigating the slides.
++ *thumbtacks* - Shows a small bar of icons as navigation, allowing more space for the slides.
 
 **transition : {string}**
-*wipe* - Makes slides slide in from the sides.
-*fade* - Crossfades between slides.
++ *wipe* - Makes slides slide in from the sides.
++ *fade* - Crossfades between slides.
 
 **ease : {string}** - Valid easing methods include: *linear*, *ease*, *ease-in*, *ease-out*, *ease-in-out*, *cubic-bezier(n,n,n,n)*
 
@@ -129,7 +136,9 @@ useful.css.select({
 ```
 
 **rule : {string}** - The CSS Rule for the intended target(s) of the script.
+
 **handler : {function}** - The public function that starts the script.
+
 **data : {object}** - Name-value pairs with configuration data.
 
 ### Using jQuery
