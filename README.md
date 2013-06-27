@@ -2,6 +2,8 @@
 
 This slideshow uses CSS3 transitions for smooth animations, especially on mobile devices. Using CSS3, makes it easy to customise the effect. Internet Explorer (<10) doesn't support CSS3 transitions, but the animations are emulated using the same stylesheet rules.
 
+Try the <a href="http://www.woollymittens.nl/useful/default.php?url=slideshow">slideshow demo</a>.
+
 ## How to use the script
 
 The stylesheet is best included in the header of the document.
