@@ -1,6 +1,5 @@
 /*
 	Example Styling for a Slideshow
-
 */
 @media all {
   /*
@@ -13,6 +12,11 @@
     position: relative;
     visibility: hidden;
     width: 512px;
+  }
+  div.slideshow * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
   div.slideshow figure {
     -webkit-transition-property: all;

@@ -1,13 +1,9 @@
 /*
 	Example Styling for a Slideshow
-
 */
-
 @media all {
-
 	@import "compass/css3";
 	@import "compass/utilities";
-
 	/*
 		Slides
 	*/
@@ -18,7 +14,9 @@
 		position : relative;
 		visibility : hidden;
 		width : 512px;
-
+		* {
+			@include box-sizing(border-box);
+		}
 		figure {
 			@include transition-property(all);
 			@include transition-duration(0.3s);
@@ -70,7 +68,6 @@
 			z-index : 9;
 		}
 	}
-
 	/*
 		Slides Captions
 	*/
@@ -93,7 +90,6 @@
 			}
 		}
 	}
-
 	/*
 		Slides Scaling
 	*/
@@ -136,7 +132,6 @@
 			}
 		}
 	}
-
 	/*
 		Slide Controls
 	*/
@@ -149,7 +144,6 @@
 			padding : 0;
 			top : 0;
 			width : 100%;
-
 			button {
 				@include background(linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%));
 				@include border-radius(5px);
@@ -171,7 +165,6 @@
 				visibility : hidden;
 				width : 40px;
 				z-index : 20;
-
 				span {
 					background : Transparent url(../img/slideshow.png) no-repeat 0 0;
 					display : inline-block;
@@ -182,14 +175,12 @@
 			}
 			button.previous {
 				left : 2%;
-
 				span {
 					background-position : 0 -64px;
 				}
 			}
 			button.next {
 				right : 2%;
-
 				span {
 					background-position : 0 0;
 				}
@@ -212,7 +203,6 @@
 			}
 		}
 	}
-
 	/*
 		Thumbnails
 	*/
@@ -225,13 +215,11 @@
 			overflow : hidden;
 			position : absolute;
 			width : 100%;
-
 			div {
 				height : 100%;
 				margin : 0 35px 0 35px;
 				position : relative;
 				overflow : hidden;
-
 				ul {
 					@include transition-property(all);
 					@include transition-duration(0.3s);
@@ -242,11 +230,9 @@
 					position : relative;
 					width : 1000%;
 					z-index : 10;
-
 					li {
 						display : inline;
 						list-style-type : none;
-
 						a {
 							img {
 								@include opacity(0.7);
@@ -279,7 +265,6 @@
 			}
 		}
 	}
-
 	/*
 		Thumbnails Controls
 	*/
@@ -293,7 +278,6 @@
 				padding : 0;
 				top : 0;
 				width : 100%;
-
 				button {
 					background-color : #9f9f9f;
 					border : none;
@@ -309,7 +293,6 @@
 					top : 0;
 					width : 25px;
 					z-index : 20;
-
 					span {
 						background : Transparent url(../img/slideshow.png) no-repeat 0 0;
 						display : inline-block;
@@ -320,14 +303,12 @@
 				}
 				button.previous {
 					left : 0;
-
 					span {
 						background-position : 0 -192px;
 					}
 				}
 				button.next {
 					right : 0;
-
 					span {
 						background-position : 0 -128px;
 					}
@@ -339,7 +320,6 @@
 			}
 		}
 	}
-
 	/*
 		Thumbtacks
 	*/
@@ -394,17 +374,10 @@
 			}
 		}
 	}
-
 }
-
 @media (min-width: 1200px) {}
-
 @media (min-width: 980px) and (max-width: 1199px) {}
-
 @media (min-width: 768px) and (max-width: 979px) {}
-
 @media (max-width: 767px) {}
-
 @media (max-width: 480px) {}
-
 @media print {}
