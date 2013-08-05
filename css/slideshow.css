@@ -3,6 +3,9 @@
 */
 @media all {
   /*
+  	definitions
+  */
+  /*
   	Slides
   */
   div.slideshow {
@@ -17,6 +20,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -ms-interpolation-mode: bicubic;
   }
   div.slideshow figure {
     -webkit-transition-property: all;
@@ -46,9 +50,6 @@
     margin: auto;
   }
   div.slideshow figure figcaption {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     background: rgba(0, 0, 0, 0.5);
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000');
     bottom: 0;
@@ -146,19 +147,6 @@
     width: 100%;
   }
   div.slideshow menu.pager button {
-    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0px, #ffffff), color-stop(1px, #ffffff), color-stop(1px, #ebebeb), color-stop(100%, #9f9f9f));
-    background: -webkit-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
-    background: -moz-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
-    background: -o-linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
-    background: linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%);
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 1px 3px black;
-    -moz-box-shadow: 0 1px 3px black;
-    box-shadow: 0 1px 3px black;
     -webkit-transition-property: all;
     -moz-transition-property: all;
     -o-transition-property: all;
@@ -173,63 +161,62 @@
     transition-timing-function: ease;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
-    background-color: #999;
+    background-color: #ff6a00;
     border: none;
     cursor: pointer;
-    height: 40px;
-    margin-top: -20px;
-    overflow: visible;
+    height: 44px;
+    margin-top: -22px;
+    overflow: hidden;
     padding: 0;
     position: absolute;
     text-align: center;
+    text-indent: 50px;
     top: 50%;
     visibility: hidden;
-    width: 40px;
+    width: 44px;
     z-index: 20;
   }
   div.slideshow menu.pager button span {
     background: Transparent url(../img/slideshow.png) no-repeat 0 0;
-    display: inline-block;
-    height: 40px;
-    text-indent: -999em;
-    width: 15px;
+    content: '';
+    display: block;
+    height: 32px;
+    left: 50%;
+    margin: -16px 0 0 -16px;
+    position: absolute;
+    top: 50%;
+    width: 32px;
   }
   div.slideshow menu.pager button.previous {
     left: 2%;
   }
   div.slideshow menu.pager button.previous span {
-    background-position: 0 -64px;
+    background-position: 50% 0px;
   }
   div.slideshow menu.pager button.next {
     right: 2%;
   }
   div.slideshow menu.pager button.next span {
-    background-position: 0 0;
+    background-position: 50% -32px;
+  }
+  div.slideshow menu.pager button:hover {
+    background-color: #ff9800;
   }
   div.slideshow menu.pager button.disabled {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-    opacity: 0.3;
+    background-color: #7f7f7f;
     cursor: default;
   }
 
   div.slideshow:hover menu.pager button {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
-    opacity: 0.9;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
     visibility: visible;
-  }
-  div.slideshow:hover menu.pager button.disabled {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-    opacity: 0.3;
-    cursor: default;
   }
 
   /*
-  	Thumbnails
+  	Thumbnails Scroller
   */
   div.slideshow nav {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     bottom: 0;
     height: 28%;
     left: 0;
@@ -239,7 +226,7 @@
   }
   div.slideshow nav div {
     height: 100%;
-    margin: 0 35px 0 35px;
+    margin: 1px 41px 0 41px;
     position: relative;
     overflow: hidden;
   }
@@ -260,16 +247,25 @@
     margin: 0;
     padding: 0;
     position: relative;
-    width: 1000%;
+    white-space: nowrap;
     z-index: 10;
   }
   div.slideshow nav div ul li {
     display: inline;
     list-style-type: none;
   }
+  div.slideshow nav div ul li a {
+    margin-right: 1px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+    height: 100%;
+    width: 25%;
+  }
   div.slideshow nav div ul li a img {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-    opacity: 0.7;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
     -webkit-transition-property: opacity;
     -moz-transition-property: opacity;
     -o-transition-property: opacity;
@@ -282,23 +278,26 @@
     -moz-transition-timing-function: ease;
     -o-transition-timing-function: ease;
     transition-timing-function: ease;
-    cursor: pointer;
-    float: left;
-    height: 100%;
-    margin-right: 10px;
-    -ms-interpolation-mode: bicubic;
+    filter: none;
+    border: none;
+    left: 0;
+    margin-left: 0;
+    margin-top: 0;
+    min-height: 101%;
+    min-width: 101%;
+    position: absolute;
+    top: 0;
   }
   div.slideshow nav div ul li a:hover img {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1;
-    filter: none;
+  }
+  div.slideshow nav div ul li a.thumbnails_active {
+    background-color: #FF6A00;
   }
   div.slideshow nav div ul li a.thumbnails_active img {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-    opacity: 1;
-    border: solid 2px #a4a4a4;
-    filter: none;
-    height: 95%;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    opacity: 0.5;
   }
 
   /*
@@ -308,49 +307,55 @@
     position: absolute;
     height: 100%;
     left: 0;
-    margin: 0;
+    margin: 1px 0 0 0;
     padding: 0;
     top: 0;
     width: 100%;
   }
   div.slideshow nav menu.scroller button {
-    background-color: #9f9f9f;
+    background-color: #ff6a00;
     border: none;
     color: #fff;
     cursor: pointer;
     height: 100%;
-    line-height: 20px;
     margin: 0;
-    overflow: visible;
+    overflow: hidden;
     padding: 0;
     position: absolute;
     text-align: center;
+    text-indent: 50px;
     top: 0;
-    width: 25px;
+    width: 40px;
     z-index: 20;
   }
   div.slideshow nav menu.scroller button span {
     background: Transparent url(../img/slideshow.png) no-repeat 0 0;
-    display: inline-block;
-    height: 40px;
-    text-indent: -999em;
-    width: 15px;
+    content: '';
+    display: block;
+    height: 32px;
+    left: 50%;
+    margin: -16px 0 0 -16px;
+    position: absolute;
+    top: 50%;
+    width: 32px;
+  }
+  div.slideshow nav menu.scroller button:hover {
+    background-color: #ff9800;
   }
   div.slideshow nav menu.scroller button.previous {
     left: 0;
   }
   div.slideshow nav menu.scroller button.previous span {
-    background-position: 0 -192px;
+    background-position: 50% 0px;
   }
   div.slideshow nav menu.scroller button.next {
     right: 0;
   }
   div.slideshow nav menu.scroller button.next span {
-    background-position: 0 -128px;
+    background-position: 50% -32px;
   }
   div.slideshow nav menu.scroller button.disabled {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-    opacity: 0.3;
+    background-color: #7f7f7f;
     cursor: default;
   }
 
@@ -375,6 +380,7 @@
     width: 100%;
   }
   div.slideshow nav.navigation_thumbtacks ul li {
+    background: #fff;
     border: solid 2px #000;
     border-radius: 50%;
     display: inline-block;
@@ -382,9 +388,8 @@
     padding: 0;
   }
   div.slideshow nav.navigation_thumbtacks ul a {
-    background: Transparent;
-    border: solid 2px #000;
     border-radius: 50%;
+    border: none;
     cursor: pointer;
     display: inline-block;
     float: none;
@@ -400,8 +405,7 @@
     display: none;
   }
   div.slideshow nav.navigation_thumbtacks ul a.thumbtacks_active {
-    background: #000;
-    border: solid 2px #000;
+    background: #FF6A00;
   }
   div.slideshow nav.navigation_thumbtacks menu {
     display: none;

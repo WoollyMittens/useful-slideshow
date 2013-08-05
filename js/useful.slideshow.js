@@ -275,9 +275,7 @@
 						newFigure.appendChild(newCaption);
 					}
 					// force the height of the slide if desired
-					if (model.divide && parseInt(model.divide, 10) > 0) {
-						newFigure.style.height = model.divide;
-					}
+					newFigure.style.height = (model.navigation === 'thumbtacks') ? '100%' : model.divide;
 					// implement the transition speed
 					if (model.speed) {
 						newFigure.style.msTransitionDuration = model.speed / 1000 + 's';
@@ -461,7 +459,7 @@
 				model.outlets.slideDiv = document.createElement('div');
 				model.outlets.slideUl = document.createElement('ul');
 				// force the height of the nav if desired
-				if (model.divide && model.divide !== '100%') {
+				if (model.divide !== '100%' && model.navigation !== 'thumbtacks') {
 					model.outlets.slideNav.style.height = (100 - parseInt(model.divide, 10) - parseInt(model.margin, 10)) + '%';
 				}
 				if (model.margin) {
@@ -475,12 +473,9 @@
 					var newA = document.createElement('a');
 					newA.className = (a === 1) ? model.navigation + '_active' : model.navigation + '_passive';
 					var newImage = document.createElement('img');
-					newImage.style.marginRight = model.pixelMargin + 'px';
 					newImage.alt = '';
 					newImage.src = model.thumbnails[a];
-					newImage.style.borderColor = model.highlight;
 					newA.appendChild(newImage);
-					newA.style.borderColor = model.highlight;
 					newLi.appendChild(newA);
 					// insert the new elements
 					model.outlets.slideUl.appendChild(newLi);
@@ -511,26 +506,68 @@
 			update : function (model) {
 				// update the thumbnails menu
 				slideshow.thumbnails.menu.update(model);
-				// highlight the active slide
+				/// highlight the icons
+				slideshow.thumbnails.hightlightIcons(model);
+				// it there's thumbnails
+				if (model.navigation === 'thumbnails') {
+					// centre the icons
+					slideshow.thumbnails.centreIcons(model);
+					// centre the slider
+					slideshow.thumbnails.centreSlider(model);
+				}
+			},
+			// highlight active icon
+			hightlightIcons : function (model) {
+				// for all thumbnails
 				for (var a = 1, b = model.thumbnails.length; a < b; a += 1) {
+					// highlight the active slide
 					model.outlets.thumbnails[a].className = (model.outlets.index === a) ? model.navigation + '_active' : model.navigation + '_passive';
+					model.outlets.thumbnails[a].style.borderColor = (model.outlets.index === a) ? model.highlight : 'Transparent';
 					model.outlets.thumbnails[a].style.backgroundColor = (model.outlets.index === a) ? model.highlight : 'Transparent';
 				}
+			},
+			// centre the icons in containers
+			centreIcons : function (model) {
+				var imageObject, imageWidth, imageHeight, rowHeight;
+				// measure the available space
+				rowHeight = model.outlets.slideNav.offsetHeight;
+				// for all thumbnails
+				for (var a = 1, b = model.thumbnails.length; a < b; a += 1) {
+					// centre the image in its surroundings
+					model.outlets.thumbnails[a].style.width =  rowHeight + 'px';
+					imageObject = model.outlets.thumbnails[a].getElementsByTagName('img')[0];
+					imageWidth = imageObject.offsetWidth;
+					imageHeight = imageObject.offsetHeight;
+					if (imageWidth > imageHeight) {
+						imageWidth = imageWidth / imageHeight * rowHeight;
+						imageHeight = rowHeight;
+					} else {
+						imageHeight = imageHeight /  imageWidth * rowHeight;
+						imageWidth = rowHeight;
+					}
+					imageObject.style.width = Math.round(imageWidth) + 'px';
+					imageObject.style.height = Math.round(imageHeight) + 'px';
+					imageObject.style.left = '50%';
+					imageObject.style.top = '50%';
+					imageObject.style.marginLeft = Math.round(-imageWidth / 2) + 'px';
+					imageObject.style.marginTop = Math.round(-imageHeight / 2) + 'px';
+				}
+			},
+			// centre the container around the active one
+			centreSlider : function (model) {
 				// scroll the slider enough to center the active slide
-				var activeThumbnail = model.outlets.thumbnails[model.outlets.index].getElementsByTagName('img')[0];
+				var activeThumbnail = model.outlets.thumbnails[model.outlets.index];
 				var activePosition = activeThumbnail.offsetLeft;
 				var activeWidth = activeThumbnail.offsetWidth;
 				var scrollDistance = model.outlets.slideDiv.offsetWidth;
-				var centeredPosition = -1 * activePosition + scrollDistance / 2 - activeWidth / 2;
+				var centeredPosition = -activePosition + scrollDistance / 2 - activeWidth / 2;
 				centeredPosition = (centeredPosition > 0) ? 0 : centeredPosition;
 				centeredPosition = (centeredPosition < model.scrollMax && model.scrollMax < 0) ? model.scrollMax : centeredPosition;
 				// transition to the new position
-				if (model.navigation === 'thumbnails') {
-					useful.css.setRules(
-						model.outlets.slideUl,
-						{'marginLeft' : centeredPosition + 'px'}
-					);
-				}
+				useful.css.setRules(
+					model.outlets.slideUl,
+					{'marginLeft' : centeredPosition + 'px'}
+				);
 			},
 			// activate a corresponding figure
 			set : function (event, element, model) {
@@ -584,7 +621,7 @@
 					// calculate the minimum position
 					model.scrollMin = 0;
 					// calculate the maximum position
-					var lastThumbnail = model.outlets.thumbnails[model.outlets.thumbnails.length - 1].getElementsByTagName('img')[0];
+					var lastThumbnail = model.outlets.thumbnails[model.outlets.thumbnails.length - 1];
 					model.scrollStep = lastThumbnail.offsetWidth;
 					model.scrollMax = -1 * (lastThumbnail.offsetLeft + lastThumbnail.offsetWidth) + model.scrollDistance;
 					// show or hide the prev button

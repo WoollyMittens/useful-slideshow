@@ -4,6 +4,7 @@
 @media all {
 	@import "compass/css3";
 	@import "compass/utilities";
+	@import "_definitions";
 	/*
 		Slides
 	*/
@@ -16,6 +17,7 @@
 		width : 512px;
 		* {
 			@include box-sizing(border-box);
+			-ms-interpolation-mode: bicubic;
 		}
 		figure {
 			@include transition-property(all);
@@ -35,7 +37,6 @@
 				margin : auto;
 			}
 			figcaption {
-				@include box-sizing(border-box);
 				background : rgba(0, 0, 0, 0.5);
 				filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000');
 				bottom : 0;
@@ -145,48 +146,46 @@
 			top : 0;
 			width : 100%;
 			button {
-				@include background(linear-gradient(top, #ffffff 0px, #ffffff 1px, #ebebeb 1px, #9f9f9f 100%));
-				@include border-radius(5px);
-				@include box-shadow(0 1px 3px #000000);
 				@include transition-property(all);
 				@include transition-duration(0.3s);
 				@include transition-timing-function(ease);
 				@include opacity(0);
-				background-color : #999;
+				background-color : $color-passive;
 				border : none;
 				cursor : pointer;
-				height : 40px;
-				margin-top : -20px;
-				overflow : visible;
+				height : 44px;
+				margin-top : -22px;
+				overflow : hidden;
 				padding : 0;
 				position : absolute;
 				text-align : center;
+				text-indent : 50px;
 				top : 50%;
 				visibility : hidden;
-				width : 40px;
+				width : 44px;
 				z-index : 20;
 				span {
 					background : Transparent url(../img/slideshow.png) no-repeat 0 0;
-					display : inline-block;
-					height : 40px;
-					text-indent : -999em;
-					width : 15px;
+					@include centerIcon ();
 				}
 			}
 			button.previous {
 				left : 2%;
 				span {
-					background-position : 0 -64px;
+					background-position : 50% 0px;
 				}
 			}
 			button.next {
 				right : 2%;
 				span {
-					background-position : 0 0;
+					background-position : 50% -32px;
 				}
 			}
+			button:hover {
+				background-color : $color-hover;
+			}
 			button.disabled {
-				@include opacity(0.3);
+				background-color : $color-disabled;
 				cursor : default;
 			}
 		}
@@ -194,21 +193,16 @@
 	div.slideshow:hover {
 		menu.pager {
 			button {
-				@include opacity(0.9);
+				@include opacity(1);
 				visibility : visible;
-			}
-			button.disabled {
-				@include opacity(0.3);
-				cursor : default;
 			}
 		}
 	}
 	/*
-		Thumbnails
+		Thumbnails Scroller
 	*/
 	div.slideshow {
 		nav {
-			@include box-sizing(border-box);
 			bottom : 0;
 			height : 28%;
 			left : 0;
@@ -217,7 +211,7 @@
 			width : 100%;
 			div {
 				height : 100%;
-				margin : 0 35px 0 35px;
+				margin : 1px 41px 0 41px;
 				position : relative;
 				overflow : hidden;
 				ul {
@@ -228,36 +222,44 @@
 					margin : 0;
 					padding : 0;
 					position : relative;
-					width : 1000%;
+					white-space : nowrap;
 					z-index : 10;
 					li {
 						display : inline;
 						list-style-type : none;
 						a {
+							margin-right : 1px;
+							display : inline-block;
+							overflow : hidden;
+							position : relative;
+							vertical-align : top;
+							height : 100%;
+							width : 25%;
 							img {
-								@include opacity(0.7);
+								@include opacity(1);
 								@include transition-property(opacity);
 								@include transition-duration(0.3s);
 								@include transition-timing-function(ease);
-								cursor : pointer;
-								float : left;
-								height : 100%;
-								margin-right : 10px;
-								-ms-interpolation-mode: bicubic;
+								filter : none;
+								border : none;
+								left : 0;
+								margin-left : 0;
+								margin-top : 0;
+								min-height : 101%;
+								min-width : 101%;
+								position : absolute;
+								top : 0;
 							}
 						}
 						a:hover {
 							img {
 								@include opacity(1);
-								filter : none;
 							}
 						}
 						a.thumbnails_active {
+							background-color : #FF6A00;
 							img {
-								@include opacity(1);
-								border : solid 2px #a4a4a4;
-								filter : none;
-								height : 95%;
+								@include opacity(0.5);
 							}
 						}
 					}
@@ -274,47 +276,47 @@
 				position : absolute;
 				height : 100%;
 				left : 0;
-				margin : 0;
+				margin : 1px 0 0 0;
 				padding : 0;
 				top : 0;
 				width : 100%;
 				button {
-					background-color : #9f9f9f;
+					background-color : $color-passive;
 					border : none;
 					color : #fff;
 					cursor : pointer;
 					height : 100%;
-					line-height : 20px;
 					margin : 0;
-					overflow : visible;
+					overflow : hidden;
 					padding : 0;
 					position : absolute;
 					text-align : center;
+					text-indent : 50px;
 					top : 0;
-					width : 25px;
+					width : 40px;
 					z-index : 20;
 					span {
 						background : Transparent url(../img/slideshow.png) no-repeat 0 0;
-						display : inline-block;
-						height : 40px;
-						text-indent : -999em;
-						width : 15px;
+						@include centerIcon ();
 					}
+				}
+				button:hover {
+					background-color : $color-hover;
 				}
 				button.previous {
 					left : 0;
 					span {
-						background-position : 0 -192px;
+						background-position : 50% 0px;
 					}
 				}
 				button.next {
 					right : 0;
 					span {
-						background-position : 0 -128px;
+						background-position : 50% -32px;
 					}
 				}
 				button.disabled {
-					@include opacity(0.3);
+					background-color : $color-disabled;
 					cursor : default;
 				}
 			}
@@ -340,6 +342,7 @@
 				top : 0%;
 				width : 100%;
 				li {
+					background : #fff;
 					border : solid 2px #000;
 					border-radius : 50%;
 					display : inline-block;
@@ -347,9 +350,8 @@
 					padding : 0;
 				}
 				a {
-					background : Transparent;
-					border : solid 2px #000;
 					border-radius : 50%;
+					border : none;
 					cursor : pointer;
 					display : inline-block;
 					float : none;
@@ -365,8 +367,7 @@
 					}
 				}
 				a.thumbtacks_active {
-					background : #000;
-					border : solid 2px #000;
+					background : #FF6A00;
 				}
 			}
 			menu {
