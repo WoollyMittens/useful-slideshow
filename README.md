@@ -2,9 +2,9 @@
 
 This slideshow uses CSS3 transitions for smooth animations, especially on mobile devices. Using CSS3, makes it easy to customise the effect. Internet Explorer (<10) doesn't support CSS3 transitions, but the animations are emulated using the same stylesheet rules.
 
-Try the <a href="http://www.woollymittens.nl/useful/default.php?url=slideshow">slideshow demo</a>.
+Try the <a href="http://www.woollymittens.nl/useful/default.php?url=slideshow">demo</a>.
 
-## How to use the script
+## How to include the script
 
 The stylesheet is best included in the header of the document.
 
@@ -15,7 +15,7 @@ The stylesheet is best included in the header of the document.
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful.js"></script>
+<script src="./js/slideshow.min.js"></script>
 ```
 
 To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*. To provide an alternative for *document.querySelectorAll* and CSS3 animations in Internet Explorer 8 and lower, include *jQuery*.
@@ -33,30 +33,33 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 This is the safest way of starting the script, but allows for only one target element at a time.
 
 ```javascript
-var parent = documentGetElementById('id');
-useful.slideshow.start(parent, {
+// create a new instance of the script
+var slideshow = new useful.Slideshow( document.getElementById('id'), {
 	'width' : 100,
 	'widthUnit' : '%',
 	'height' : 512,
 	'heightUnit' : 'px',
 	'divide' : '80%',
-	'margin' : '2%',
+	'margin' : '0%',
 	'preload' : 2,
 	'idle' : 4000,
 	'speed' : 300,
-	'highlight' : 'Grey',
-	'hover' : 'pause',				// pause | ignore
-	'scaling' : 'fill', 			// none | fit | fill
-	'captions' : 'show', 			// show | hide | hover
-	'navigation' : 'thumbnails', 	// thumbnails | thumbtacks
-	'transition' : 'wipe', 			// wipe | fade
-	'ease' : 'ease-in-out' 			// linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
+	'colorPassive' : '#ff6a00',
+	'colorActive' : '#d45800',
+	'colorHover' : '#ff9800',
+	'colorDisabled' : '#7f7f7f',
+	'hover' : 'pause',
+	'scaling' : 'fill',
+	'captions' : 'hover',
+	'navigation' : 'thumbnails',
+	'transition' : 'wipe',
+	'ease' : 'ease-in-out'
 });
+// start the instance
+slideshow.start();
 ```
 
 **id : {string}** - The ID attribute of an element somewhere in the document.
-
-**parent : {DOM node}** - The DOM element around which the functionality is centred.
 
 **width : {integer}** - The width of the slideshow.
 
@@ -82,7 +85,13 @@ useful.slideshow.start(parent, {
 
 **speed : {integer}** - The transition time between slides in milliseconds.
 
-**highlight : {color}** - A color name, hex or rgba value  used to highlight the active thumbnail.
+**colorPassive : {color}** - A color name, hex or rgba value  used for the passive state of the buttons.
+
+**colorActive : {color}** - A color name, hex or rgba value  used for the active state of the buttons.
+
+**colorHover : {color}** - A color name, hex or rgba value  used for the hover state of the buttons.
+
+**colorDisabled : {color}** - A color name, hex or rgba value  used for the disabled state of the buttons.
 
 **hover : {string}**
 + *pause* - Pauses the slideshow upon interaction.
@@ -108,67 +117,55 @@ useful.slideshow.start(parent, {
 
 **ease : {string}** - Valid easing methods include: *linear*, *ease*, *ease-in*, *ease-out*, *ease-in-out*, *cubic-bezier(n,n,n,n)*
 
-### Using document.querySelectorAll
+## How to control the script
 
-This method allows CSS Rules to be used to apply the script to one or more nodes at the same time.
-
-```javascript
-useful.css.select({
-	rule : 'div.slideshow',
-	handler : useful.slideshow.start,
-	data : {
-		'width' : 100,
-		'widthUnit' : '%',
-		'height' : 512,
-		'heightUnit' : 'px',
-		'divide' : '80%',
-		'margin' : '2%',
-		'preload' : 2,
-		'idle' : 4000,
-		'speed' : 300,
-		'highlight' : 'Grey',
-		'hover' : 'pause',
-		'scaling' : 'fill',
-		'captions' : 'show',
-		'navigation' : 'thumbnails',
-		'transition' : 'wipe',
-		'ease' : 'ease-in-out'
-	}
-});
-```
-
-**rule : {string}** - The CSS Rule for the intended target(s) of the script.
-
-**handler : {function}** - The public function that starts the script.
-
-**data : {object}** - Name-value pairs with configuration data.
-
-### Using jQuery
-
-This method is similar to the previous one, but uses jQuery for processing the CSS rule.
+### Focus
 
 ```javascript
-$('div.slideshow').each(function (index, element) {
-	useful.slideshow.start(element, {
-		'width' : 100,
-		'widthUnit' : '%',
-		'height' : 512,
-		'heightUnit' : 'px',
-		'divide' : '80%',
-		'margin' : '2%',
-		'preload' : 2,
-		'idle' : 4000,
-		'speed' : 300,
-		'highlight' : 'Grey',
-		'hover' : 'pause',
-		'scaling' : 'fill',
-		'captions' : 'show',
-		'navigation' : 'thumbnails',
-		'transition' : 'wipe',
-		'ease' : 'ease-in-out'
-	});
-});
+slideshow.focus(index);
 ```
+
+Highlights and centres a specific thumbnail.
+
+**index : {integer}** - The index of the slide to show.
+
+### Previous
+
+```javascript
+slideshow.previous();
+```
+
+Shows the previous slide.
+
+### Next
+
+```javascript
+slideshow.next();
+```
+
+Shows the next slide
+
+### Pause
+
+```javascript
+slideshow.pause();
+```
+
+Stops the automatic slideshow.
+
+### Play
+
+```javascript
+slideshow.play();
+```
+
+Starts the automatic slideshow.
+
+## Prerequisites
+
+To concatenate and minify the script yourself, the following prerequisites are required:
++ https://github.com/WoollyMittens/useful-transitions
++ https://github.com/WoollyMittens/useful-polyfills
 
 ## License
 This work is licensed under a Creative Commons Attribution 3.0 Unported License. The latest version of this and other scripts by the same author can be found at http://www.woollymittens.nl/

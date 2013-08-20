@@ -3,7 +3,10 @@
 */
 @media all {
   /*
-  	definitions
+  	Definitions
+  */
+  /*
+  	Buttons
   */
   /*
   	Slides
@@ -50,8 +53,8 @@
     margin: auto;
   }
   div.slideshow figure figcaption {
-    background: rgba(0, 0, 0, 0.5);
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000');
+    background-image: url(../img/semitransparent.png) \9;
+    background-color: rgba(0, 0, 0, 0.5);
     bottom: 0;
     color: #fff;
     left: 0;
@@ -88,10 +91,17 @@
   	Slides Captions
   */
   div.slideshow.captions_hover figure figcaption {
-    visibility: hidden;
+    -webkit-transition: opacity ease;
+    -webkit-transition-delay: 500ms;
+    -moz-transition: opacity ease 500ms;
+    -o-transition: opacity ease 500ms;
+    transition: opacity ease 500ms;
+    opacity: 0;
+    visibility: hidden\9;
   }
-  div.slideshow.captions_hover figure:hover figcaption {
-    visibility: visible;
+  div.slideshow.captions_hover:hover figure figcaption {
+    opacity: 1;
+    visibility: visible\9;
   }
 
   div.slideshow.captions_hide figure figcaption {
@@ -161,18 +171,22 @@
     transition-timing-function: ease;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    text-indent: 42px;
+    white-space: nowrap;
+    /* Because of Internet Explorer 8 we can't have nice thing. */
+    overflow: visible\9;
+    text-indent: -999em\9;
     background-color: #ff6a00;
     border: none;
     cursor: pointer;
     height: 44px;
     margin-top: -22px;
-    overflow: hidden;
     padding: 0;
     position: absolute;
-    text-align: center;
-    text-indent: 50px;
     top: 50%;
-    visibility: hidden;
     width: 44px;
     z-index: 20;
   }
@@ -181,9 +195,10 @@
     content: '';
     display: block;
     height: 32px;
-    left: 50%;
-    margin: -16px 0 0 -16px;
     position: absolute;
+    left: 50%;
+    margin-left: -16px;
+    margin-top: -16px;
     top: 50%;
     width: 32px;
   }
@@ -293,7 +308,7 @@
     opacity: 1;
   }
   div.slideshow nav div ul li a.thumbnails_active {
-    background-color: #FF6A00;
+    background-color: #ff6a00;
   }
   div.slideshow nav div ul li a.thumbnails_active img {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
@@ -313,17 +328,22 @@
     width: 100%;
   }
   div.slideshow nav menu.scroller button {
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    text-indent: 42px;
+    white-space: nowrap;
+    /* Because of Internet Explorer 8 we can't have nice thing. */
+    overflow: visible\9;
+    text-indent: -999em\9;
     background-color: #ff6a00;
     border: none;
     color: #fff;
     cursor: pointer;
     height: 100%;
     margin: 0;
-    overflow: hidden;
     padding: 0;
     position: absolute;
-    text-align: center;
-    text-indent: 50px;
     top: 0;
     width: 40px;
     z-index: 20;
@@ -333,9 +353,10 @@
     content: '';
     display: block;
     height: 32px;
-    left: 50%;
-    margin: -16px 0 0 -16px;
     position: absolute;
+    left: 50%;
+    margin-left: -16px;
+    margin-top: -16px;
     top: 50%;
     width: 32px;
   }
@@ -405,9 +426,53 @@
     display: none;
   }
   div.slideshow nav.navigation_thumbtacks ul a.thumbtacks_active {
-    background: #FF6A00;
+    background: #ff6a00;
   }
   div.slideshow nav.navigation_thumbtacks menu {
     display: none;
+  }
+}
+@media all {
+  button, .button {
+    -webkit-transition-property: background-color;
+    -moz-transition-property: background-color;
+    -o-transition-property: background-color;
+    transition-property: background-color;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    height: 48px;
+    height: 3rem;
+    line-height: 48px;
+    line-height: 3rem;
+    padding-top: 0px;
+    padding-top: 0rem;
+    padding-right: 16px;
+    padding-right: 1rem;
+    padding-bottom: 0px;
+    padding-bottom: 0rem;
+    padding-left: 16px;
+    padding-left: 1rem;
+    background-color: #ff6a00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    overflow: visible;
+    text-decoration: none;
+  }
+  button:hover, .button:hover {
+    background-color: #ff9800;
+    color: #fff;
+    text-decoration: none;
+  }
+  button.disabled, button.disabled:hover, .button.disabled, .button.disabled:hover {
+    background-color: #7f7f7f;
   }
 }

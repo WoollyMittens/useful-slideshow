@@ -5,6 +5,7 @@
 	@import "compass/css3";
 	@import "compass/utilities";
 	@import "_definitions";
+	@import "_buttons";
 	/*
 		Slides
 	*/
@@ -37,8 +38,8 @@
 				margin : auto;
 			}
 			figcaption {
-				background : rgba(0, 0, 0, 0.5);
-				filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000');
+				background-image : url(../img/semitransparent.png)\9;
+				background-color : rgba(0, 0, 0, 0.5);
 				bottom : 0;
 				color : #fff;
 				left : 0;
@@ -75,12 +76,17 @@
 	div.slideshow.captions_hover {
 		figure {
 			figcaption {
-				visibility : hidden;
+				@include transition(opacity ease 500ms);
+				opacity : 0;
+				visibility : hidden\9;
 			}
 		}
-		figure:hover {
-			figcaption {
-				visibility : visible;
+		&:hover {
+			figure {
+				figcaption {
+					opacity : 1;
+					visibility : visible\9;
+				}
 			}
 		}
 	}
@@ -150,23 +156,20 @@
 				@include transition-duration(0.3s);
 				@include transition-timing-function(ease);
 				@include opacity(0);
+				@include iconParent(32);
 				background-color : $color-passive;
 				border : none;
 				cursor : pointer;
 				height : 44px;
 				margin-top : -22px;
-				overflow : hidden;
 				padding : 0;
 				position : absolute;
-				text-align : center;
-				text-indent : 50px;
 				top : 50%;
-				visibility : hidden;
 				width : 44px;
 				z-index : 20;
 				span {
 					background : Transparent url(../img/slideshow.png) no-repeat 0 0;
-					@include centerIcon ();
+					@include iconCenter(32);
 				}
 			}
 			button.previous {
@@ -257,7 +260,7 @@
 							}
 						}
 						a.thumbnails_active {
-							background-color : #FF6A00;
+							background-color : $color-passive;
 							img {
 								@include opacity(0.5);
 							}
@@ -281,23 +284,21 @@
 				top : 0;
 				width : 100%;
 				button {
+					@include iconParent(32);
 					background-color : $color-passive;
 					border : none;
 					color : #fff;
 					cursor : pointer;
 					height : 100%;
 					margin : 0;
-					overflow : hidden;
 					padding : 0;
 					position : absolute;
-					text-align : center;
-					text-indent : 50px;
 					top : 0;
 					width : 40px;
 					z-index : 20;
 					span {
 						background : Transparent url(../img/slideshow.png) no-repeat 0 0;
-						@include centerIcon ();
+						@include iconCenter();
 					}
 				}
 				button:hover {
@@ -367,7 +368,7 @@
 					}
 				}
 				a.thumbtacks_active {
-					background : #FF6A00;
+					background : $color-passive;
 				}
 			}
 			menu {

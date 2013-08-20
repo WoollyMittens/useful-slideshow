@@ -45,31 +45,33 @@
 						<li><a href="./img/figure_9a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_9.jpg"/></a></li>
 					</ul>
 				</div>
-				<script src="./js/useful.slideshow.js"></script>
+				<script src="./js/slideshow.min.js"></script>
 				<script>
 				//<!--
-					useful.css.select({
-						rule : '#slideshowa',
-						handler : useful.slideshow.start,
-						data : {
-							'width' : 100,
-							'widthUnit' : '%',
-							'height' : 512,
-							'heightUnit' : 'px',
-							'divide' : '80%',
-							'margin' : '0%',
-							'preload' : 2,
-							'idle' : 4000,
-							'speed' : 300,
-							'highlight' : 'Orange',
-							'hover' : 'pause',				// pause | ignore
-							'scaling' : 'fill', 			// none | fit | fill
-							'captions' : 'show', 			// show | hide | hover
-							'navigation' : 'thumbnails', 	// thumbnails | thumbtacks
-							'transition' : 'wipe', 			// wipe | fade
-							'ease' : 'ease-in-out' 			// linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
-						}
+					// create a new instance of the script
+					var slideshowA = new useful.Slideshow( document.getElementById('slideshowa'), {
+						'width' : 100,
+						'widthUnit' : '%',
+						'height' : 512,
+						'heightUnit' : 'px',
+						'divide' : '80%',
+						'margin' : '0%',
+						'preload' : 2,
+						'idle' : 4000,
+						'speed' : 300,
+						'colorPassive' : '#ff6a00',
+						'colorActive' : '#d45800',
+						'colorHover' : '#ff9800',
+						'colorDisabled' : '#7f7f7f',
+						'hover' : 'pause',				// pause | ignore
+						'scaling' : 'fill', 			// none | fit | fill
+						'captions' : 'hover', 			// show | hide | hover
+						'navigation' : 'thumbnails', 	// thumbnails | thumbtacks
+						'transition' : 'wipe', 			// wipe | fade
+						'ease' : 'ease-in-out' 			// linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
 					});
+					// start the instance
+					slideshowA.start();
 				//-->
 				</script>
 				<!-- Cut above this -->
@@ -98,31 +100,33 @@
 						<li><a href="./img/figure_9a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_9.jpg"/></a></li>
 					</ul>
 				</div>
-				<script src="./js/useful.slideshow.js"></script>
+				<script src="./js/slideshow.min.js"></script>
 				<script>
 				//<!--
-					useful.css.select({
-						rule : '#slideshowb',
-						handler : useful.slideshow.start,
-						data : {
-							'width' : 100,
-							'widthUnit' : '%',
-							'height' : 450,
-							'heightUnit' : 'px',
-							'divide' : '100%',
-							'margin' : '0%',
-							'preload' : 2,
-							'idle' : 4000,
-							'speed' : 300,
-							'highlight' : 'Orange',
-							'hover' : 'pause',				// pause | ignore
-							'scaling' : 'fill', 			// none | fit | fill
-							'captions' : 'hide', 			// show | hide | hover
-							'navigation' : 'thumbtacks', 	// thumbnails | thumbtacks
-							'transition' : 'fade', 			// wipe | fade
-							'ease' : 'ease-in-out' 			// linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
-						}
+					// create a new instance of the script
+					var slideshowB = new useful.Slideshow( document.getElementById('slideshowb'), {
+						'width' : 100,
+						'widthUnit' : '%',
+						'height' : 450,
+						'heightUnit' : 'px',
+						'divide' : '100%',
+						'margin' : '0%',
+						'preload' : 2,
+						'idle' : 4000,
+						'speed' : 300,
+						'colorPassive' : '#ff6a00',
+						'colorActive' : '#d45800',
+						'colorHover' : '#ff9800',
+						'colorDisabled' : '#7f7f7f',
+						'hover' : 'pause',				// pause | ignore
+						'scaling' : 'fill', 			// none | fit | fill
+						'captions' : 'hide', 			// show | hide | hover
+						'navigation' : 'thumbtacks', 	// thumbnails | thumbtacks
+						'transition' : 'fade', 			// wipe | fade
+						'ease' : 'ease-in-out' 			// linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
 					});
+					// start the instance
+					slideshowB.start();
 				//-->
 				</script>
 				<!-- Cut above this -->
