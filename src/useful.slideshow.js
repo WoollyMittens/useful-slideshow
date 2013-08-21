@@ -281,8 +281,8 @@
 				newImage.setAttribute('alt', '');
 				newFigure.appendChild(newImage);
 				// set the event handlers
-				context.figures.events.imageLoad(newImage, context);
-				context.figures.events.imageClick(a, newImage, context);
+				context.figures.onImageLoad(newImage, context);
+				context.figures.onImageClick(a, newImage, context);
 				// create the caption if there is content for it
 				var newCaptionText = '';
 				newCaptionText += (context.cfg.titles && context.cfg.titles[a]) ? '<strong>' + context.cfg.titles[a] + '</strong> ' : '';
@@ -319,13 +319,12 @@
 			context.figures.menu.setup(context);
 		};
 		// handlers for the interaction events
-		this.figures.events = {};
-		this.figures.events.imageLoad = function (image, context) {
+		this.figures.onImageLoad = function (image, context) {
 			image.onload = function () {
 				context.figures.update(context);
 			};
 		};
-		this.figures.events.imageClick = function (index, image, context) {
+		this.figures.onImageClick = function (index, image, context) {
 			// if there was a longdesc
 			if (context.cfg.longdescs[index]) {
 				// change the slide into a link
