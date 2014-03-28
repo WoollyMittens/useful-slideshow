@@ -6,11 +6,39 @@
   	Definitions
   */
   /*
+  	Constants
+  */
+  /*
+  	Hides text in the margin
+  */
+  /*
+  	Turns a button into an icon
+  */
+  /*
+  	Centres a graphic inside an icon
+  */
+  /*
+  	Offers both the pixel and rem value of a single property
+  */
+  /*
+  	Offers both the pixel and rem values of a shorthand property
+  */
+  /*
+  	Offers the text size as both the pixel and rem value
+  */
+  /*
+  	Adds vendor prefixed to a property
+  */
+  /*
+  	Applies the "clearfix" hack to a container with floating content
+  */
+  /*
   	Typography
   */
   /*
   	Slides
   */
+  /* line 12, ../../src/scss/useful-slideshow.scss */
   div.slideshow {
     font-size: 12px;
     height: 512px;
@@ -19,12 +47,14 @@
     visibility: hidden;
     width: 512px;
   }
+  /* line 19, ../../src/scss/useful-slideshow.scss */
   div.slideshow * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     -ms-interpolation-mode: bicubic;
   }
+  /* line 23, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure {
     -webkit-transition-property: all;
     -moz-transition-property: all;
@@ -48,10 +78,12 @@
     width: 100%;
     z-index: 10;
   }
+  /* line 36, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure img {
     -ms-interpolation-mode: bicubic;
     margin: auto;
   }
+  /* line 40, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure figcaption {
     background-image: url(../img/semitransparent.png) \9;
     background-color: rgba(0, 0, 0, 0.5);
@@ -62,25 +94,31 @@
     position: absolute;
     width: 100%;
   }
+  /* line 51, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure.wipe_previous {
     left: -100%;
   }
+  /* line 54, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure.wipe_current {
     left: 0%;
   }
+  /* line 57, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure.wipe_next {
     left: 100%;
   }
+  /* line 60, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure.fade_previous {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     z-index: 9;
   }
+  /* line 64, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure.fade_current {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1;
     z-index: 10;
   }
+  /* line 68, ../../src/scss/useful-slideshow.scss */
   div.slideshow figure.fade_next {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
@@ -90,6 +128,7 @@
   /*
   	Slides Captions
   */
+  /* line 78, ../../src/scss/useful-slideshow.scss */
   div.slideshow.captions_hover figure figcaption {
     -webkit-transition: opacity ease;
     -webkit-transition-delay: 500ms;
@@ -99,11 +138,13 @@
     opacity: 0;
     visibility: hidden\9;
   }
+  /* line 86, ../../src/scss/useful-slideshow.scss */
   div.slideshow.captions_hover:hover figure figcaption {
     opacity: 1;
     visibility: visible\9;
   }
 
+  /* line 95, ../../src/scss/useful-slideshow.scss */
   div.slideshow.captions_hide figure figcaption {
     display: none;
   }
@@ -111,6 +152,7 @@
   /*
   	Slides Scaling
   */
+  /* line 105, ../../src/scss/useful-slideshow.scss */
   div.slideshow.scaling_fill figure img {
     float: none;
     left: 50%;
@@ -118,15 +160,18 @@
     top: 50%;
     position: absolute;
   }
+  /* line 112, ../../src/scss/useful-slideshow.scss */
   div.slideshow.scaling_fill figure img.ratio_landscape {
     height: auto;
     width: 100%;
   }
+  /* line 116, ../../src/scss/useful-slideshow.scss */
   div.slideshow.scaling_fill figure img.ratio_portrait {
     height: 100%;
     width: auto;
   }
 
+  /* line 124, ../../src/scss/useful-slideshow.scss */
   div.slideshow.scaling_fit figure img {
     float: none;
     left: 50%;
@@ -135,10 +180,12 @@
     top: 50%;
     position: absolute;
   }
+  /* line 132, ../../src/scss/useful-slideshow.scss */
   div.slideshow.scaling_fit figure img.ratio_landscape {
     height: 100%;
     width: auto;
   }
+  /* line 136, ../../src/scss/useful-slideshow.scss */
   div.slideshow.scaling_fit figure img.ratio_portrait {
     height: auto;
     width: 100%;
@@ -147,6 +194,7 @@
   /*
   	Slide Controls
   */
+  /* line 146, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager {
     position: absolute;
     height: 70%;
@@ -156,6 +204,7 @@
     top: 0;
     width: 100%;
   }
+  /* line 154, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button {
     -webkit-transition-property: all;
     -moz-transition-property: all;
@@ -190,6 +239,7 @@
     width: 44px;
     z-index: 20;
   }
+  /* line 170, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button span {
     background: Transparent url(../img/slideshow.png) no-repeat 0 0;
     content: '';
@@ -202,26 +252,33 @@
     top: 50%;
     width: 32px;
   }
+  /* line 175, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button.previous {
     left: 2%;
   }
+  /* line 177, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button.previous span {
     background-position: 50% 0px;
   }
+  /* line 181, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button.next {
     right: 2%;
   }
+  /* line 183, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button.next span {
     background-position: 50% -32px;
   }
+  /* line 187, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button:hover {
     background-color: #ff9800;
   }
+  /* line 190, ../../src/scss/useful-slideshow.scss */
   div.slideshow menu.pager button.disabled {
     background-color: #7f7f7f;
     cursor: default;
   }
 
+  /* line 198, ../../src/scss/useful-slideshow.scss */
   div.slideshow:hover menu.pager button {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1;
@@ -231,6 +288,7 @@
   /*
   	Thumbnails Scroller
   */
+  /* line 208, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav {
     bottom: 0;
     height: 28%;
@@ -239,12 +297,14 @@
     position: absolute;
     width: 100%;
   }
+  /* line 215, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div {
     height: 100%;
     margin: 1px 41px 0 41px;
     position: relative;
     overflow: hidden;
   }
+  /* line 220, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div ul {
     -webkit-transition-property: all;
     -moz-transition-property: all;
@@ -265,10 +325,12 @@
     white-space: nowrap;
     z-index: 10;
   }
+  /* line 230, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div ul li {
     display: inline;
     list-style-type: none;
   }
+  /* line 233, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div ul li a {
     margin-right: 1px;
     display: inline-block;
@@ -278,6 +340,7 @@
     height: 100%;
     width: 25%;
   }
+  /* line 241, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div ul li a img {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1;
@@ -303,13 +366,16 @@
     position: absolute;
     top: 0;
   }
+  /* line 258, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div ul li a:hover img {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1;
   }
+  /* line 262, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div ul li a.thumbnails_active {
     background-color: #ff6a00;
   }
+  /* line 264, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav div ul li a.thumbnails_active img {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
     opacity: 0.5;
@@ -318,6 +384,7 @@
   /*
   	Thumbnails Controls
   */
+  /* line 278, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller {
     position: absolute;
     height: 100%;
@@ -327,6 +394,7 @@
     top: 0;
     width: 100%;
   }
+  /* line 286, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button {
     overflow: hidden;
     position: relative;
@@ -348,6 +416,7 @@
     width: 40px;
     z-index: 20;
   }
+  /* line 299, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button span {
     background: Transparent url(../img/slideshow.png) no-repeat 0 0;
     content: '';
@@ -360,21 +429,27 @@
     top: 50%;
     width: 32px;
   }
+  /* line 304, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button:hover {
     background-color: #ff9800;
   }
+  /* line 307, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button.previous {
     left: 0;
   }
+  /* line 309, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button.previous span {
     background-position: 50% 0px;
   }
+  /* line 313, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button.next {
     right: 0;
   }
+  /* line 315, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button.next span {
     background-position: 50% -32px;
   }
+  /* line 319, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav menu.scroller button.disabled {
     background-color: #7f7f7f;
     cursor: default;
@@ -383,6 +458,7 @@
   /*
   	Thumbtacks
   */
+  /* line 330, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav.navigation_thumbtacks {
     background: Transparent;
     height: 32px;
@@ -392,6 +468,7 @@
     bottom: 0;
     z-index: 11;
   }
+  /* line 338, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav.navigation_thumbtacks ul {
     line-height: 0;
     margin: 0;
@@ -400,6 +477,7 @@
     top: 0%;
     width: 100%;
   }
+  /* line 345, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav.navigation_thumbtacks ul li {
     background: #fff;
     border: solid 2px #000;
@@ -408,6 +486,7 @@
     margin: 4px;
     padding: 0;
   }
+  /* line 353, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav.navigation_thumbtacks ul a {
     border-radius: 50%;
     border: none;
@@ -422,12 +501,15 @@
     white-space: nowrap;
     width: 10px;
   }
+  /* line 366, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav.navigation_thumbtacks ul a img {
     display: none;
   }
+  /* line 370, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav.navigation_thumbtacks ul a.thumbtacks_active {
     background: #ff6a00;
   }
+  /* line 374, ../../src/scss/useful-slideshow.scss */
   div.slideshow nav.navigation_thumbtacks menu {
     display: none;
   }
@@ -436,6 +518,7 @@
   /*
   	The root element
   */
+  /* line 8, ../../src/scss/_typography.scss */
   html {
     font-family: Tahoma, Verdana, Arial, Sans-Serif;
     font-size: 75%;
@@ -445,8 +528,9 @@
   /*
   	Sections
   */
+  /* line 16, ../../src/scss/_typography.scss */
   body {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     margin-top: 0px;
     margin-top: 0rem;
@@ -472,8 +556,9 @@
     min-height: 100%;
   }
 
+  /* line 26, ../../src/scss/_typography.scss */
   h1, h2, h3, h4, h5, h6 {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     margin-top: 0px;
     margin-top: 0rem;
@@ -487,26 +572,31 @@
     font-weight: normal;
   }
 
+  /* line 32, ../../src/scss/_typography.scss */
   h1 {
-    font-size: "22.5px";
+    font-size: 22.5px;
     font-size: 1.875rem;
   }
 
+  /* line 35, ../../src/scss/_typography.scss */
   h2 {
-    font-size: "19.5px";
+    font-size: 19.5px;
     font-size: 1.625rem;
   }
 
+  /* line 38, ../../src/scss/_typography.scss */
   h3 {
-    font-size: "15px";
+    font-size: 15px;
     font-size: 1.25rem;
   }
 
+  /* line 41, ../../src/scss/_typography.scss */
   address {
     display: block;
     font-style: normal;
   }
 
+  /* line 45, ../../src/scss/_typography.scss */
   section, nav, article, aside, hgroup, header, footer {
     display: block;
   }
@@ -514,12 +604,14 @@
   /*
   	Grouping content
   */
+  /* line 51, ../../src/scss/_typography.scss */
   p {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     display: block;
   }
 
+  /* line 55, ../../src/scss/_typography.scss */
   hr {
     margin-top: 12px;
     margin-top: 1rem;
@@ -538,6 +630,7 @@
     width: 100%;
   }
 
+  /* line 65, ../../src/scss/_typography.scss */
   ul {
     margin-top: 0px;
     margin-top: 0rem;
@@ -558,6 +651,7 @@
     display: block;
   }
 
+  /* line 71, ../../src/scss/_typography.scss */
   dl {
     margin-top: 0px;
     margin-top: 0rem;
@@ -570,6 +664,7 @@
     display: block;
   }
 
+  /* line 75, ../../src/scss/_typography.scss */
   dt {
     margin-top: 0px;
     margin-top: 0rem;
@@ -583,6 +678,7 @@
     font-weight: bold;
   }
 
+  /* line 80, ../../src/scss/_typography.scss */
   dd {
     margin-top: 0px;
     margin-top: 0rem;
@@ -595,6 +691,7 @@
     display: block;
   }
 
+  /* line 84, ../../src/scss/_typography.scss */
   pre, dialog, blockquote, ol {
     display: block;
   }
@@ -602,24 +699,29 @@
   /*
   	Text-level semantics
   */
+  /* line 90, ../../src/scss/_typography.scss */
   a {
     color: #ff6a00;
     text-decoration: underline;
   }
 
+  /* line 94, ../../src/scss/_typography.scss */
   a:hover {
     color: #ff9800;
     text-decoration: underline;
   }
 
+  /* line 98, ../../src/scss/_typography.scss */
   sub {
     line-height: 0;
   }
 
+  /* line 101, ../../src/scss/_typography.scss */
   sup {
     line-height: 0;
   }
 
+  /* line 104, ../../src/scss/_typography.scss */
   time, progress, meter {
     display: block;
   }
@@ -627,16 +729,19 @@
   /*
   	Embedded content
   */
+  /* line 110, ../../src/scss/_typography.scss */
   img {
     border: none;
     vertical-align: middle;
   }
 
+  /* line 114, ../../src/scss/_typography.scss */
   figure, figcaption, video, audio, canvas {
     display: block;
   }
 
   /* Tabular data */
+  /* line 118, ../../src/scss/_typography.scss */
   table {
     margin-top: 0px;
     margin-top: 0rem;
@@ -649,20 +754,24 @@
     border-collapse: collapse;
   }
 
+  /* line 122, ../../src/scss/_typography.scss */
   caption {
-    font-size: "15px";
+    font-size: 15px;
     font-size: 1.25rem;
     font-weight: bold;
     text-align: left;
   }
 
+  /* line 128, ../../src/scss/_typography.scss */
   tr {
     vertical-align: top;
   }
+  /* line 130, ../../src/scss/_typography.scss */
   tr:nth-child(2n) {
     background-color: #eeeeee;
   }
 
+  /* line 132, ../../src/scss/_typography.scss */
   th, td {
     padding-top: 6px;
     padding-top: 0.5rem;
@@ -674,6 +783,7 @@
     padding-left: 1rem;
   }
 
+  /* line 135, ../../src/scss/_typography.scss */
   th, th a, th a:hover {
     background-color: #ff9800;
     color: #fff;
@@ -686,6 +796,7 @@
   /*
   	Forms
   */
+  /* line 146, ../../src/scss/_typography.scss */
   form {
     margin-top: 0px;
     margin-top: 0rem;
@@ -697,6 +808,7 @@
     margin-left: 0rem;
   }
 
+  /* line 149, ../../src/scss/_typography.scss */
   fieldset {
     margin-top: 0px;
     margin-top: 0rem;
@@ -718,6 +830,7 @@
     border: none;
   }
 
+  /* line 155, ../../src/scss/_typography.scss */
   legend {
     margin-top: 0px;
     margin-top: 0rem;
@@ -731,13 +844,15 @@
     font-weight: bold;
   }
 
+  /* line 161, ../../src/scss/_typography.scss */
   input, button, select, textarea {
-    font-size: "12px";
+    font-size: 12px;
     font-size: 1rem;
     font-family: Tahoma, Verdana, Arial, Sans-Serif;
     vertical-align: baseline;
   }
 
+  /* line 166, ../../src/scss/_typography.scss */
   input[type=color], input[type=range], input[type=number], input[type=date], input[type=text], input[type=password], input[type=email], select, textarea {
     -webkit-box-shadow: inset 0 0 5px #cccccc;
     -moz-box-shadow: inset 0 0 5px #cccccc;
@@ -761,6 +876,7 @@
     font-family: Arial, Sans-Serif;
   }
 
+  /* line 176, ../../src/scss/_typography.scss */
   input[type=checkbox], input[type=radio] {
     margin-top: 8.4px;
     margin-top: 0.7rem;
@@ -772,6 +888,7 @@
     margin-left: 0rem;
   }
 
+  /* line 179, ../../src/scss/_typography.scss */
   select {
     height: 36px;
     height: 3rem;
@@ -779,6 +896,7 @@
     padding: 0.7rem;
   }
 
+  /* line 183, ../../src/scss/_typography.scss */
   textarea {
     height: 120px;
     height: 10rem;
@@ -786,6 +904,7 @@
     padding: 0.7rem;
   }
 
+  /* line 187, ../../src/scss/_typography.scss */
   button, .button {
     -webkit-transition-property: background-color;
     -moz-transition-property: background-color;
@@ -827,11 +946,13 @@
     overflow: visible;
     text-decoration: none;
   }
+  /* line 202, ../../src/scss/_typography.scss */
   button:hover, .button:hover {
     background-color: #ff9800;
     color: #fff;
     text-decoration: none;
   }
+  /* line 207, ../../src/scss/_typography.scss */
   button.disabled, button.disabled:hover, .button.disabled, .button.disabled:hover {
     background-color: #7f7f7f;
   }
@@ -839,6 +960,7 @@
   /*
   	Interactive elements
   */
+  /* line 214, ../../src/scss/_typography.scss */
   menu {
     margin-top: 0px;
     margin-top: 0rem;
@@ -862,11 +984,13 @@
   /*
   	Miscellaneous elements
   */
+  /* line 222, ../../src/scss/_typography.scss */
   div {
     display: block;
   }
 }
 @media all and (max-width: 480px) {
+  /* line 231, ../../src/scss/_typography.scss */
   html {
     font-size: 62.5%;
   }

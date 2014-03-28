@@ -66,6 +66,8 @@
 					context.obj.style.visibility = 'visible';
 				}, 900);
 			}, 100);
+			// disable the start function so it can't be started twice
+			this.start = function () {};
 		};
 		// build the slideshow container
 		this.setup = function (context) {
@@ -686,6 +688,8 @@
 				event.preventDefault();
 			};
 		};
+		// go
+		this.start();
 	};
 
 }(window.useful = window.useful || {}));
