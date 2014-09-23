@@ -1,0 +1,64 @@
+/*
+	Slides
+*/
+div.slideshow {
+	font-size : 12px;
+	height : 512px;
+	overflow : hidden;
+	position : relative;
+	visibility : hidden;
+	width : 512px;
+	* {
+		@include box-sizing(border-box);
+		-ms-interpolation-mode: bicubic;
+	}
+	figure {
+		@include transition-property(opacity, transform);
+		@include transition-duration(0.3s);
+		@include transition-timing-function(ease);
+		background : #000;
+		height : 70%;
+		margin : 0;
+		overflow : hidden;
+		position : absolute;
+		text-align : center;
+		top : 0;
+		width : 100%;
+		z-index : 10;
+		img {
+			-ms-interpolation-mode: bicubic;
+			margin : auto;
+		}
+		figcaption {
+			background-image : url(../img/semitransparent.png)\9;
+			background-color : rgba(0, 0, 0, 0.5);
+			bottom : 0;
+			color : #fff;
+			left : 0;
+			padding : 1.4em;
+			position : absolute;
+			width : 100%;
+		}
+	}
+	figure.wipe_previous {
+		transform : translate(-100%, 0);
+	}
+	figure.wipe_current {
+		transform : translate(0, 0);
+	}
+	figure.wipe_next {
+		transform : translate(100%, 0);
+	}
+	figure.fade_previous {
+		@include opacity(0);
+		z-index : 9;
+	}
+	figure.fade_current {
+		@include opacity(1);
+		z-index : 10;
+	}
+	figure.fade_next {
+		@include opacity(0);
+		z-index : 9;
+	}
+}

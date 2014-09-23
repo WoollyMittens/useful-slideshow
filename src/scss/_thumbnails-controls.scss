@@ -1,0 +1,53 @@
+/*
+	Thumbnails Controls
+*/
+div.slideshow {
+	nav {
+		menu.scroller {
+			position : absolute;
+			height : 100%;
+			left : 0;
+			margin : 1px 0 0 0;
+			padding : 0;
+			top : 0;
+			width : 100%;
+			button {
+				@include iconParent(32);
+				background-color : $color-passive;
+				border : none;
+				color : #fff;
+				cursor : pointer;
+				height : 100%;
+				margin : 0;
+				padding : 0;
+				position : absolute;
+				top : 0;
+				width : 40px;
+				z-index : 20;
+				span {
+					background : Transparent url(../img/slideshow.png) no-repeat 0 0;
+					@include iconCenter();
+				}
+			}
+			button:hover {
+				background-color : $color-hover;
+			}
+			button.previous {
+				left : 0;
+				span {
+					background-position : 50% 0px;
+				}
+			}
+			button.next {
+				right : 0;
+				span {
+					background-position : 50% -32px;
+				}
+			}
+			button.disabled {
+				background-color : $color-disabled;
+				cursor : default;
+			}
+		}
+	}
+}
