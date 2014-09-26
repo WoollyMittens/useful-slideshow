@@ -452,7 +452,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.root.js: A simple slideshow", version 20120606, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20140923, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
@@ -518,7 +518,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.root.js: A simple slideshow", version 20120606, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20140923, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
@@ -629,7 +629,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.context.js: A simple slideshow", version 20120606, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20140923, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
@@ -785,7 +785,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.root.js: A simple slideshow", version 20120606, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20140923, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
@@ -910,7 +910,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.root.js: A simple slideshow", version 20120606, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20140923, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
@@ -1077,7 +1077,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.root.js: A simple slideshow", version 20120606, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20140923, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
@@ -1166,7 +1166,7 @@ var useful = useful || {};
 
 /*
 	Source:
-	van Creij, Maurice (2012). "useful.this.js: A simple slideshow", version 20120606, http://www.woollymittens.nl/.
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20140923, http://www.woollymittens.nl/.
 
 	License:
 	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
