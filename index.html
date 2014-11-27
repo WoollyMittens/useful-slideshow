@@ -48,7 +48,8 @@
 				<script>
 				//<!--
 					// create a new instance of the script
-					var slideshowA = new useful.Slideshow( document.getElementById('slideshowa'), {
+					var slideshowA = new useful.Slideshow().init({
+						'element' : document.getElementById('slideshowa'),
 						'width' : 100,
 						'widthUnit' : '%',
 						'height' : 512,
@@ -101,7 +102,8 @@
 				<script>
 				//<!--
 					// create a new instance of the script
-					var slideshowB = new useful.Slideshow( document.getElementById('slideshowb'), {
+					var slideshowB = new useful.Slideshow().init({
+						'element' : document.getElementById('slideshowb'),
 						'width' : 100,
 						'widthUnit' : '%',
 						'height' : 450,

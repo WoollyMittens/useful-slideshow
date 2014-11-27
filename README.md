@@ -28,11 +28,10 @@ To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5
 
 ### Using vanilla JavaScript
 
-This is the safest way of starting the script, but allows for only one target element at a time.
-
 ```javascript
 // create a new instance of the script
-var slideshow = new useful.Slideshow( document.getElementById('id'), {
+var slideshow = new useful.Slideshow().init({
+	'element' : document.getElementById('id'),
 	'width' : 100,
 	'widthUnit' : '%',
 	'height' : 512,

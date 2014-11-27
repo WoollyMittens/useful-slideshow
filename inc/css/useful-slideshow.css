@@ -1,29 +1,29 @@
 /*
-	Constants
+Constants
 */
 /*
-	Hides text in the margin
+Hides text in the margin
 */
 /*
-	Turns a button into an icon
+Turns a button into an icon
 */
 /*
-	Centres a graphic or glyph inside an icon
+Centres a graphic or glyph inside an icon
 */
 /*
-	Offers both the pixel and rem value of a single property
+Offers both the pixel and rem value of a single property
 */
 /*
-	Offers both the pixel and rem values of a shorthand property
+Offers both the pixel and rem values of a shorthand property
 */
 /*
-	Offers the text size as both the pixel and rem value
+Offers the text size as both the pixel and rem value
 */
 /*
-	Adds vendor prefixed to a property
+Adds vendor prefixed to a property
 */
 /*
-	Applies the "clearfix" hack to a container with floating content
+Applies the "clearfix" hack to a container with floating content
 */
 /*
 	Slides
@@ -102,7 +102,7 @@ div.slideshow figure.fade_previous {
 }
 /* line 56, ../../src/scss/_slides.scss */
 div.slideshow figure.fade_current {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   z-index: 10;
 }
@@ -160,10 +160,8 @@ div.slideshow.scaling_fit figure img.ratio_portrait {
 */
 /* line 6, ../../src/scss/_captions.scss */
 div.slideshow.captions_hover figure figcaption {
-  -webkit-transition: opacity ease;
-  -webkit-transition-delay: 500ms;
-  -webkit-transition: opacity ease 500ms;
-          transition: opacity ease 500ms;
+  -webkit-transition: opacity 500ms ease;
+  transition: opacity 500ms ease;
   opacity: 0;
   visibility: hidden\9;
 }
@@ -265,7 +263,7 @@ div.slideshow menu.pager button.disabled {
 
 /* line 57, ../../src/scss/_controls.scss */
 div.slideshow:hover menu.pager button {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   visibility: visible;
 }
@@ -381,7 +379,7 @@ div.slideshow nav div ul li a {
 }
 /* line 39, ../../src/scss/_thumbnails.scss */
 div.slideshow nav div ul li a img {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
   -webkit-transition-property: opacity;
   transition-property: opacity;
@@ -402,7 +400,7 @@ div.slideshow nav div ul li a img {
 }
 /* line 56, ../../src/scss/_thumbnails.scss */
 div.slideshow nav div ul li a:hover img {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
 /* line 60, ../../src/scss/_thumbnails.scss */
