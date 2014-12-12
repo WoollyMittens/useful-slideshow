@@ -14,53 +14,53 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent.parent;
 	this.parent = parent;
+	this.config = parent.config;
 	// build the menu options
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		// create the thumbnail controls
-		cfg.outlets.pageMenu = document.createElement('menu');
-		cfg.outlets.pageMenu.className = 'scroller';
-		cfg.outlets.nextPage = document.createElement('button');
-		cfg.outlets.nextPage.className = 'next';
-		cfg.outlets.nextPageIcon = document.createElement('span');
-		cfg.outlets.nextPageIcon.innerHTML = '&gt';
-		cfg.outlets.prevPage = document.createElement('button');
-		cfg.outlets.prevPage.className = 'previous';
-		cfg.outlets.prevPageIcon = document.createElement('span');
-		cfg.outlets.prevPageIcon.innerHTML = '&lt';
-		cfg.outlets.nextPage.appendChild(cfg.outlets.nextPageIcon);
-		cfg.outlets.pageMenu.appendChild(cfg.outlets.nextPage);
-		cfg.outlets.prevPage.appendChild(cfg.outlets.prevPageIcon);
-		cfg.outlets.pageMenu.appendChild(cfg.outlets.prevPage);
-		cfg.outlets.slideNav.appendChild(cfg.outlets.pageMenu);
+		config.outlets.pageMenu = document.createElement('menu');
+		config.outlets.pageMenu.className = 'scroller';
+		config.outlets.nextPage = document.createElement('button');
+		config.outlets.nextPage.className = 'next';
+		config.outlets.nextPageIcon = document.createElement('span');
+		config.outlets.nextPageIcon.innerHTML = '&gt';
+		config.outlets.prevPage = document.createElement('button');
+		config.outlets.prevPage.className = 'previous';
+		config.outlets.prevPageIcon = document.createElement('span');
+		config.outlets.prevPageIcon.innerHTML = '&lt';
+		config.outlets.nextPage.appendChild(config.outlets.nextPageIcon);
+		config.outlets.pageMenu.appendChild(config.outlets.nextPage);
+		config.outlets.prevPage.appendChild(config.outlets.prevPageIcon);
+		config.outlets.pageMenu.appendChild(config.outlets.prevPage);
+		config.outlets.slideNav.appendChild(config.outlets.pageMenu);
 		// apply clicks to the thumbnail controls
-		cfg.outlets.nextPage.onclick = this.next(cfg.outlets.nextSlide);
-		cfg.outlets.prevPage.onclick = this.prev(cfg.outlets.prevSlide);
+		config.outlets.nextPage.onclick = this.next(config.outlets.nextSlide);
+		config.outlets.prevPage.onclick = this.prev(config.outlets.prevSlide);
 	};
 	// show or hide the previous and next buttons
 	this.update = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		// calculate the current position
-		cfg.scrollPosition = (cfg.outlets.slideUl.style.marginLeft) ? parseInt(cfg.outlets.slideUl.style.marginLeft, 10) : 0;
-		cfg.scrollDistance = cfg.outlets.slideDiv.offsetWidth;
+		config.scrollPosition = (config.outlets.slideUl.style.marginLeft) ? parseInt(config.outlets.slideUl.style.marginLeft, 10) : 0;
+		config.scrollDistance = config.outlets.slideDiv.offsetWidth;
 		// calculate the minimum position
-		cfg.scrollMin = 0;
+		config.scrollMin = 0;
 		// calculate the maximum position
-		var lastThumbnail = cfg.outlets.thumbnails[cfg.outlets.thumbnails.length - 1];
-		cfg.scrollStep = lastThumbnail.offsetWidth;
-		cfg.scrollMax = -1 * (lastThumbnail.offsetLeft + lastThumbnail.offsetWidth) + cfg.scrollDistance;
+		var lastThumbnail = config.outlets.thumbnails[config.outlets.thumbnails.length - 1];
+		config.scrollStep = lastThumbnail.offsetWidth;
+		config.scrollMax = -1 * (lastThumbnail.offsetLeft + lastThumbnail.offsetWidth) + config.scrollDistance;
 		// show or hide the prev button
-		cfg.outlets.prevPage.className = cfg.outlets.prevPage.className.replace(/ disabled/gi, '');
-		cfg.outlets.prevPage.className += (cfg.scrollPosition >= cfg.scrollMin) ? ' disabled' : '';
+		config.outlets.prevPage.className = config.outlets.prevPage.className.replace(/ disabled/gi, '');
+		config.outlets.prevPage.className += (config.scrollPosition >= config.scrollMin) ? ' disabled' : '';
 		// show or hide the next button
-		cfg.outlets.nextPage.className = cfg.outlets.nextPage.className.replace(/ disabled/gi, '');
-		cfg.outlets.nextPage.className += (cfg.scrollPosition <= cfg.scrollMax && cfg.scrollMax < 0) ? ' disabled' : '';
+		config.outlets.nextPage.className = config.outlets.nextPage.className.replace(/ disabled/gi, '');
+		config.outlets.nextPage.className += (config.scrollPosition <= config.scrollMax && config.scrollMax < 0) ? ' disabled' : '';
 	};
 	// show the next page of thumbnails
 	this.next = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		var _this = this;
 		return function (event) {
 			// get the event properties
@@ -69,13 +69,13 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 			// if the button is not disabled
 			if (!target.className.match(/disabled/)) {
 				// scroll one page's width of thumbnails
-				var newPosition = cfg.scrollPosition - cfg.scrollDistance + cfg.scrollStep;
+				var newPosition = config.scrollPosition - config.scrollDistance + config.scrollStep;
 				// limit the scroll distance
-				if (newPosition < cfg.scrollMax) {
-					newPosition = cfg.scrollMax;
+				if (newPosition < config.scrollMax) {
+					newPosition = config.scrollMax;
 				}
 				// transition to the new position
-				useful.transitions.byRules(cfg.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
+				useful.transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
 				// redraw the menu buttons
 				_this.update();
 			}
@@ -86,7 +86,7 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 	};
 	// show the previous page of thumbnails
 	this.prev = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		var _this = this;
 		return function (event) {
 			// get the event properties
@@ -95,14 +95,14 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 			// if the button is not disabled
 			if (!target.className.match(/disabled/)) {
 				// scroll one page's width of thumbnails
-				var newPosition = cfg.scrollPosition + cfg.scrollDistance - cfg.scrollStep;
+				var newPosition = config.scrollPosition + config.scrollDistance - config.scrollStep;
 				// limit the scroll distance
 				if (newPosition > 0) {
 					newPosition = 0;
 				}
 				// transition to the new position
-				if (cfg.navigation === 'thumbnails') {
-					useful.transitions.byRules(cfg.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
+				if (config.navigation === 'thumbnails') {
+					useful.transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
 				}
 				// redraw the menu buttons
 				_this.update();

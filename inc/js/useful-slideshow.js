@@ -466,45 +466,45 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Automatic = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent;
 	this.parent = parent;
+	this.config = parent.config;
 	// methods
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		// if a hover option exists
-		if (cfg.hover && cfg.hover === 'pause') {
+		if (config.hover && config.hover === 'pause') {
 			// stop the slideshow on hover
-			root.obj.onmouseover = function () {
+			parent.element.onmouseover = function () {
 				_this.stop();
 			};
 			// restart the slideshow after hover
-			root.obj.onmouseout = function () {
+			parent.element.onmouseout = function () {
 				_this.start();
 			};
 		}
 		// if an idle timer exists
-		if (cfg.idle && cfg.idle >= 0) {
+		if (config.idle && config.idle >= 0) {
 			// run the update at an interval
 			this.start();
 		}
 	};
 	this.start = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// stop any previous timeout loop
-		clearTimeout(cfg.idleTimeout);
+		clearTimeout(config.idleTimeout);
 		// start the timeout loop
-		cfg.idleTimeout = setInterval(function () {
+		config.idleTimeout = setInterval(function () {
 			// move to the next slide
-			cfg.outlets.index = (cfg.outlets.index < cfg.outlets.figures.length - 1) ? cfg.outlets.index + 1 : 1;
+			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 1;
 			// redraw
-			root.update();
-		}, cfg.idle);
+			parent.update();
+		}, config.idle);
 	};
 	this.stop = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// stop the timeout loop
-		clearTimeout(cfg.idleTimeout);
+		clearTimeout(config.idleTimeout);
 	};
 };
 
@@ -529,47 +529,47 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.FiguresMenu = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent.parent;
 	this.parent = parent;
+	this.config = parent.config;
 	// build the menu options
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// create the slide controls
-		cfg.outlets.slideMenu = document.createElement('menu');
-		cfg.outlets.slideMenu.className = 'pager';
-		cfg.outlets.nextSlide = document.createElement('button');
-		cfg.outlets.nextSlide.className = 'next';
-		cfg.outlets.nextSlideIcon = document.createElement('span');
-		cfg.outlets.nextSlideIcon.innerHTML = '&gt';
-		cfg.outlets.prevSlide = document.createElement('button');
-		cfg.outlets.prevSlide.className = 'previous';
-		cfg.outlets.prevSlideIcon = document.createElement('span');
-		cfg.outlets.prevSlideIcon.innerHTML = '&lt';
-		cfg.outlets.nextSlide.appendChild(cfg.outlets.nextSlideIcon);
-		cfg.outlets.slideMenu.appendChild(cfg.outlets.nextSlide);
-		cfg.outlets.prevSlide.appendChild(cfg.outlets.prevSlideIcon);
-		cfg.outlets.slideMenu.appendChild(cfg.outlets.prevSlide);
-		root.obj.appendChild(cfg.outlets.slideMenu);
+		config.outlets.slideMenu = document.createElement('menu');
+		config.outlets.slideMenu.className = 'pager';
+		config.outlets.nextSlide = document.createElement('button');
+		config.outlets.nextSlide.className = 'next';
+		config.outlets.nextSlideIcon = document.createElement('span');
+		config.outlets.nextSlideIcon.innerHTML = '&gt';
+		config.outlets.prevSlide = document.createElement('button');
+		config.outlets.prevSlide.className = 'previous';
+		config.outlets.prevSlideIcon = document.createElement('span');
+		config.outlets.prevSlideIcon.innerHTML = '&lt';
+		config.outlets.nextSlide.appendChild(config.outlets.nextSlideIcon);
+		config.outlets.slideMenu.appendChild(config.outlets.nextSlide);
+		config.outlets.prevSlide.appendChild(config.outlets.prevSlideIcon);
+		config.outlets.slideMenu.appendChild(config.outlets.prevSlide);
+		parent.parent.element.appendChild(config.outlets.slideMenu);
 		// force the height of the menu if desired
-		if (cfg.divide) {
-			cfg.outlets.slideMenu.style.height = cfg.divide;
+		if (config.divide) {
+			config.outlets.slideMenu.style.height = config.divide;
 		}
 		// apply clicks to the slide controls
-		cfg.outlets.nextSlide.addEventListener('click', this.onNext(cfg.outlets.nextSlide), false);
-		cfg.outlets.prevSlide.addEventListener('click', this.onPrev(cfg.outlets.prevSlide), false);
+		config.outlets.nextSlide.addEventListener('click', this.onNext(config.outlets.nextSlide), false);
+		config.outlets.prevSlide.addEventListener('click', this.onPrev(config.outlets.prevSlide), false);
 	};
 	// show or hide the previous and next buttons
 	this.update = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// hide the previous button if the index is near the left terminus
-		if (cfg.outlets.prevSlide) {
-			cfg.outlets.prevSlide.className = cfg.outlets.prevSlide.className.replace(/ disabled/gi, '');
-			cfg.outlets.prevSlide.className += (cfg.outlets.index > 1) ? '' : ' disabled';
+		if (config.outlets.prevSlide) {
+			config.outlets.prevSlide.className = config.outlets.prevSlide.className.replace(/ disabled/gi, '');
+			config.outlets.prevSlide.className += (config.outlets.index > 1) ? '' : ' disabled';
 		}
 		// hide the next button if the index is new the right terminus
-		if (cfg.outlets.nextSlide) {
-			cfg.outlets.nextSlide.className = cfg.outlets.nextSlide.className.replace(/ disabled/gi, '');
-			cfg.outlets.nextSlide.className += (cfg.outlets.index < cfg.outlets.figures.length - 1) ? '' : ' disabled';
+		if (config.outlets.nextSlide) {
+			config.outlets.nextSlide.className = config.outlets.nextSlide.className.replace(/ disabled/gi, '');
+			config.outlets.nextSlide.className += (config.outlets.index < config.outlets.figures.length - 1) ? '' : ' disabled';
 		}
 	};
 	// activate the next slide
@@ -581,20 +581,20 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 		};
 	};
 	this.next = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// if the element is not disabled
 		if (!element.className.match(/disabled/)) {
 			// increase the index
-			cfg.outlets.index = (cfg.outlets.index < cfg.outlets.figures.length - 1) ? cfg.outlets.index + 1 : 1;
+			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 1;
 			// redraw
-			root.update();
+			parent.parent.update();
 		}
 		// cancel the click
 		element.blur();
 	};
 	// activate the previous slide
 	this.onPrev = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function (event) {
 			_this.prev(element);
@@ -602,13 +602,13 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 		};
 	};
 	this.prev = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// if the element is not disabled
 		if (!element.className.match(/disabled/)) {
 			// increase the index
-			cfg.outlets.index = (cfg.outlets.index > 1) ? cfg.outlets.index - 1 : cfg.outlets.figures.length - 1;
+			config.outlets.index = (config.outlets.index > 1) ? config.outlets.index - 1 : config.outlets.figures.length - 1;
 			// redraw
-			root.update();
+			parent.parent.update();
 		}
 		// cancel the click
 		element.blur();
@@ -636,19 +636,20 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Figures = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent;
 	this.parent = parent;
+	this.config = parent.config;
+	this.context = parent.context;
 	// build the figures
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// for all figures in the context
-		cfg.outlets.figures = [0];
-		for (var a = 1; a < cfg.figures.length; a += 1) {
+		config.outlets.figures = [0];
+		for (var a = 1; a < config.figures.length; a += 1) {
 			// create a new slide
 			var newFigure = document.createElement('figure');
-			newFigure.className = (a === 1) ? ' ' + cfg.transition + '_current' : ' ' + cfg.transition + '_next';
+			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
 			var newImage = document.createElement('img');
-			newImage.src = cfg.thumbnails[a];	// * start out with the thumbnails instead of the full images
+			newImage.src = config.thumbnails[a];	// * start out with the thumbnails instead of the full images
 			newImage.setAttribute('alt', '');
 			newFigure.appendChild(newImage);
 			// set the event handlers
@@ -656,67 +657,67 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			this.onImageClick(a, newImage);
 			// create the caption if there is content for it
 			var newCaptionText = '';
-			newCaptionText += (cfg.titles && cfg.titles[a]) ? '<strong>' + cfg.titles[a] + '</strong> ' : '';
-			newCaptionText += (cfg.descriptions && cfg.descriptions[a]) ? cfg.descriptions[a] : '';
+			newCaptionText += (config.titles && config.titles[a]) ? '<strong>' + config.titles[a] + '</strong> ' : '';
+			newCaptionText += (config.descriptions && config.descriptions[a]) ? config.descriptions[a] : '';
 			if (newCaptionText !== '') {
 				var newCaption = document.createElement('figcaption');
 				newCaption.innerHTML = newCaptionText;
 				newFigure.appendChild(newCaption);
 			}
 			// force the height of the slide if desired
-			newFigure.style.height = (cfg.navigation === 'thumbtacks') ? '100%' : cfg.divide;
+			newFigure.style.height = (config.navigation === 'thumbtacks') ? '100%' : config.divide;
 			// implement the transition speed
-			if (cfg.speed) {
-				newFigure.style.msTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.OTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.WebkitTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.MozTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.transitionDuration = cfg.speed / 1000 + 's';
+			if (config.speed) {
+				newFigure.style.msTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.OTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.WebkitTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.MozTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.transitionDuration = config.speed / 1000 + 's';
 			}
 			// implement the transition timing
-			if (cfg.ease) {
-				newFigure.style.msTransitionTimingFunction = cfg.ease;
-				newFigure.style.OTransitionTimingFunction = cfg.ease;
-				newFigure.style.WebkitTransitionTimingFunction = cfg.ease;
-				newFigure.style.MozTransitionTimingFunction = cfg.ease;
-				newFigure.style.transitionTimingFunction = cfg.ease;
+			if (config.ease) {
+				newFigure.style.msTransitionTimingFunction = config.ease;
+				newFigure.style.OTransitionTimingFunction = config.ease;
+				newFigure.style.WebkitTransitionTimingFunction = config.ease;
+				newFigure.style.MozTransitionTimingFunction = config.ease;
+				newFigure.style.transitionTimingFunction = config.ease;
 			}
 			// insert the new elements
-			root.obj.appendChild(newFigure);
+			parent.element.appendChild(newFigure);
 			// store the dom pointers to the images
-			cfg.outlets.figures[a] = newFigure;
+			config.outlets.figures[a] = newFigure;
 		}
 		// start the menu
 		this.menu.setup();
 	};
 	// handlers for the interaction events
 	this.onImageLoad = function (image) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		image.onload = function () {
 			_this.update();
 		};
 	};
 	this.onImageClick = function (index, image) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// if there was a longdesc
-		if (cfg.longdescs[index]) {
+		if (config.longdescs[index]) {
 			// change the slide into a link
 			image.style.cursor = 'pointer';
 			image.onclick = function () {
-				document.location.href = cfg.longdescs[index];
+				document.location.href = config.longdescs[index];
 			};
 		}
 	};
 	// show the correct slide
 	this.update = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// for all the figures
-		for (var a = 1, b = cfg.outlets.figures.length; a < b; a += 1) {
+		for (var a = 1, b = config.outlets.figures.length; a < b; a += 1) {
 			// get the target figure
-			var targetFigure = cfg.outlets.figures[a];
+			var targetFigure = config.outlets.figures[a];
 			var targetImage = targetFigure.getElementsByTagName('img')[0];
-			var oldClassName = cfg.transition + '_' + targetFigure.className.split('_')[1];
+			var oldClassName = config.transition + '_' + targetFigure.className.split('_')[1];
 			// if the ratio hasn't been determined yet
 			if (!targetImage.className.match(/ratio/gi)) {
 				// determine the aspect ratio of the image
@@ -724,8 +725,8 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			}
 			// if the image is narrower than the figure and the scaling is set to fill or the image is wider than the figure and the scaling is set to fit
 			if (
-				(cfg.scaling === 'fill' && (targetImage.offsetWidth < targetFigure.offsetWidth || targetImage.offsetHeight < targetFigure.offsetHeight)) ||
-				(cfg.scaling === 'fit' && (targetImage.offsetWidth > targetFigure.offsetWidth || targetImage.offsetHeight > targetFigure.offsetHeight))
+				(config.scaling === 'fill' && (targetImage.offsetWidth < targetFigure.offsetWidth || targetImage.offsetHeight < targetFigure.offsetHeight)) ||
+				(config.scaling === 'fit' && (targetImage.offsetWidth > targetFigure.offsetWidth || targetImage.offsetHeight > targetFigure.offsetHeight))
 			) {
 				// flip the aspect ratio
 				if (targetImage.className.match(/ratio/gi)) {
@@ -734,24 +735,24 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			}
 			// if the figure is before the index
 			var newClassName;
-			if (a < cfg.outlets.index) {
+			if (a < config.outlets.index) {
 				// change the class name according to its position
-				newClassName = cfg.transition + '_previous';
+				newClassName = config.transition + '_previous';
 			// the figure is after the index
-			} else if (a > cfg.outlets.index) {
+			} else if (a > config.outlets.index) {
 				// change the class name according to its position
-				newClassName = cfg.transition + '_next';
+				newClassName = config.transition + '_next';
 			// else if the figure is the index
 			} else {
 				// change the class name according to its position
-				newClassName = cfg.transition + '_current';
+				newClassName = config.transition + '_current';
 			}
 			// if the slide is near the active one
-			if (Math.abs(a - cfg.outlets.index) < cfg.preload) {
+			if (Math.abs(a - config.outlets.index) < config.preload) {
 				// if the slide is not using the full figure url
-				if (targetImage.src !== cfg.figures[a]) {
+				if (targetImage.src !== config.figures[a]) {
 					// change it's thumbnail url to the figure url
-					targetImage.src = cfg.figures[a];
+					targetImage.src = config.figures[a];
 				}
 			}
 			// vertically center the slide
@@ -764,7 +765,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 		this.menu.update();
 	};
 	// manages the slide controls
-	this.menu = new this.parent.FiguresMenu(this);
+	this.menu = new this.context.FiguresMenu(this);
 };
 
 // return as a require.js module
@@ -785,56 +786,244 @@ var useful = useful || {};
 useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
+useful.Slideshow.prototype.Main = function (config, context) {
+	// properties
+	"use strict";
+	this.config = config;
+	this.context = context;
+	this.element = config.element;
+	// methods
+	this.init = function () {
+		var _this = this;
+		// use the fallback to gather the asset urls
+		if (!this.config.outlets) {
+			// create the elementect to hold all the interface pointers
+			this.config.outlets = {};
+			// get the assets from the fallback html
+			this.config.thumbnails = [0];
+			this.config.figures = [0];
+			this.config.titles = [0];
+			this.config.descriptions = [0];
+			this.config.longdescs = [0];
+			var allLinks = this.element.getElementsByTagName('a');
+			var allImages = this.element.getElementsByTagName('img');
+			this.config.hasLinks = (allLinks.length === allImages.length);
+			for (var a = 0; a < allImages.length; a += 1) {
+				// create a list of thumbnail urls and full urls
+				this.config.thumbnails.push(allImages[a].src);
+				this.config.titles.push(allImages[a].getAttribute('title'));
+				this.config.descriptions.push(allImages[a].getAttribute('alt'));
+				this.config.longdescs.push(allImages[a].getAttribute('longdesc'));
+				this.config.figures[this.config.figures.length] = (this.config.hasLinks) ? allLinks[a].href : allImages[a].src;
+			}
+			// pick the initial active slide
+			this.config.outlets.index = 1;
+		}
+		// retry delay
+		this.config.retry = null;
+		// hide the component
+		this.element.style.visibility = 'hidden';
+		setTimeout(function () {
+			// start the components
+			_this.setup();
+			setTimeout(function () {
+				// start the redraw
+				_this.update();
+				// reveal the component
+				_this.element.style.visibility = 'visible';
+			}, 900);
+		}, 100);
+		// return the object
+		return this;
+	};
+	// build the slideshow container
+	this.setup = function () {
+		// set the main captions class
+		this.element.className += ' captions_' + this.config.captions;
+		// set the main scaling class
+		this.element.className += ' scaling_' + this.config.scaling;
+		// clear the parent element
+		this.element.innerHTML = '';
+		// apply optional dimensions
+		if (this.config.width) {
+			this.element.style.width = this.config.width + this.config.widthUnit;
+		}
+		if (this.config.height) {
+			this.element.style.height = this.config.height + this.config.heightUnit;
+		}
+		// apply the custom styles
+		this.styling();
+		// add the mousewheel events
+		this.element.addEventListener('mousewheel', this.wheel(), false);
+		this.element.addEventListener('DOMMouseScroll', this.wheel(), false);
+		// add the touch events
+		this.element.addEventListener('touchstart', this.touch.start(), false);
+		this.element.addEventListener('touchmove', this.touch.move(), false);
+		this.element.addEventListener('touchend', this.touch.end(), false);
+		// start the sub components
+		this.figures.setup();
+		this.thumbnails.setup();
+		this.automatic.setup();
+	};
+	// implement customised styles
+	this.styling = function () {
+		// create a custom stylesheet
+		var style = document.createElement("style");
+		if (/webkit/gi.test(navigator.UserAgent)) { style.appendChild(document.createTextNode("")); }
+		document.body.appendChild(style);
+		var sheet = style.sheet || style.styleSheet;
+		// add the custom styles
+		if (sheet.insertRule) {
+			sheet.insertRule(".slideshow button {background-color : " + this.config.colorPassive + " !important;}", 0);
+			sheet.insertRule(".slideshow button:hover {background-color : " + this.config.colorHover + " !important;}", 0);
+			sheet.insertRule(".slideshow button.disabled {background-color : " + this.config.colorDisabled + " !important;}", 0);
+			sheet.insertRule(".slideshow .thumbnails_active {background-color : " + this.config.colorPassive + " !important;}", 0);
+			sheet.insertRule(".slideshow .thumbtacks_active {background-color : " + this.config.colorPassive + " !important;}", 0);
+		} else {
+			sheet.addRule(".slideshow button", "background-color : " + this.config.colorPassive + " !important;", 0);
+			sheet.addRule(".slideshow button:hover", "background-color : " + this.config.colorHover + " !important;", 0);
+			sheet.addRule(".slideshow button.disabled", "background-color : " + this.config.colorDisabled + " !important;", 0);
+			sheet.addRule(".slideshow .thumbnails_active", "background-color : " + this.config.colorPassive + " !important;", 0);
+			sheet.addRule(".slideshow .thumbtacks_active", "background-color : " + this.config.colorPassive + " !important;", 0);
+		}
+	};
+	// updates the whole app
+	this.update = function () {
+		var _this = this;
+		// if the slideshow has been disabled
+		if (this.element.offsetHeight === 0) {
+			// stop updating and try again later
+			clearTimeout(this.config.retry);
+			this.config.retry = setTimeout(function () {
+				_this.update();
+			}, 1000);
+		// else
+		} else {
+			// update the figures
+			this.figures.update();
+			// update the slideshow
+			this.thumbnails.update();
+		}
+	};
+	// public API
+	this.focus = function (index) {
+		// set the active slide
+		this.config.outlets.index = index;
+		// redraw
+		this.update();
+	};
+	this.pause = function () {
+		// stop the automatic slideshow
+		this.automatic.stop();
+	};
+	this.play = function () {
+		// start the automatic slideshow
+		this.automatic.start();
+	};
+	this.previous = function () {
+		// show the previous slide
+		this.figures.menu.prev();
+	};
+	this.next = function () {
+		// show the next slide
+		this.figures.menu.next();
+	};
+	// mouse wheel controls
+	this.wheel = function () {
+		var _this = this;
+		return function (event) {
+			// get the reading from the mouse wheel
+			var distance = (window.event) ? window.event.wheelDelta / 120 : -event.detail / 3;
+			// do not loop around
+			if (distance < 0 && _this.config.outlets.index > 1) {
+				// trigger a step
+				_this.figures.menu.prev(_this.config.outlets.prevSlide);
+			} else if (distance > 0 && _this.config.outlets.index < _this.config.outlets.figures.length - 1) {
+				// trigger a step
+				_this.figures.menu.next(_this.config.outlets.nextSlide);
+			}
+			// cancel the scrolling
+			event.preventDefault();
+		};
+	};
+	// touch screen controls
+	this.touch = new this.context.Touch(this);
+	// automatic idle slideshow
+	this.automatic = new this.context.Automatic(this);
+	// manages the figures
+	this.figures = new this.context.Figures(this);
+	// manages the thumbnails
+	this.thumbnails = new this.context.Thumbnails(this);
+};
+
+// return as a require.js module
+if (typeof module !== 'undefined') {
+	exports = module.exports = useful.Slideshow.Main;
+}
+
+/*
+	Source:
+	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20141127, http://www.woollymittens.nl/.
+
+	License:
+	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
+*/
+
+// create the constructor if needed
+var useful = useful || {};
+useful.Slideshow = useful.Slideshow || function () {};
+
+// extend the constructor
 useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent.parent;
 	this.parent = parent;
+	this.config = parent.config;
 	// build the menu options
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		// create the thumbnail controls
-		cfg.outlets.pageMenu = document.createElement('menu');
-		cfg.outlets.pageMenu.className = 'scroller';
-		cfg.outlets.nextPage = document.createElement('button');
-		cfg.outlets.nextPage.className = 'next';
-		cfg.outlets.nextPageIcon = document.createElement('span');
-		cfg.outlets.nextPageIcon.innerHTML = '&gt';
-		cfg.outlets.prevPage = document.createElement('button');
-		cfg.outlets.prevPage.className = 'previous';
-		cfg.outlets.prevPageIcon = document.createElement('span');
-		cfg.outlets.prevPageIcon.innerHTML = '&lt';
-		cfg.outlets.nextPage.appendChild(cfg.outlets.nextPageIcon);
-		cfg.outlets.pageMenu.appendChild(cfg.outlets.nextPage);
-		cfg.outlets.prevPage.appendChild(cfg.outlets.prevPageIcon);
-		cfg.outlets.pageMenu.appendChild(cfg.outlets.prevPage);
-		cfg.outlets.slideNav.appendChild(cfg.outlets.pageMenu);
+		config.outlets.pageMenu = document.createElement('menu');
+		config.outlets.pageMenu.className = 'scroller';
+		config.outlets.nextPage = document.createElement('button');
+		config.outlets.nextPage.className = 'next';
+		config.outlets.nextPageIcon = document.createElement('span');
+		config.outlets.nextPageIcon.innerHTML = '&gt';
+		config.outlets.prevPage = document.createElement('button');
+		config.outlets.prevPage.className = 'previous';
+		config.outlets.prevPageIcon = document.createElement('span');
+		config.outlets.prevPageIcon.innerHTML = '&lt';
+		config.outlets.nextPage.appendChild(config.outlets.nextPageIcon);
+		config.outlets.pageMenu.appendChild(config.outlets.nextPage);
+		config.outlets.prevPage.appendChild(config.outlets.prevPageIcon);
+		config.outlets.pageMenu.appendChild(config.outlets.prevPage);
+		config.outlets.slideNav.appendChild(config.outlets.pageMenu);
 		// apply clicks to the thumbnail controls
-		cfg.outlets.nextPage.onclick = this.next(cfg.outlets.nextSlide);
-		cfg.outlets.prevPage.onclick = this.prev(cfg.outlets.prevSlide);
+		config.outlets.nextPage.onclick = this.next(config.outlets.nextSlide);
+		config.outlets.prevPage.onclick = this.prev(config.outlets.prevSlide);
 	};
 	// show or hide the previous and next buttons
 	this.update = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		// calculate the current position
-		cfg.scrollPosition = (cfg.outlets.slideUl.style.marginLeft) ? parseInt(cfg.outlets.slideUl.style.marginLeft, 10) : 0;
-		cfg.scrollDistance = cfg.outlets.slideDiv.offsetWidth;
+		config.scrollPosition = (config.outlets.slideUl.style.marginLeft) ? parseInt(config.outlets.slideUl.style.marginLeft, 10) : 0;
+		config.scrollDistance = config.outlets.slideDiv.offsetWidth;
 		// calculate the minimum position
-		cfg.scrollMin = 0;
+		config.scrollMin = 0;
 		// calculate the maximum position
-		var lastThumbnail = cfg.outlets.thumbnails[cfg.outlets.thumbnails.length - 1];
-		cfg.scrollStep = lastThumbnail.offsetWidth;
-		cfg.scrollMax = -1 * (lastThumbnail.offsetLeft + lastThumbnail.offsetWidth) + cfg.scrollDistance;
+		var lastThumbnail = config.outlets.thumbnails[config.outlets.thumbnails.length - 1];
+		config.scrollStep = lastThumbnail.offsetWidth;
+		config.scrollMax = -1 * (lastThumbnail.offsetLeft + lastThumbnail.offsetWidth) + config.scrollDistance;
 		// show or hide the prev button
-		cfg.outlets.prevPage.className = cfg.outlets.prevPage.className.replace(/ disabled/gi, '');
-		cfg.outlets.prevPage.className += (cfg.scrollPosition >= cfg.scrollMin) ? ' disabled' : '';
+		config.outlets.prevPage.className = config.outlets.prevPage.className.replace(/ disabled/gi, '');
+		config.outlets.prevPage.className += (config.scrollPosition >= config.scrollMin) ? ' disabled' : '';
 		// show or hide the next button
-		cfg.outlets.nextPage.className = cfg.outlets.nextPage.className.replace(/ disabled/gi, '');
-		cfg.outlets.nextPage.className += (cfg.scrollPosition <= cfg.scrollMax && cfg.scrollMax < 0) ? ' disabled' : '';
+		config.outlets.nextPage.className = config.outlets.nextPage.className.replace(/ disabled/gi, '');
+		config.outlets.nextPage.className += (config.scrollPosition <= config.scrollMax && config.scrollMax < 0) ? ' disabled' : '';
 	};
 	// show the next page of thumbnails
 	this.next = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		var _this = this;
 		return function (event) {
 			// get the event properties
@@ -843,13 +1032,13 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 			// if the button is not disabled
 			if (!target.className.match(/disabled/)) {
 				// scroll one page's width of thumbnails
-				var newPosition = cfg.scrollPosition - cfg.scrollDistance + cfg.scrollStep;
+				var newPosition = config.scrollPosition - config.scrollDistance + config.scrollStep;
 				// limit the scroll distance
-				if (newPosition < cfg.scrollMax) {
-					newPosition = cfg.scrollMax;
+				if (newPosition < config.scrollMax) {
+					newPosition = config.scrollMax;
 				}
 				// transition to the new position
-				useful.transitions.byRules(cfg.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
+				useful.transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
 				// redraw the menu buttons
 				_this.update();
 			}
@@ -860,7 +1049,7 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 	};
 	// show the previous page of thumbnails
 	this.prev = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.parent.parent.config;
 		var _this = this;
 		return function (event) {
 			// get the event properties
@@ -869,14 +1058,14 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 			// if the button is not disabled
 			if (!target.className.match(/disabled/)) {
 				// scroll one page's width of thumbnails
-				var newPosition = cfg.scrollPosition + cfg.scrollDistance - cfg.scrollStep;
+				var newPosition = config.scrollPosition + config.scrollDistance - config.scrollStep;
 				// limit the scroll distance
 				if (newPosition > 0) {
 					newPosition = 0;
 				}
 				// transition to the new position
-				if (cfg.navigation === 'thumbnails') {
-					useful.transitions.byRules(cfg.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
+				if (config.navigation === 'thumbnails') {
+					useful.transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
 				}
 				// redraw the menu buttons
 				_this.update();
@@ -909,62 +1098,63 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Thumbnails = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent;
 	this.parent = parent;
+	this.config = parent.config;
+	this.context = parent.context;
 	// build the thumbnail list
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// create the navigation bar
-		cfg.outlets.slideNav = document.createElement('nav');
-		cfg.outlets.slideNav.className = 'navigation_' + cfg.navigation;
-		cfg.outlets.slideDiv = document.createElement('div');
-		cfg.outlets.slideUl = document.createElement('ul');
+		config.outlets.slideNav = document.createElement('nav');
+		config.outlets.slideNav.className = 'navigation_' + config.navigation;
+		config.outlets.slideDiv = document.createElement('div');
+		config.outlets.slideUl = document.createElement('ul');
 		// force the height of the nav if desired
-		if (cfg.navigation !== 'thumbtacks') {
-			if (cfg.divide !== '100%') {
-				cfg.outlets.slideNav.style.height = (100 - parseInt(cfg.divide, 10) - parseInt(cfg.margin, 10)) + '%';
+		if (config.navigation !== 'thumbtacks') {
+			if (config.divide !== '100%') {
+				config.outlets.slideNav.style.height = (100 - parseInt(config.divide, 10) - parseInt(config.margin, 10)) + '%';
 			} else {
-				cfg.outlets.slideNav.style.visibility = 'hidden';
+				config.outlets.slideNav.style.visibility = 'hidden';
 			}
 		}
-		if (cfg.margin) {
-			cfg.pixelMargin = parseInt(root.obj.offsetWidth * parseInt(cfg.margin, 10) / 100, 10);
+		if (config.margin) {
+			config.pixelMargin = parseInt(parent.element.offsetWidth * parseInt(config.margin, 10) / 100, 10);
 		}
 		// for all thumbnails in the context
-		cfg.outlets.thumbnails = [0];
-		for (var a = 1, b = cfg.thumbnails.length; a < b; a += 1) {
+		config.outlets.thumbnails = [0];
+		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
 			// create a new thumbnail
 			var newLi = document.createElement('li');
 			var newA = document.createElement('a');
-			newA.className = (a === 1) ? cfg.navigation + '_active' : cfg.navigation + '_passive';
+			newA.className = (a === 1) ? config.navigation + '_active' : config.navigation + '_passive';
 			var newImage = document.createElement('img');
 			newImage.alt = '';
-			newImage.src = cfg.thumbnails[a];
+			newImage.src = config.thumbnails[a];
 			newA.appendChild(newImage);
 			newLi.appendChild(newA);
 			// assign the event handler
 			newA.addEventListener('click', this.onSetActive(newA), false);
 			// insert the new elements
-			cfg.outlets.slideUl.appendChild(newLi);
+			config.outlets.slideUl.appendChild(newLi);
 			// store the dom pointers to the images
-			cfg.outlets.thumbnails[a] = newA;
+			config.outlets.thumbnails[a] = newA;
 		}
 		// insert the navigation bar
-		cfg.outlets.slideDiv.appendChild(cfg.outlets.slideUl);
-		cfg.outlets.slideNav.appendChild(cfg.outlets.slideDiv);
-		root.obj.appendChild(cfg.outlets.slideNav);
+		config.outlets.slideDiv.appendChild(config.outlets.slideUl);
+		config.outlets.slideNav.appendChild(config.outlets.slideDiv);
+		parent.element.appendChild(config.outlets.slideNav);
 		// start the menu
 		this.menu.setup();
 	};
 	// redraw/recentre the thumbnails according to the context
 	this.update = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// update the thumbnails menu
 		this.menu.update();
 		/// highlight the icons
 		this.hightlightIcons();
 		// it there's thumbnails
-		if (cfg.navigation === 'thumbnails') {
+		if (config.navigation === 'thumbnails') {
 			// centre the icons
 			this.centreIcons();
 			// centre the slider
@@ -973,24 +1163,24 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 	};
 	// highlight active icon
 	this.hightlightIcons = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// for all thumbnails
-		for (var a = 1, b = cfg.thumbnails.length; a < b; a += 1) {
+		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
 			// highlight the active slide
-			cfg.outlets.thumbnails[a].className = (cfg.outlets.index === a) ? cfg.navigation + '_active' : cfg.navigation + '_passive';
+			config.outlets.thumbnails[a].className = (config.outlets.index === a) ? config.navigation + '_active' : config.navigation + '_passive';
 		}
 	};
 	// centre the icons in containers
 	this.centreIcons = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var imageObject, imageWidth, imageHeight, rowHeight;
 		// measure the available space
-		rowHeight = cfg.outlets.slideNav.offsetHeight;
+		rowHeight = config.outlets.slideNav.offsetHeight;
 		// for all thumbnails
-		for (var a = 1, b = cfg.thumbnails.length; a < b; a += 1) {
+		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
 			// centre the image in its surroundings
-			cfg.outlets.thumbnails[a].style.width =  rowHeight + 'px';
-			imageObject = cfg.outlets.thumbnails[a].getElementsByTagName('img')[0];
+			config.outlets.thumbnails[a].style.width =  rowHeight + 'px';
+			imageObject = config.outlets.thumbnails[a].getElementsByTagName('img')[0];
 			imageWidth = imageObject.offsetWidth;
 			imageHeight = imageObject.offsetHeight;
 			if (imageWidth > imageHeight) {
@@ -1010,24 +1200,24 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 	};
 	// centre the container around the active one
 	this.centreSlider = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// scroll the slider enough to center the active slide
-		var activeThumbnail = cfg.outlets.thumbnails[cfg.outlets.index];
+		var activeThumbnail = config.outlets.thumbnails[config.outlets.index];
 		var activePosition = activeThumbnail.offsetLeft;
 		var activeWidth = activeThumbnail.offsetWidth;
-		var scrollDistance = cfg.outlets.slideDiv.offsetWidth;
+		var scrollDistance = config.outlets.slideDiv.offsetWidth;
 		var centeredPosition = -activePosition + scrollDistance / 2 - activeWidth / 2;
 		centeredPosition = (centeredPosition > 0) ? 0 : centeredPosition;
-		centeredPosition = (centeredPosition < cfg.scrollMax && cfg.scrollMax < 0) ? cfg.scrollMax : centeredPosition;
+		centeredPosition = (centeredPosition < config.scrollMax && config.scrollMax < 0) ? config.scrollMax : centeredPosition;
 		// transition to the new position
 		useful.transitions.byRules(
-			cfg.outlets.slideUl,
+			config.outlets.slideUl,
 			{'marginLeft' : centeredPosition + 'px'}
 		);
 	};
 	// activate a corresponding figure
 	this.onSetActive = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function (event) {
 			_this.setActive(element);
@@ -1036,19 +1226,19 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 		};
 	};
 	this.setActive = function (element) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// count which thumbnail this is
-		for (var a = 1, b = cfg.outlets.thumbnails.length; a < b; a += 1) {
-			if (cfg.outlets.thumbnails[a] === element) {
+		for (var a = 1, b = config.outlets.thumbnails.length; a < b; a += 1) {
+			if (config.outlets.thumbnails[a] === element) {
 				// change the index to this slide
-				cfg.outlets.index = a;
+				config.outlets.index = a;
 				// redraw all
-				root.update();
+				parent.update();
 			}
 		}
 	};
 	// manages the thumbnail controls
-	this.menu = new this.parent.ThumbnailsMenu(this);
+	this.menu = new this.context.ThumbnailsMenu(this);
 };
 
 // return as a require.js module
@@ -1072,25 +1262,25 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Touch = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent;
 	this.parent = parent;
+	this.config = parent.config;
 	this.x = null;
 	this.y = null;
 	// methods
 	this.start = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function (event) {
 			// store the touch positions
 			_this.x = event.touches[0].pageX;
 			_this.y = event.touches[0].pageY;
-			_this.sensitivity = root.obj.offsetWidth * 0.6;
+			_this.sensitivity = parent.obj.offsetWidth * 0.6;
 			// cancel the automatic slideshow
-			root.automatic.stop();
+			parent.automatic.stop();
 		};
 	};
 	this.move = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function (event) {
 			// if there is a touch in progress
@@ -1102,15 +1292,15 @@ useful.Slideshow.prototype.Touch = function (parent) {
 				// if there is no vertical gesture
 				if (Math.abs(yDistance) < sensitivity) {
 					// if the horizontal gesture distance is over a certain amount
-					if (xDistance < -1 * sensitivity && cfg.outlets.index < cfg.outlets.figures.length - 1) {
+					if (xDistance < -1 * sensitivity && config.outlets.index < config.outlets.figures.length - 1) {
 						// trigger the movement
-						root.figures.menu.next(cfg.outlets.nextSlide);
+						parent.figures.menu.next(config.outlets.nextSlide);
 						// reset the positions
 						_this.x = 0;
 						_this.y = 0;
-					} else if (xDistance > sensitivity && cfg.outlets.index > 1) {
+					} else if (xDistance > sensitivity && config.outlets.index > 1) {
 						// trigger the movement
-						root.figures.menu.prev(cfg.outlets.prevSlide);
+						parent.figures.menu.prev(config.outlets.prevSlide);
 						// reset the positions
 						_this.x = 0;
 						_this.y = 0;
@@ -1122,15 +1312,15 @@ useful.Slideshow.prototype.Touch = function (parent) {
 		};
 	};
 	this.end = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function () {
 			// clear the positions
 			_this.x = null;
 			_this.y = null;
 			// restart the automatic slideshow
-			if (cfg.hover && cfg.hover === 'pause') {
-				root.automatic.start();
+			if (config.hover && config.hover === 'pause') {
+				parent.automatic.start();
 			}
 		};
 	};
@@ -1154,176 +1344,33 @@ var useful = useful || {};
 useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
-useful.Slideshow.prototype.init = function (cfg) {
+useful.Slideshow.prototype.init = function (config) {
 	// properties
 	"use strict";
-	this.cfg = cfg;
-	this.obj = cfg.element;
 	// methods
-	this.start = function () {
-		var _this = this;
-		// use the fallback to gather the asset urls
-		if (!this.cfg.outlets) {
-			// create the object to hold all the interface pointers
-			this.cfg.outlets = {};
-			// get the assets from the fallback html
-			this.cfg.thumbnails = [0];
-			this.cfg.figures = [0];
-			this.cfg.titles = [0];
-			this.cfg.descriptions = [0];
-			this.cfg.longdescs = [0];
-			var allLinks = this.obj.getElementsByTagName('a');
-			var allImages = this.obj.getElementsByTagName('img');
-			this.cfg.hasLinks = (allLinks.length === allImages.length);
-			for (var a = 0; a < allImages.length; a += 1) {
-				// create a list of thumbnail urls and full urls
-				this.cfg.thumbnails.push(allImages[a].src);
-				this.cfg.titles.push(allImages[a].getAttribute('title'));
-				this.cfg.descriptions.push(allImages[a].getAttribute('alt'));
-				this.cfg.longdescs.push(allImages[a].getAttribute('longdesc'));
-				this.cfg.figures[this.cfg.figures.length] = (this.cfg.hasLinks) ? allLinks[a].href : allImages[a].src;
-			}
-			// pick the initial active slide
-			this.cfg.outlets.index = 1;
+	this.only = function (config) {
+		// start an instance of the script
+		return new this.Main(config, this).init();
+	};
+	this.each = function (config) {
+		var _config, _context = this, instances = [];
+		// for all element
+		for (var a = 0, b = config.elements.length; a < b; a += 1) {
+			// clone the configuration
+			_config = Object.create(config);
+			// insert the current element
+			_config.element = config.elements[a];
+			// delete the list of elements from the clone
+			delete _config.elements;
+			delete _config.constructor;
+			// start a new instance of the object
+			instances[a] = new config.constructor(_config, _context).init();
 		}
-		// retry delay
-		this.cfg.retry = null;
-		// hide the component
-		this.obj.style.visibility = 'hidden';
-		setTimeout(function () {
-			// start the components
-			_this.setup();
-			setTimeout(function () {
-				// start the redraw
-				_this.update();
-				// reveal the component
-				_this.obj.style.visibility = 'visible';
-			}, 900);
-		}, 100);
-		// disable the start function so it can't be started twice
-		this.init = function () {};
+		// return the instances
+		return instances;
 	};
-	// build the slideshow container
-	this.setup = function () {
-		// set the main captions class
-		this.obj.className += ' captions_' + this.cfg.captions;
-		// set the main scaling class
-		this.obj.className += ' scaling_' + this.cfg.scaling;
-		// clear the parent element
-		this.obj.innerHTML = '';
-		// apply optional dimensions
-		if (this.cfg.width) {
-			this.obj.style.width = this.cfg.width + this.cfg.widthUnit;
-		}
-		if (this.cfg.height) {
-			this.obj.style.height = this.cfg.height + this.cfg.heightUnit;
-		}
-		// apply the custom styles
-		this.styling();
-		// add the mousewheel events
-		this.obj.addEventListener('mousewheel', this.wheel(), false);
-		this.obj.addEventListener('DOMMouseScroll', this.wheel(), false);
-		// add the touch events
-		this.obj.addEventListener('touchstart', this.touch.start(), false);
-		this.obj.addEventListener('touchmove', this.touch.move(), false);
-		this.obj.addEventListener('touchend', this.touch.end(), false);
-		// start the sub components
-		this.figures.setup();
-		this.thumbnails.setup();
-		this.automatic.setup();
-	};
-	// implement customised styles
-	this.styling = function () {
-		// create a custom stylesheet
-		var style = document.createElement("style");
-		if (/webkit/gi.test(navigator.UserAgent)) { style.appendChild(document.createTextNode("")); }
-		document.body.appendChild(style);
-		var sheet = style.sheet || style.styleSheet;
-		// add the custom styles
-		if (sheet.insertRule) {
-			sheet.insertRule(".slideshow button {background-color : " + this.cfg.colorPassive + " !important;}", 0);
-			sheet.insertRule(".slideshow button:hover {background-color : " + this.cfg.colorHover + " !important;}", 0);
-			sheet.insertRule(".slideshow button.disabled {background-color : " + this.cfg.colorDisabled + " !important;}", 0);
-			sheet.insertRule(".slideshow .thumbnails_active {background-color : " + this.cfg.colorPassive + " !important;}", 0);
-			sheet.insertRule(".slideshow .thumbtacks_active {background-color : " + this.cfg.colorPassive + " !important;}", 0);
-		} else {
-			sheet.addRule(".slideshow button", "background-color : " + this.cfg.colorPassive + " !important;", 0);
-			sheet.addRule(".slideshow button:hover", "background-color : " + this.cfg.colorHover + " !important;", 0);
-			sheet.addRule(".slideshow button.disabled", "background-color : " + this.cfg.colorDisabled + " !important;", 0);
-			sheet.addRule(".slideshow .thumbnails_active", "background-color : " + this.cfg.colorPassive + " !important;", 0);
-			sheet.addRule(".slideshow .thumbtacks_active", "background-color : " + this.cfg.colorPassive + " !important;", 0);
-		}
-	};
-	// updates the whole app
-	this.update = function () {
-		var _this = this;
-		// if the slideshow has been disabled
-		if (this.obj.offsetHeight === 0) {
-			// stop updating and try again later
-			clearTimeout(this.cfg.retry);
-			this.cfg.retry = setTimeout(function () {
-				_this.update();
-			}, 1000);
-		// else
-		} else {
-			// update the figures
-			this.figures.update();
-			// update the slideshow
-			this.thumbnails.update();
-		}
-	};
-	// public API
-	this.focus = function (index) {
-		// set the active slide
-		this.cfg.outlets.index = index;
-		// redraw
-		this.update();
-	};
-	this.pause = function () {
-		// stop the automatic slideshow
-		this.automatic.stop();
-	};
-	this.play = function () {
-		// start the automatic slideshow
-		this.automatic.start();
-	};
-	this.previous = function () {
-		// show the previous slide
-		this.figures.menu.prev();
-	};
-	this.next = function () {
-		// show the next slide
-		this.figures.menu.next();
-	};
-	// mouse wheel controls
-	this.wheel = function () {
-		var _this = this;
-		return function (event) {
-			// get the reading from the mouse wheel
-			var distance = (window.event) ? window.event.wheelDelta / 120 : -event.detail / 3;
-			// do not loop around
-			if (distance < 0 && _this.cfg.outlets.index > 1) {
-				// trigger a step
-				_this.figures.menu.prev(_this.cfg.outlets.prevSlide);
-			} else if (distance > 0 && _this.cfg.outlets.index < _this.cfg.outlets.figures.length - 1) {
-				// trigger a step
-				_this.figures.menu.next(_this.cfg.outlets.nextSlide);
-			}
-			// cancel the scrolling
-			event.preventDefault();
-		};
-	};
-	// touch screen controls
-	this.touch = new this.Touch(this);
-	// automatic idle slideshow
-	this.automatic = new this.Automatic(this);
-	// manages the figures
-	this.figures = new this.Figures(this);
-	// manages the thumbnails
-	this.thumbnails = new this.Thumbnails(this);
-	// go
-	this.start();
-	return this;
+	// return a single or multiple instances of the script
+	return (config.elements) ? this.each(config) : this.only(config);
 };
 
 // return as a require.js module

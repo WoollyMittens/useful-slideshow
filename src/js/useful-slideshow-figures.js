@@ -14,19 +14,20 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Figures = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent;
 	this.parent = parent;
+	this.config = parent.config;
+	this.context = parent.context;
 	// build the figures
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// for all figures in the context
-		cfg.outlets.figures = [0];
-		for (var a = 1; a < cfg.figures.length; a += 1) {
+		config.outlets.figures = [0];
+		for (var a = 1; a < config.figures.length; a += 1) {
 			// create a new slide
 			var newFigure = document.createElement('figure');
-			newFigure.className = (a === 1) ? ' ' + cfg.transition + '_current' : ' ' + cfg.transition + '_next';
+			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
 			var newImage = document.createElement('img');
-			newImage.src = cfg.thumbnails[a];	// * start out with the thumbnails instead of the full images
+			newImage.src = config.thumbnails[a];	// * start out with the thumbnails instead of the full images
 			newImage.setAttribute('alt', '');
 			newFigure.appendChild(newImage);
 			// set the event handlers
@@ -34,67 +35,67 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			this.onImageClick(a, newImage);
 			// create the caption if there is content for it
 			var newCaptionText = '';
-			newCaptionText += (cfg.titles && cfg.titles[a]) ? '<strong>' + cfg.titles[a] + '</strong> ' : '';
-			newCaptionText += (cfg.descriptions && cfg.descriptions[a]) ? cfg.descriptions[a] : '';
+			newCaptionText += (config.titles && config.titles[a]) ? '<strong>' + config.titles[a] + '</strong> ' : '';
+			newCaptionText += (config.descriptions && config.descriptions[a]) ? config.descriptions[a] : '';
 			if (newCaptionText !== '') {
 				var newCaption = document.createElement('figcaption');
 				newCaption.innerHTML = newCaptionText;
 				newFigure.appendChild(newCaption);
 			}
 			// force the height of the slide if desired
-			newFigure.style.height = (cfg.navigation === 'thumbtacks') ? '100%' : cfg.divide;
+			newFigure.style.height = (config.navigation === 'thumbtacks') ? '100%' : config.divide;
 			// implement the transition speed
-			if (cfg.speed) {
-				newFigure.style.msTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.OTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.WebkitTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.MozTransitionDuration = cfg.speed / 1000 + 's';
-				newFigure.style.transitionDuration = cfg.speed / 1000 + 's';
+			if (config.speed) {
+				newFigure.style.msTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.OTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.WebkitTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.MozTransitionDuration = config.speed / 1000 + 's';
+				newFigure.style.transitionDuration = config.speed / 1000 + 's';
 			}
 			// implement the transition timing
-			if (cfg.ease) {
-				newFigure.style.msTransitionTimingFunction = cfg.ease;
-				newFigure.style.OTransitionTimingFunction = cfg.ease;
-				newFigure.style.WebkitTransitionTimingFunction = cfg.ease;
-				newFigure.style.MozTransitionTimingFunction = cfg.ease;
-				newFigure.style.transitionTimingFunction = cfg.ease;
+			if (config.ease) {
+				newFigure.style.msTransitionTimingFunction = config.ease;
+				newFigure.style.OTransitionTimingFunction = config.ease;
+				newFigure.style.WebkitTransitionTimingFunction = config.ease;
+				newFigure.style.MozTransitionTimingFunction = config.ease;
+				newFigure.style.transitionTimingFunction = config.ease;
 			}
 			// insert the new elements
-			root.obj.appendChild(newFigure);
+			parent.element.appendChild(newFigure);
 			// store the dom pointers to the images
-			cfg.outlets.figures[a] = newFigure;
+			config.outlets.figures[a] = newFigure;
 		}
 		// start the menu
 		this.menu.setup();
 	};
 	// handlers for the interaction events
 	this.onImageLoad = function (image) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		image.onload = function () {
 			_this.update();
 		};
 	};
 	this.onImageClick = function (index, image) {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// if there was a longdesc
-		if (cfg.longdescs[index]) {
+		if (config.longdescs[index]) {
 			// change the slide into a link
 			image.style.cursor = 'pointer';
 			image.onclick = function () {
-				document.location.href = cfg.longdescs[index];
+				document.location.href = config.longdescs[index];
 			};
 		}
 	};
 	// show the correct slide
 	this.update = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// for all the figures
-		for (var a = 1, b = cfg.outlets.figures.length; a < b; a += 1) {
+		for (var a = 1, b = config.outlets.figures.length; a < b; a += 1) {
 			// get the target figure
-			var targetFigure = cfg.outlets.figures[a];
+			var targetFigure = config.outlets.figures[a];
 			var targetImage = targetFigure.getElementsByTagName('img')[0];
-			var oldClassName = cfg.transition + '_' + targetFigure.className.split('_')[1];
+			var oldClassName = config.transition + '_' + targetFigure.className.split('_')[1];
 			// if the ratio hasn't been determined yet
 			if (!targetImage.className.match(/ratio/gi)) {
 				// determine the aspect ratio of the image
@@ -102,8 +103,8 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			}
 			// if the image is narrower than the figure and the scaling is set to fill or the image is wider than the figure and the scaling is set to fit
 			if (
-				(cfg.scaling === 'fill' && (targetImage.offsetWidth < targetFigure.offsetWidth || targetImage.offsetHeight < targetFigure.offsetHeight)) ||
-				(cfg.scaling === 'fit' && (targetImage.offsetWidth > targetFigure.offsetWidth || targetImage.offsetHeight > targetFigure.offsetHeight))
+				(config.scaling === 'fill' && (targetImage.offsetWidth < targetFigure.offsetWidth || targetImage.offsetHeight < targetFigure.offsetHeight)) ||
+				(config.scaling === 'fit' && (targetImage.offsetWidth > targetFigure.offsetWidth || targetImage.offsetHeight > targetFigure.offsetHeight))
 			) {
 				// flip the aspect ratio
 				if (targetImage.className.match(/ratio/gi)) {
@@ -112,24 +113,24 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			}
 			// if the figure is before the index
 			var newClassName;
-			if (a < cfg.outlets.index) {
+			if (a < config.outlets.index) {
 				// change the class name according to its position
-				newClassName = cfg.transition + '_previous';
+				newClassName = config.transition + '_previous';
 			// the figure is after the index
-			} else if (a > cfg.outlets.index) {
+			} else if (a > config.outlets.index) {
 				// change the class name according to its position
-				newClassName = cfg.transition + '_next';
+				newClassName = config.transition + '_next';
 			// else if the figure is the index
 			} else {
 				// change the class name according to its position
-				newClassName = cfg.transition + '_current';
+				newClassName = config.transition + '_current';
 			}
 			// if the slide is near the active one
-			if (Math.abs(a - cfg.outlets.index) < cfg.preload) {
+			if (Math.abs(a - config.outlets.index) < config.preload) {
 				// if the slide is not using the full figure url
-				if (targetImage.src !== cfg.figures[a]) {
+				if (targetImage.src !== config.figures[a]) {
 					// change it's thumbnail url to the figure url
-					targetImage.src = cfg.figures[a];
+					targetImage.src = config.figures[a];
 				}
 			}
 			// vertically center the slide
@@ -142,7 +143,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 		this.menu.update();
 	};
 	// manages the slide controls
-	this.menu = new this.parent.FiguresMenu(this);
+	this.menu = new this.context.FiguresMenu(this);
 };
 
 // return as a require.js module

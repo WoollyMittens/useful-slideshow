@@ -14,25 +14,25 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Touch = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent;
 	this.parent = parent;
+	this.config = parent.config;
 	this.x = null;
 	this.y = null;
 	// methods
 	this.start = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function (event) {
 			// store the touch positions
 			_this.x = event.touches[0].pageX;
 			_this.y = event.touches[0].pageY;
-			_this.sensitivity = root.obj.offsetWidth * 0.6;
+			_this.sensitivity = parent.obj.offsetWidth * 0.6;
 			// cancel the automatic slideshow
-			root.automatic.stop();
+			parent.automatic.stop();
 		};
 	};
 	this.move = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function (event) {
 			// if there is a touch in progress
@@ -44,15 +44,15 @@ useful.Slideshow.prototype.Touch = function (parent) {
 				// if there is no vertical gesture
 				if (Math.abs(yDistance) < sensitivity) {
 					// if the horizontal gesture distance is over a certain amount
-					if (xDistance < -1 * sensitivity && cfg.outlets.index < cfg.outlets.figures.length - 1) {
+					if (xDistance < -1 * sensitivity && config.outlets.index < config.outlets.figures.length - 1) {
 						// trigger the movement
-						root.figures.menu.next(cfg.outlets.nextSlide);
+						parent.figures.menu.next(config.outlets.nextSlide);
 						// reset the positions
 						_this.x = 0;
 						_this.y = 0;
-					} else if (xDistance > sensitivity && cfg.outlets.index > 1) {
+					} else if (xDistance > sensitivity && config.outlets.index > 1) {
 						// trigger the movement
-						root.figures.menu.prev(cfg.outlets.prevSlide);
+						parent.figures.menu.prev(config.outlets.prevSlide);
 						// reset the positions
 						_this.x = 0;
 						_this.y = 0;
@@ -64,15 +64,15 @@ useful.Slideshow.prototype.Touch = function (parent) {
 		};
 	};
 	this.end = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		return function () {
 			// clear the positions
 			_this.x = null;
 			_this.y = null;
 			// restart the automatic slideshow
-			if (cfg.hover && cfg.hover === 'pause') {
-				root.automatic.start();
+			if (config.hover && config.hover === 'pause') {
+				parent.automatic.start();
 			}
 		};
 	};

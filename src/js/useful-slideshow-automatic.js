@@ -14,45 +14,45 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Automatic = function (parent) {
 	// properties
 	"use strict";
-	this.root = parent;
 	this.parent = parent;
+	this.config = parent.config;
 	// methods
 	this.setup = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		var _this = this;
 		// if a hover option exists
-		if (cfg.hover && cfg.hover === 'pause') {
+		if (config.hover && config.hover === 'pause') {
 			// stop the slideshow on hover
-			root.obj.onmouseover = function () {
+			parent.element.onmouseover = function () {
 				_this.stop();
 			};
 			// restart the slideshow after hover
-			root.obj.onmouseout = function () {
+			parent.element.onmouseout = function () {
 				_this.start();
 			};
 		}
 		// if an idle timer exists
-		if (cfg.idle && cfg.idle >= 0) {
+		if (config.idle && config.idle >= 0) {
 			// run the update at an interval
 			this.start();
 		}
 	};
 	this.start = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// stop any previous timeout loop
-		clearTimeout(cfg.idleTimeout);
+		clearTimeout(config.idleTimeout);
 		// start the timeout loop
-		cfg.idleTimeout = setInterval(function () {
+		config.idleTimeout = setInterval(function () {
 			// move to the next slide
-			cfg.outlets.index = (cfg.outlets.index < cfg.outlets.figures.length - 1) ? cfg.outlets.index + 1 : 1;
+			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 1;
 			// redraw
-			root.update();
-		}, cfg.idle);
+			parent.update();
+		}, config.idle);
 	};
 	this.stop = function () {
-		var parent = this.parent, root = this.root, cfg = this.root.cfg;
+		var parent = this.parent, config = this.config;
 		// stop the timeout loop
-		clearTimeout(cfg.idleTimeout);
+		clearTimeout(config.idleTimeout);
 	};
 };
 
