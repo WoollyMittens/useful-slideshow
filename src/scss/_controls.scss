@@ -11,10 +11,10 @@ div.slideshow {
 		top : 0;
 		width : 100%;
 		button {
-			@include transition-property(all);
-			@include transition-duration(0.3s);
-			@include transition-timing-function(ease);
-			@include opacity(0);
+			transition-property: all;
+			transition-duration: 0.3s;
+			transition-timing-function: ease;
+			opacity: 0;
 			@include iconParent(32);
 			background-color : $color-passive;
 			border : none;
@@ -55,7 +55,7 @@ div.slideshow {
 div.slideshow:hover {
 	menu.pager {
 		button {
-			@include opacity(1);
+			opacity: 1;
 			visibility : visible;
 		}
 	}

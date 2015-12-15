@@ -12,7 +12,9 @@ useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
 useful.Slideshow.prototype.FiguresMenu = function (parent) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -65,6 +67,7 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 			event.preventDefault();
 		};
 	};
+	
 	this.next = function (element) {
 		var parent = this.parent, config = this.config;
 		// if the element is not disabled
@@ -86,6 +89,7 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 			event.preventDefault();
 		};
 	};
+	
 	this.prev = function (element) {
 		var parent = this.parent, config = this.config;
 		// if the element is not disabled

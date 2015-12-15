@@ -12,11 +12,15 @@ useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
 useful.Slideshow.prototype.Automatic = function (parent) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
-	// methods
+
+	// METHODS
+	
 	this.setup = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -37,6 +41,7 @@ useful.Slideshow.prototype.Automatic = function (parent) {
 			this.start();
 		}
 	};
+	
 	this.start = function () {
 		var parent = this.parent, config = this.config;
 		// stop any previous timeout loop
@@ -49,6 +54,7 @@ useful.Slideshow.prototype.Automatic = function (parent) {
 			parent.update();
 		}, config.idle);
 	};
+	
 	this.stop = function () {
 		var parent = this.parent, config = this.config;
 		// stop the timeout loop

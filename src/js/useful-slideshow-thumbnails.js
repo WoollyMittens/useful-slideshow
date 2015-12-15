@@ -12,7 +12,9 @@ useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
 useful.Slideshow.prototype.Thumbnails = function (parent) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -141,6 +143,7 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 			event.preventDefault();
 		};
 	};
+	
 	this.setActive = function (element) {
 		var parent = this.parent, config = this.config;
 		// count which thumbnail this is

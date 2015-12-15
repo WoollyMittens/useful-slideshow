@@ -12,12 +12,16 @@ useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
 useful.Slideshow.prototype.Main = function (config, context) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.config = config;
 	this.context = context;
 	this.element = config.element;
-	// methods
+
+	// METHODS
+	
 	this.init = function () {
 		var _this = this;
 		// use the fallback to gather the asset urls
@@ -137,18 +141,22 @@ useful.Slideshow.prototype.Main = function (config, context) {
 		// redraw
 		this.update();
 	};
+	
 	this.pause = function () {
 		// stop the automatic slideshow
 		this.automatic.stop();
 	};
+	
 	this.play = function () {
 		// start the automatic slideshow
 		this.automatic.start();
 	};
+	
 	this.previous = function () {
 		// show the previous slide
 		this.figures.menu.prev();
 	};
+	
 	this.next = function () {
 		// show the next slide
 		this.figures.menu.next();

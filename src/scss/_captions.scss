@@ -4,7 +4,7 @@
 div.slideshow.captions_hover {
 	figure {
 		figcaption {
-			@include transition(opacity ease 500ms);
+			transition: opacity ease 500ms;
 			opacity : 0;
 			visibility : hidden\9;
 		}

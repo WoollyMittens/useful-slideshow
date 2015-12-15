@@ -9,13 +9,13 @@ div.slideshow {
 	visibility : hidden;
 	width : 512px;
 	* {
-		@include box-sizing(border-box);
+		box-sizing: border-box;
 		-ms-interpolation-mode: bicubic;
 	}
 	figure {
-		@include transition-property(opacity, transform);
-		@include transition-duration(0.3s);
-		@include transition-timing-function(ease);
+		transition-property: opacity, transform;
+		transition-duration: 0.3s;
+		transition-timing-function: ease;
 		background : #000;
 		height : 70%;
 		margin : 0;
@@ -50,15 +50,15 @@ div.slideshow {
 		transform : translate(100%, 0);
 	}
 	figure.fade_previous {
-		@include opacity(0);
+		opacity: 0;
 		z-index : 9;
 	}
 	figure.fade_current {
-		@include opacity(1);
+		opacity: 1;
 		z-index : 10;
 	}
 	figure.fade_next {
-		@include opacity(0);
+		opacity: 0;
 		z-index : 9;
 	}
 }

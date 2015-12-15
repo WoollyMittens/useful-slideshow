@@ -12,7 +12,9 @@ useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
 useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;

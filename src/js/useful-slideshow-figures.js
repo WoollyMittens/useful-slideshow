@@ -12,7 +12,9 @@ useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
 useful.Slideshow.prototype.Figures = function (parent) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -76,6 +78,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			_this.update();
 		};
 	};
+	
 	this.onImageClick = function (index, image) {
 		var parent = this.parent, config = this.config;
 		// if there was a longdesc

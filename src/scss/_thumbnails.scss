@@ -15,9 +15,9 @@ div.slideshow {
 			position : relative;
 			overflow : hidden;
 			ul {
-				@include transition-property(all);
-				@include transition-duration(0.3s);
-				@include transition-timing-function(ease);
+				transition-property: all;
+				transition-duration: 0.3s;
+				transition-timing-function: ease;
 				height : 100%;
 				margin : 0;
 				padding : 0;
@@ -37,10 +37,10 @@ div.slideshow {
 						height : 100%;
 						width : 25%;
 						img {
-							@include opacity(1);
-							@include transition-property(opacity);
-							@include transition-duration(0.3s);
-							@include transition-timing-function(ease);
+							opacity: 1;
+							transition-property: opacity;
+							transition-duration: 0.3s;
+							transition-timing-function: ease;
 							filter : none;
 							border : none;
 							left : 0;
@@ -54,13 +54,13 @@ div.slideshow {
 					}
 					a:hover {
 						img {
-							@include opacity(1);
+							opacity: 1;
 						}
 					}
 					a.thumbnails_active {
 						background-color : $color-passive;
 						img {
-							@include opacity(0.5);
+							opacity: 0.5;
 						}
 					}
 				}

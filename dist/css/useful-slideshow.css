@@ -1,0 +1,364 @@
+/*
+Constants
+*/
+/*
+Hides text in the margin
+*/
+/*
+Turns a button into an icon
+*/
+/*
+Centres a graphic or glyph inside an icon
+*/
+/*
+Offers both the pixel and rem value of a single property
+*/
+/*
+Offers both the pixel and rem values of a shorthand property
+*/
+/*
+Offers the text size as both the pixel and rem value
+*/
+/*
+Adds vendor prefixed to a property
+*/
+/*
+Applies the "clearfix" hack to a container with floating content
+*/
+/*
+	Slides
+*/
+div.slideshow {
+  font-size: 12px;
+  height: 512px;
+  overflow: hidden;
+  position: relative;
+  visibility: hidden;
+  width: 512px; }
+  div.slideshow * {
+    box-sizing: border-box;
+    -ms-interpolation-mode: bicubic; }
+  div.slideshow figure {
+    transition-property: opacity, -webkit-transform;
+    transition-property: opacity, transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    background: #000;
+    height: 70%;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 10; }
+    div.slideshow figure img {
+      -ms-interpolation-mode: bicubic;
+      margin: auto; }
+    div.slideshow figure figcaption {
+      background-image: url(../img/semitransparent.png) \9;
+      background-color: rgba(0, 0, 0, 0.5);
+      bottom: 0;
+      color: #fff;
+      left: 0;
+      padding: 1.4em;
+      position: absolute;
+      width: 100%; }
+  div.slideshow figure.wipe_previous {
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0); }
+  div.slideshow figure.wipe_current {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0); }
+  div.slideshow figure.wipe_next {
+    -webkit-transform: translate(100%, 0);
+    transform: translate(100%, 0); }
+  div.slideshow figure.fade_previous {
+    opacity: 0;
+    z-index: 9; }
+  div.slideshow figure.fade_current {
+    opacity: 1;
+    z-index: 10; }
+  div.slideshow figure.fade_next {
+    opacity: 0;
+    z-index: 9; }
+
+/*
+	Slides Scaling
+*/
+div.slideshow.scaling_fill figure img {
+  float: none;
+  left: 50%;
+  margin: auto;
+  top: 50%;
+  position: absolute; }
+
+div.slideshow.scaling_fill figure img.ratio_landscape {
+  height: auto;
+  width: 100%; }
+
+div.slideshow.scaling_fill figure img.ratio_portrait {
+  height: 100%;
+  width: auto; }
+
+div.slideshow.scaling_fit figure img {
+  float: none;
+  left: 50%;
+  /* margins need to be set programatically to provide centering */
+  margin: auto;
+  top: 50%;
+  position: absolute; }
+
+div.slideshow.scaling_fit figure img.ratio_landscape {
+  height: 100%;
+  width: auto; }
+
+div.slideshow.scaling_fit figure img.ratio_portrait {
+  height: auto;
+  width: 100%; }
+
+/*
+	Slides Captions
+*/
+div.slideshow.captions_hover figure figcaption {
+  transition: opacity ease 500ms;
+  opacity: 0;
+  visibility: hidden\9; }
+
+div.slideshow.captions_hover:hover figure figcaption {
+  opacity: 1;
+  visibility: visible\9; }
+
+div.slideshow.captions_hide figure figcaption {
+  display: none; }
+
+/*
+	Slide Controls
+*/
+div.slideshow menu.pager {
+  position: absolute;
+  height: 70%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%; }
+  div.slideshow menu.pager button {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    text-indent: 42px;
+    white-space: nowrap;
+    /* Because of Internet Explorer 8 we can't have nice thing. */
+    overflow: visible;
+    text-indent: -999em;
+    background-color: #ff6a00;
+    border: none;
+    cursor: pointer;
+    height: 44px;
+    margin-top: -22px;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    width: 44px;
+    z-index: 20; }
+    div.slideshow menu.pager button span {
+      background: Transparent url(../img/slideshow.png) no-repeat 0 0;
+      content: "";
+      display: block;
+      font-family: FontAwesome;
+      font-size: 16px;
+      height: 32px;
+      line-height: 32px;
+      margin-left: -16px;
+      margin-top: -16px;
+      width: 32px;
+      position: absolute;
+      left: 50%;
+      text-align: center;
+      top: 50%; }
+  div.slideshow menu.pager button.previous {
+    left: 2%; }
+    div.slideshow menu.pager button.previous span {
+      background-position: 50% 0px; }
+  div.slideshow menu.pager button.next {
+    right: 2%; }
+    div.slideshow menu.pager button.next span {
+      background-position: 50% -32px; }
+  div.slideshow menu.pager button:hover {
+    background-color: #ff9800; }
+  div.slideshow menu.pager button.disabled {
+    background-color: #7f7f7f;
+    cursor: default; }
+
+div.slideshow:hover menu.pager button {
+  opacity: 1;
+  visibility: visible; }
+
+/*
+	Thumbtacks
+*/
+div.slideshow nav.navigation_thumbtacks {
+  background: Transparent;
+  height: 32px;
+  opacity: 0.8;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  z-index: 11; }
+  div.slideshow nav.navigation_thumbtacks ul {
+    line-height: 0;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 0%;
+    width: 100%; }
+    div.slideshow nav.navigation_thumbtacks ul li {
+      background: #fff;
+      border: solid 2px #000;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 4px;
+      padding: 0; }
+    div.slideshow nav.navigation_thumbtacks ul a {
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      float: none;
+      height: 10px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      text-indent: 16px;
+      white-space: nowrap;
+      width: 10px; }
+      div.slideshow nav.navigation_thumbtacks ul a img {
+        display: none; }
+    div.slideshow nav.navigation_thumbtacks ul a.thumbtacks_active {
+      background: #ff6a00; }
+  div.slideshow nav.navigation_thumbtacks menu {
+    display: none; }
+
+/*
+	Thumbnails Scroller
+*/
+div.slideshow nav {
+  bottom: 0;
+  height: 28%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%; }
+  div.slideshow nav div {
+    height: 100%;
+    margin: 1px 41px 0 41px;
+    position: relative;
+    overflow: hidden; }
+    div.slideshow nav div ul {
+      transition-property: all;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      white-space: nowrap;
+      z-index: 10; }
+      div.slideshow nav div ul li {
+        display: inline;
+        list-style-type: none; }
+        div.slideshow nav div ul li a {
+          margin-right: 1px;
+          display: inline-block;
+          cursor: pointer;
+          overflow: hidden;
+          position: relative;
+          vertical-align: top;
+          height: 100%;
+          width: 25%; }
+          div.slideshow nav div ul li a img {
+            opacity: 1;
+            transition-property: opacity;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+            -webkit-filter: none;
+            filter: none;
+            border: none;
+            left: 0;
+            margin-left: 0;
+            margin-top: 0;
+            min-height: 101%;
+            min-width: 101%;
+            position: absolute;
+            top: 0; }
+        div.slideshow nav div ul li a:hover img {
+          opacity: 1; }
+        div.slideshow nav div ul li a.thumbnails_active {
+          background-color: #ff6a00; }
+          div.slideshow nav div ul li a.thumbnails_active img {
+            opacity: 0.5; }
+
+/*
+	Thumbnails Controls
+*/
+div.slideshow nav menu.scroller {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  margin: 1px 0 0 0;
+  padding: 0;
+  top: 0;
+  width: 100%; }
+  div.slideshow nav menu.scroller button {
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    text-indent: 42px;
+    white-space: nowrap;
+    /* Because of Internet Explorer 8 we can't have nice thing. */
+    overflow: visible;
+    text-indent: -999em;
+    background-color: #ff6a00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    z-index: 20; }
+    div.slideshow nav menu.scroller button span {
+      background: Transparent url(../img/slideshow.png) no-repeat 0 0;
+      content: "";
+      display: block;
+      font-family: FontAwesome;
+      font-size: 16px;
+      height: 32px;
+      line-height: 32px;
+      margin-left: -16px;
+      margin-top: -16px;
+      width: 32px;
+      position: absolute;
+      left: 50%;
+      text-align: center;
+      top: 50%; }
+  div.slideshow nav menu.scroller button:hover {
+    background-color: #ff9800; }
+  div.slideshow nav menu.scroller button.previous {
+    left: 0; }
+    div.slideshow nav menu.scroller button.previous span {
+      background-position: 50% 0px; }
+  div.slideshow nav menu.scroller button.next {
+    right: 0; }
+    div.slideshow nav menu.scroller button.next span {
+      background-position: 50% -32px; }
+  div.slideshow nav menu.scroller button.disabled {
+    background-color: #7f7f7f;
+    cursor: default; }

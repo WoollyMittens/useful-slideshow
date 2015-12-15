@@ -12,13 +12,17 @@ useful.Slideshow = useful.Slideshow || function () {};
 
 // extend the constructor
 useful.Slideshow.prototype.Touch = function (parent) {
-	// properties
+
+	// PROPERTIES
+	
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
 	this.x = null;
 	this.y = null;
-	// methods
+
+	// METHODS
+	
 	this.start = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -31,6 +35,7 @@ useful.Slideshow.prototype.Touch = function (parent) {
 			parent.automatic.stop();
 		};
 	};
+	
 	this.move = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -63,6 +68,7 @@ useful.Slideshow.prototype.Touch = function (parent) {
 			}
 		};
 	};
+	
 	this.end = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
