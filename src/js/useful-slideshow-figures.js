@@ -14,7 +14,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Figures = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -22,25 +22,36 @@ useful.Slideshow.prototype.Figures = function (parent) {
 	// build the figures
 	this.setup = function () {
 		var parent = this.parent, config = this.config;
+		var newFigure, newLink, newImage, newCaptionText, newCaption, attachment;
 		// for all figures in the context
 		config.outlets.figures = [0];
 		for (var a = 1; a < config.figures.length; a += 1) {
 			// create a new slide
-			var newFigure = document.createElement('figure');
+			newFigure = document.createElement('figure');
 			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
-			var newImage = document.createElement('img');
+			attachment = newFigure;
+			// add the link around the slide
+			if (config.hasLinks) {
+				newLink = document.createElement('a');
+				newLink.setAttribute('href', config.hyperlinks[a]);
+				newLink.setAttribute('target', config.targets[a]);
+				newFigure.appendChild(newLink);
+				attachment = newLink;
+			}
+			// add the image to the slide
+			newImage = document.createElement('img');
 			newImage.src = config.thumbnails[a];	// * start out with the thumbnails instead of the full images
 			newImage.setAttribute('alt', '');
-			newFigure.appendChild(newImage);
+			attachment.appendChild(newImage);
 			// set the event handlers
 			this.onImageLoad(newImage);
 			this.onImageClick(a, newImage);
 			// create the caption if there is content for it
-			var newCaptionText = '';
+			newCaptionText = '';
 			newCaptionText += (config.titles && config.titles[a]) ? '<strong>' + config.titles[a] + '</strong> ' : '';
 			newCaptionText += (config.descriptions && config.descriptions[a]) ? config.descriptions[a] : '';
 			if (newCaptionText !== '') {
-				var newCaption = document.createElement('figcaption');
+				newCaption = document.createElement('figcaption');
 				newCaption.innerHTML = newCaptionText;
 				newFigure.appendChild(newCaption);
 			}
@@ -78,7 +89,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			_this.update();
 		};
 	};
-	
+
 	this.onImageClick = function (index, image) {
 		var parent = this.parent, config = this.config;
 		// if there was a longdesc

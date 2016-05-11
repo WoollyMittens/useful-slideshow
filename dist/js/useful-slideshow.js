@@ -791,7 +791,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Figures = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -799,25 +799,36 @@ useful.Slideshow.prototype.Figures = function (parent) {
 	// build the figures
 	this.setup = function () {
 		var parent = this.parent, config = this.config;
+		var newFigure, newLink, newImage, newCaptionText, newCaption, attachment;
 		// for all figures in the context
 		config.outlets.figures = [0];
 		for (var a = 1; a < config.figures.length; a += 1) {
 			// create a new slide
-			var newFigure = document.createElement('figure');
+			newFigure = document.createElement('figure');
 			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
-			var newImage = document.createElement('img');
+			attachment = newFigure;
+			// add the link around the slide
+			if (config.hasLinks) {
+				newLink = document.createElement('a');
+				newLink.setAttribute('href', config.hyperlinks[a]);
+				newLink.setAttribute('target', config.targets[a]);
+				newFigure.appendChild(newLink);
+				attachment = newLink;
+			}
+			// add the image to the slide
+			newImage = document.createElement('img');
 			newImage.src = config.thumbnails[a];	// * start out with the thumbnails instead of the full images
 			newImage.setAttribute('alt', '');
-			newFigure.appendChild(newImage);
+			attachment.appendChild(newImage);
 			// set the event handlers
 			this.onImageLoad(newImage);
 			this.onImageClick(a, newImage);
 			// create the caption if there is content for it
-			var newCaptionText = '';
+			newCaptionText = '';
 			newCaptionText += (config.titles && config.titles[a]) ? '<strong>' + config.titles[a] + '</strong> ' : '';
 			newCaptionText += (config.descriptions && config.descriptions[a]) ? config.descriptions[a] : '';
 			if (newCaptionText !== '') {
-				var newCaption = document.createElement('figcaption');
+				newCaption = document.createElement('figcaption');
 				newCaption.innerHTML = newCaptionText;
 				newFigure.appendChild(newCaption);
 			}
@@ -855,7 +866,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			_this.update();
 		};
 	};
-	
+
 	this.onImageClick = function (index, image) {
 		var parent = this.parent, config = this.config;
 		// if there was a longdesc
@@ -947,14 +958,14 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Main = function (config, context) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.config = config;
 	this.context = context;
 	this.element = config.element;
 
 	// METHODS
-	
+
 	this.init = function () {
 		var _this = this;
 		// use the fallback to gather the asset urls
@@ -967,6 +978,8 @@ useful.Slideshow.prototype.Main = function (config, context) {
 			this.config.titles = [0];
 			this.config.descriptions = [0];
 			this.config.longdescs = [0];
+			this.config.hyperlinks = [0];
+			this.config.targets = [0];
 			var allLinks = this.element.getElementsByTagName('a');
 			var allImages = this.element.getElementsByTagName('img');
 			this.config.hasLinks = (allLinks.length === allImages.length);
@@ -976,7 +989,16 @@ useful.Slideshow.prototype.Main = function (config, context) {
 				this.config.titles.push(allImages[a].getAttribute('title'));
 				this.config.descriptions.push(allImages[a].getAttribute('alt'));
 				this.config.longdescs.push(allImages[a].getAttribute('longdesc'));
-				this.config.figures[this.config.figures.length] = (this.config.hasLinks) ? allLinks[a].href : allImages[a].src;
+				// if the thumbnail has a link
+				if (this.config.hasLinks) {
+					this.config.hyperlinks[this.config.hyperlinks.length] = allLinks[a].getAttribute('href');
+					this.config.targets[this.config.targets.length] = allLinks[a].getAttribute('target') || '_self';
+					this.config.figures[this.config.figures.length] = allLinks[a].getAttribute('data-image') || allImages[a].getAttribute('data-image') || allLinks[a].getAttribute('href');
+				} else {
+					this.config.hyperlinks.push(null);
+					this.config.targets.push(null);
+					this.config.figures[this.config.figures.length] = allImages[a].getAttribute('data-image') || allImages[a].getAttribute('src');
+				}
 			}
 			// pick the initial active slide
 			this.config.outlets.index = 1;
@@ -1074,22 +1096,22 @@ useful.Slideshow.prototype.Main = function (config, context) {
 		// redraw
 		this.update();
 	};
-	
+
 	this.pause = function () {
 		// stop the automatic slideshow
 		this.automatic.stop();
 	};
-	
+
 	this.play = function () {
 		// start the automatic slideshow
 		this.automatic.start();
 	};
-	
+
 	this.previous = function () {
 		// show the previous slide
 		this.figures.menu.prev();
 	};
-	
+
 	this.next = function () {
 		// show the next slide
 		this.figures.menu.next();
