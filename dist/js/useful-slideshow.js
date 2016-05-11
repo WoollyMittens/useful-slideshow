@@ -808,10 +808,10 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
 			attachment = newFigure;
 			// add the link around the slide
-			if (config.hasLinks) {
+			if (config.hyperlinks[a]) {
 				newLink = document.createElement('a');
 				newLink.setAttribute('href', config.hyperlinks[a]);
-				newLink.setAttribute('target', config.targets[a]);
+				newLink.setAttribute('target', config.targets[a] || '_self');
 				newFigure.appendChild(newLink);
 				attachment = newLink;
 			}
@@ -969,40 +969,7 @@ useful.Slideshow.prototype.Main = function (config, context) {
 	this.init = function () {
 		var _this = this;
 		// use the fallback to gather the asset urls
-		if (!this.config.outlets) {
-			// create the elementect to hold all the interface pointers
-			this.config.outlets = {};
-			// get the assets from the fallback html
-			this.config.thumbnails = [0];
-			this.config.figures = [0];
-			this.config.titles = [0];
-			this.config.descriptions = [0];
-			this.config.longdescs = [0];
-			this.config.hyperlinks = [0];
-			this.config.targets = [0];
-			var allLinks = this.element.getElementsByTagName('a');
-			var allImages = this.element.getElementsByTagName('img');
-			this.config.hasLinks = (allLinks.length === allImages.length);
-			for (var a = 0; a < allImages.length; a += 1) {
-				// create a list of thumbnail urls and full urls
-				this.config.thumbnails.push(allImages[a].src);
-				this.config.titles.push(allImages[a].getAttribute('title'));
-				this.config.descriptions.push(allImages[a].getAttribute('alt'));
-				this.config.longdescs.push(allImages[a].getAttribute('longdesc'));
-				// if the thumbnail has a link
-				if (this.config.hasLinks) {
-					this.config.hyperlinks[this.config.hyperlinks.length] = allLinks[a].getAttribute('href');
-					this.config.targets[this.config.targets.length] = allLinks[a].getAttribute('target') || '_self';
-					this.config.figures[this.config.figures.length] = allLinks[a].getAttribute('data-image') || allImages[a].getAttribute('data-image') || allLinks[a].getAttribute('href');
-				} else {
-					this.config.hyperlinks.push(null);
-					this.config.targets.push(null);
-					this.config.figures[this.config.figures.length] = allImages[a].getAttribute('data-image') || allImages[a].getAttribute('src');
-				}
-			}
-			// pick the initial active slide
-			this.config.outlets.index = 1;
-		}
+		this.gather();
 		// retry delay
 		this.config.retry = null;
 		// hide the component
@@ -1019,6 +986,48 @@ useful.Slideshow.prototype.Main = function (config, context) {
 		}, 100);
 		// return the object
 		return this;
+	};
+	// gather all the elements
+	this.gather = function () {
+		if (!this.config.outlets) {
+			// create the element to hold all the interface pointers
+			this.config.outlets = {};
+			// get the assets from the fallback html
+			this.config.thumbnails = [0];
+			this.config.figures = [0];
+			this.config.titles = [0];
+			this.config.descriptions = [0];
+			this.config.longdescs = [0];
+			this.config.hyperlinks = [0];
+			this.config.targets = [0];
+			var link, images = this.element.getElementsByTagName('img');
+			for (var a = 0; a < images.length; a += 1) {
+				// create a list of thumbnail urls and full urls
+				this.config.thumbnails[a] = images[a].src;
+				this.config.titles[a] = images[a].getAttribute('title');
+				this.config.descriptions[a] = images[a].getAttribute('alt');
+				this.config.longdescs[a] = images[a].getAttribute('longdesc');
+				this.config.figures[a] = (images[a].getAttribute('srcset')) ? images[a].getAttribute('srcset').split(' ')[0] : images[a].getAttribute('src');
+				this.config.hyperlinks[a] = null;
+				this.config.targets[a] = null;
+				// if there is a link around the image
+				link = images[a].parentNode;
+				if (/a/i.test(link.nodeName)) {
+					// if the link is to a larger version of the image
+					if (/.gif|.jpg|.jpeg|.png|.svg/.test(link.getAttribute('href'))) {
+						// update the figure
+						this.config.figures[a] = link.getAttribute('href');
+					// otherwise assume it is a link to a web page
+					} else {
+						// store the properties of the link
+						this.config.hyperlinks[a] = link.getAttribute('href');
+						this.config.targets[a] = link.getAttribute('target') || '_self';
+					}
+				}
+			}
+			// pick the initial active slide
+			this.config.outlets.index = 1;
+		}
 	};
 	// build the slideshow container
 	this.setup = function () {

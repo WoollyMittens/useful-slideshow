@@ -31,10 +31,10 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
 			attachment = newFigure;
 			// add the link around the slide
-			if (config.hasLinks) {
+			if (config.hyperlinks[a]) {
 				newLink = document.createElement('a');
 				newLink.setAttribute('href', config.hyperlinks[a]);
-				newLink.setAttribute('target', config.targets[a]);
+				newLink.setAttribute('target', config.targets[a] || '_self');
 				newFigure.appendChild(newLink);
 				attachment = newLink;
 			}
