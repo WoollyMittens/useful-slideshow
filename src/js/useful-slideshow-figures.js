@@ -24,11 +24,11 @@ useful.Slideshow.prototype.Figures = function (parent) {
 		var parent = this.parent, config = this.config;
 		var newFigure, newLink, newImage, newCaptionText, newCaption, attachment;
 		// for all figures in the context
-		config.outlets.figures = [0];
-		for (var a = 1; a < config.figures.length; a += 1) {
+		config.outlets.figures = [];
+		for (var a = 0; a < config.figures.length; a += 1) {
 			// create a new slide
 			newFigure = document.createElement('figure');
-			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
+			newFigure.className = (a === 0) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
 			attachment = newFigure;
 			// add the link around the slide
 			if (config.hyperlinks[a]) {
@@ -105,7 +105,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 	this.update = function () {
 		var parent = this.parent, config = this.config;
 		// for all the figures
-		for (var a = 1, b = config.outlets.figures.length; a < b; a += 1) {
+		for (var a = 0, b = config.outlets.figures.length; a < b; a += 1) {
 			// get the target figure
 			var targetFigure = config.outlets.figures[a];
 			var targetImage = targetFigure.getElementsByTagName('img')[0];
@@ -142,7 +142,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			// if the slide is near the active one
 			if (Math.abs(a - config.outlets.index) < config.preload) {
 				// if the slide is not using the full figure url
-				if (targetImage.src !== config.figures[a]) {
+				if (targetImage.getAttribute('src') !== config.figures[a]) {
 					// change it's thumbnail url to the figure url
 					targetImage.src = config.figures[a];
 				}

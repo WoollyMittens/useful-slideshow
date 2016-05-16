@@ -14,7 +14,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;

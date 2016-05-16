@@ -14,7 +14,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.FiguresMenu = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -51,7 +51,7 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 		// hide the previous button if the index is near the left terminus
 		if (config.outlets.prevSlide) {
 			config.outlets.prevSlide.className = config.outlets.prevSlide.className.replace(/ disabled/gi, '');
-			config.outlets.prevSlide.className += (config.outlets.index > 1) ? '' : ' disabled';
+			config.outlets.prevSlide.className += (config.outlets.index > 0) ? '' : ' disabled';
 		}
 		// hide the next button if the index is new the right terminus
 		if (config.outlets.nextSlide) {
@@ -67,13 +67,13 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 			event.preventDefault();
 		};
 	};
-	
+
 	this.next = function (element) {
 		var parent = this.parent, config = this.config;
 		// if the element is not disabled
 		if (!element.className.match(/disabled/)) {
 			// increase the index
-			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 1;
+			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 0;
 			// redraw
 			parent.parent.update();
 		}
@@ -89,13 +89,13 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 			event.preventDefault();
 		};
 	};
-	
+
 	this.prev = function (element) {
 		var parent = this.parent, config = this.config;
 		// if the element is not disabled
 		if (!element.className.match(/disabled/)) {
 			// increase the index
-			config.outlets.index = (config.outlets.index > 1) ? config.outlets.index - 1 : config.outlets.figures.length - 1;
+			config.outlets.index = (config.outlets.index > 0) ? config.outlets.index - 1 : config.outlets.figures.length - 1;
 			// redraw
 			parent.parent.update();
 		}

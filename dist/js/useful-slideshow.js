@@ -611,13 +611,13 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Automatic = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
 
 	// METHODS
-	
+
 	this.setup = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -638,7 +638,7 @@ useful.Slideshow.prototype.Automatic = function (parent) {
 			this.start();
 		}
 	};
-	
+
 	this.start = function () {
 		var parent = this.parent, config = this.config;
 		// stop any previous timeout loop
@@ -646,12 +646,12 @@ useful.Slideshow.prototype.Automatic = function (parent) {
 		// start the timeout loop
 		config.idleTimeout = setInterval(function () {
 			// move to the next slide
-			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 1;
+			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 0;
 			// redraw
 			parent.update();
 		}, config.idle);
 	};
-	
+
 	this.stop = function () {
 		var parent = this.parent, config = this.config;
 		// stop the timeout loop
@@ -680,7 +680,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.FiguresMenu = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -717,7 +717,7 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 		// hide the previous button if the index is near the left terminus
 		if (config.outlets.prevSlide) {
 			config.outlets.prevSlide.className = config.outlets.prevSlide.className.replace(/ disabled/gi, '');
-			config.outlets.prevSlide.className += (config.outlets.index > 1) ? '' : ' disabled';
+			config.outlets.prevSlide.className += (config.outlets.index > 0) ? '' : ' disabled';
 		}
 		// hide the next button if the index is new the right terminus
 		if (config.outlets.nextSlide) {
@@ -733,13 +733,13 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 			event.preventDefault();
 		};
 	};
-	
+
 	this.next = function (element) {
 		var parent = this.parent, config = this.config;
 		// if the element is not disabled
 		if (!element.className.match(/disabled/)) {
 			// increase the index
-			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 1;
+			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 0;
 			// redraw
 			parent.parent.update();
 		}
@@ -755,13 +755,13 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 			event.preventDefault();
 		};
 	};
-	
+
 	this.prev = function (element) {
 		var parent = this.parent, config = this.config;
 		// if the element is not disabled
 		if (!element.className.match(/disabled/)) {
 			// increase the index
-			config.outlets.index = (config.outlets.index > 1) ? config.outlets.index - 1 : config.outlets.figures.length - 1;
+			config.outlets.index = (config.outlets.index > 0) ? config.outlets.index - 1 : config.outlets.figures.length - 1;
 			// redraw
 			parent.parent.update();
 		}
@@ -801,11 +801,11 @@ useful.Slideshow.prototype.Figures = function (parent) {
 		var parent = this.parent, config = this.config;
 		var newFigure, newLink, newImage, newCaptionText, newCaption, attachment;
 		// for all figures in the context
-		config.outlets.figures = [0];
-		for (var a = 1; a < config.figures.length; a += 1) {
+		config.outlets.figures = [];
+		for (var a = 0; a < config.figures.length; a += 1) {
 			// create a new slide
 			newFigure = document.createElement('figure');
-			newFigure.className = (a === 1) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
+			newFigure.className = (a === 0) ? ' ' + config.transition + '_current' : ' ' + config.transition + '_next';
 			attachment = newFigure;
 			// add the link around the slide
 			if (config.hyperlinks[a]) {
@@ -882,7 +882,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 	this.update = function () {
 		var parent = this.parent, config = this.config;
 		// for all the figures
-		for (var a = 1, b = config.outlets.figures.length; a < b; a += 1) {
+		for (var a = 0, b = config.outlets.figures.length; a < b; a += 1) {
 			// get the target figure
 			var targetFigure = config.outlets.figures[a];
 			var targetImage = targetFigure.getElementsByTagName('img')[0];
@@ -919,7 +919,7 @@ useful.Slideshow.prototype.Figures = function (parent) {
 			// if the slide is near the active one
 			if (Math.abs(a - config.outlets.index) < config.preload) {
 				// if the slide is not using the full figure url
-				if (targetImage.src !== config.figures[a]) {
+				if (targetImage.getAttribute('src') !== config.figures[a]) {
 					// change it's thumbnail url to the figure url
 					targetImage.src = config.figures[a];
 				}
@@ -993,17 +993,17 @@ useful.Slideshow.prototype.Main = function (config, context) {
 			// create the element to hold all the interface pointers
 			this.config.outlets = {};
 			// get the assets from the fallback html
-			this.config.thumbnails = [0];
-			this.config.figures = [0];
-			this.config.titles = [0];
-			this.config.descriptions = [0];
-			this.config.longdescs = [0];
-			this.config.hyperlinks = [0];
-			this.config.targets = [0];
+			this.config.thumbnails = [];
+			this.config.figures = [];
+			this.config.titles = [];
+			this.config.descriptions = [];
+			this.config.longdescs = [];
+			this.config.hyperlinks = [];
+			this.config.targets = [];
 			var link, images = this.element.getElementsByTagName('img');
 			for (var a = 0; a < images.length; a += 1) {
 				// create a list of thumbnail urls and full urls
-				this.config.thumbnails[a] = images[a].src;
+				this.config.thumbnails[a] = images[a].getAttribute('src');
 				this.config.titles[a] = images[a].getAttribute('title');
 				this.config.descriptions[a] = images[a].getAttribute('alt');
 				this.config.longdescs[a] = images[a].getAttribute('longdesc');
@@ -1026,7 +1026,7 @@ useful.Slideshow.prototype.Main = function (config, context) {
 				}
 			}
 			// pick the initial active slide
-			this.config.outlets.index = 1;
+			this.config.outlets.index = 0;
 		}
 	};
 	// build the slideshow container
@@ -1174,7 +1174,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -1297,7 +1297,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Thumbnails = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -1322,12 +1322,12 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 			config.pixelMargin = parseInt(parent.element.offsetWidth * parseInt(config.margin, 10) / 100, 10);
 		}
 		// for all thumbnails in the context
-		config.outlets.thumbnails = [0];
-		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
+		config.outlets.thumbnails = [];
+		for (var a = 0, b = config.thumbnails.length; a < b; a += 1) {
 			// create a new thumbnail
 			var newLi = document.createElement('li');
 			var newA = document.createElement('a');
-			newA.className = (a === 1) ? config.navigation + '_active' : config.navigation + '_passive';
+			newA.className = (a === 0) ? config.navigation + '_active' : config.navigation + '_passive';
 			var newImage = document.createElement('img');
 			newImage.alt = '';
 			newImage.src = config.thumbnails[a];
@@ -1366,7 +1366,7 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 	this.hightlightIcons = function () {
 		var parent = this.parent, config = this.config;
 		// for all thumbnails
-		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
+		for (var a = 0, b = config.thumbnails.length; a < b; a += 1) {
 			// highlight the active slide
 			config.outlets.thumbnails[a].className = (config.outlets.index === a) ? config.navigation + '_active' : config.navigation + '_passive';
 		}
@@ -1378,7 +1378,7 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 		// measure the available space
 		rowHeight = config.outlets.slideNav.offsetHeight;
 		// for all thumbnails
-		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
+		for (var a = 0, b = config.thumbnails.length; a < b; a += 1) {
 			// centre the image in its surroundings
 			config.outlets.thumbnails[a].style.width =  rowHeight + 'px';
 			imageObject = config.outlets.thumbnails[a].getElementsByTagName('img')[0];
@@ -1426,11 +1426,11 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 			event.preventDefault();
 		};
 	};
-	
+
 	this.setActive = function (element) {
 		var parent = this.parent, config = this.config;
 		// count which thumbnail this is
-		for (var a = 1, b = config.outlets.thumbnails.length; a < b; a += 1) {
+		for (var a = 0, b = config.outlets.thumbnails.length; a < b; a += 1) {
 			if (config.outlets.thumbnails[a] === element) {
 				// change the index to this slide
 				config.outlets.index = a;

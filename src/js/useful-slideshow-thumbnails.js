@@ -14,7 +14,7 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Thumbnails = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
@@ -39,12 +39,12 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 			config.pixelMargin = parseInt(parent.element.offsetWidth * parseInt(config.margin, 10) / 100, 10);
 		}
 		// for all thumbnails in the context
-		config.outlets.thumbnails = [0];
-		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
+		config.outlets.thumbnails = [];
+		for (var a = 0, b = config.thumbnails.length; a < b; a += 1) {
 			// create a new thumbnail
 			var newLi = document.createElement('li');
 			var newA = document.createElement('a');
-			newA.className = (a === 1) ? config.navigation + '_active' : config.navigation + '_passive';
+			newA.className = (a === 0) ? config.navigation + '_active' : config.navigation + '_passive';
 			var newImage = document.createElement('img');
 			newImage.alt = '';
 			newImage.src = config.thumbnails[a];
@@ -83,7 +83,7 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 	this.hightlightIcons = function () {
 		var parent = this.parent, config = this.config;
 		// for all thumbnails
-		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
+		for (var a = 0, b = config.thumbnails.length; a < b; a += 1) {
 			// highlight the active slide
 			config.outlets.thumbnails[a].className = (config.outlets.index === a) ? config.navigation + '_active' : config.navigation + '_passive';
 		}
@@ -95,7 +95,7 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 		// measure the available space
 		rowHeight = config.outlets.slideNav.offsetHeight;
 		// for all thumbnails
-		for (var a = 1, b = config.thumbnails.length; a < b; a += 1) {
+		for (var a = 0, b = config.thumbnails.length; a < b; a += 1) {
 			// centre the image in its surroundings
 			config.outlets.thumbnails[a].style.width =  rowHeight + 'px';
 			imageObject = config.outlets.thumbnails[a].getElementsByTagName('img')[0];
@@ -143,11 +143,11 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 			event.preventDefault();
 		};
 	};
-	
+
 	this.setActive = function (element) {
 		var parent = this.parent, config = this.config;
 		// count which thumbnail this is
-		for (var a = 1, b = config.outlets.thumbnails.length; a < b; a += 1) {
+		for (var a = 0, b = config.outlets.thumbnails.length; a < b; a += 1) {
 			if (config.outlets.thumbnails[a] === element) {
 				// change the index to this slide
 				config.outlets.index = a;

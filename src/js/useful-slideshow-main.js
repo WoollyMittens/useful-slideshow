@@ -49,17 +49,17 @@ useful.Slideshow.prototype.Main = function (config, context) {
 			// create the element to hold all the interface pointers
 			this.config.outlets = {};
 			// get the assets from the fallback html
-			this.config.thumbnails = [0];
-			this.config.figures = [0];
-			this.config.titles = [0];
-			this.config.descriptions = [0];
-			this.config.longdescs = [0];
-			this.config.hyperlinks = [0];
-			this.config.targets = [0];
+			this.config.thumbnails = [];
+			this.config.figures = [];
+			this.config.titles = [];
+			this.config.descriptions = [];
+			this.config.longdescs = [];
+			this.config.hyperlinks = [];
+			this.config.targets = [];
 			var link, images = this.element.getElementsByTagName('img');
 			for (var a = 0; a < images.length; a += 1) {
 				// create a list of thumbnail urls and full urls
-				this.config.thumbnails[a] = images[a].src;
+				this.config.thumbnails[a] = images[a].getAttribute('src');
 				this.config.titles[a] = images[a].getAttribute('title');
 				this.config.descriptions[a] = images[a].getAttribute('alt');
 				this.config.longdescs[a] = images[a].getAttribute('longdesc');
@@ -82,7 +82,7 @@ useful.Slideshow.prototype.Main = function (config, context) {
 				}
 			}
 			// pick the initial active slide
-			this.config.outlets.index = 1;
+			this.config.outlets.index = 0;
 		}
 	};
 	// build the slideshow container

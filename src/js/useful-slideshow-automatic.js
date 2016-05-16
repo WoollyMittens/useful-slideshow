@@ -14,13 +14,13 @@ useful.Slideshow = useful.Slideshow || function () {};
 useful.Slideshow.prototype.Automatic = function (parent) {
 
 	// PROPERTIES
-	
+
 	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
 
 	// METHODS
-	
+
 	this.setup = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -41,7 +41,7 @@ useful.Slideshow.prototype.Automatic = function (parent) {
 			this.start();
 		}
 	};
-	
+
 	this.start = function () {
 		var parent = this.parent, config = this.config;
 		// stop any previous timeout loop
@@ -49,12 +49,12 @@ useful.Slideshow.prototype.Automatic = function (parent) {
 		// start the timeout loop
 		config.idleTimeout = setInterval(function () {
 			// move to the next slide
-			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 1;
+			config.outlets.index = (config.outlets.index < config.outlets.figures.length - 1) ? config.outlets.index + 1 : 0;
 			// redraw
 			parent.update();
 		}, config.idle);
 	};
-	
+
 	this.stop = function () {
 		var parent = this.parent, config = this.config;
 		// stop the timeout loop
