@@ -36,12 +36,17 @@ div.slideshow {
   visibility: hidden;
   width: 512px; }
   div.slideshow * {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -ms-interpolation-mode: bicubic; }
   div.slideshow figure {
+    -webkit-transition-property: opacity, -webkit-transform;
     transition-property: opacity, -webkit-transform;
     transition-property: opacity, transform;
+    transition-property: opacity, transform, -webkit-transform;
+    -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
     transition-timing-function: ease;
     background: #000;
     height: 70%;
@@ -121,6 +126,7 @@ div.slideshow.scaling_fit figure img.ratio_portrait {
 	Slides Captions
 */
 div.slideshow.captions_hover figure figcaption {
+  -webkit-transition: opacity ease 500ms;
   transition: opacity ease 500ms;
   opacity: 0;
   visibility: hidden\9; }
@@ -144,8 +150,11 @@ div.slideshow menu.pager {
   top: 0;
   width: 100%; }
   div.slideshow menu.pager button {
+    -webkit-transition-property: all;
     transition-property: all;
+    -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease;
     transition-timing-function: ease;
     opacity: 0;
     overflow: hidden;
@@ -260,8 +269,11 @@ div.slideshow nav {
     position: relative;
     overflow: hidden; }
     div.slideshow nav div ul {
+      -webkit-transition-property: all;
       transition-property: all;
+      -webkit-transition-duration: 0.3s;
       transition-duration: 0.3s;
+      -webkit-transition-timing-function: ease;
       transition-timing-function: ease;
       height: 100%;
       margin: 0;
@@ -283,8 +295,11 @@ div.slideshow nav {
           width: 25%; }
           div.slideshow nav div ul li a img {
             opacity: 1;
+            -webkit-transition-property: opacity;
             transition-property: opacity;
+            -webkit-transition-duration: 0.3s;
             transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease;
             transition-timing-function: ease;
             -webkit-filter: none;
             filter: none;
