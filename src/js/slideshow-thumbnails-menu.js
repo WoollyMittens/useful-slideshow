@@ -1,21 +1,8 @@
-/*
-	Source:
-	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20141127, http://www.woollymittens.nl/.
-
-	License:
-	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-*/
-
-// create the constructor if needed
-var useful = useful || {};
-useful.Slideshow = useful.Slideshow || function () {};
-
-// extend the constructor
-useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
+// extend the class
+Slideshow.prototype.ThumbnailsMenu = function (parent) {
 
 	// PROPERTIES
 
-	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
 	// build the menu options
@@ -77,7 +64,7 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 					newPosition = config.scrollMax;
 				}
 				// transition to the new position
-				useful.transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
+				transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
 				// redraw the menu buttons
 				_this.update();
 			}
@@ -104,7 +91,7 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 				}
 				// transition to the new position
 				if (config.navigation === 'thumbnails') {
-					useful.transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
+					transitions.byRules(config.outlets.slideUl, {'marginLeft' : newPosition + 'px'});
 				}
 				// redraw the menu buttons
 				_this.update();
@@ -115,8 +102,3 @@ useful.Slideshow.prototype.ThumbnailsMenu = function (parent) {
 		};
 	};
 };
-
-// return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Slideshow.ThumbnailsMenu;
-}

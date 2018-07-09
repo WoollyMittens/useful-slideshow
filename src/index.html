@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>useful-slideshow.js: Animated Slideshow</title>
+		<title>slideshow.js: Animated Slideshow</title>
 		<style>
 			html { font-family:Sans-Serif; font-size:75%; height:100%; }
 			body { _height:100%; line-height:180%; margin:0; min-height:100%; padding:1%; }
@@ -11,13 +11,6 @@
 			.example-left > article, .example-left > aside { width:48%; padding:1%; float:left; }
 			.example-right > article, .example-right > aside { width:48%; padding:1%; float:right; }
 		</style>
-		<!--[if lte IE 9]>
-			<meta http-equiv="imagetoolbar" content="no"/>
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-			<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.js"></script>
-		<![endif]-->
 	</head>
 	<body>
 		<section class="example example-right">
@@ -29,7 +22,7 @@
 			<aside>
 
 				<!-- Cut below this -->
-				<style>@import url("./css/useful-slideshow.css");</style>
+				<style>@import url("./css/slideshow.css");</style>
 				<div id="slideshowa" class="slideshow">
 					<ul>
 						<li><a href="./img/figure_0a.jpg"><img title="Lorem Ipsum" alt="Lorem ipsum dolor sit amet" src="./img/figure_0.jpg"/></a></li>
@@ -44,11 +37,11 @@
 						<li><a href="./img/figure_9a.jpg"><img title="Duis Aute" alt="Duis aute irure dolor" src="./img/figure_9.jpg"/></a></li>
 					</ul>
 				</div>
-				<script src="./js/useful-slideshow.js"></script>
+				<script src="./js/slideshow.js"></script>
 				<script>
 				//<!--
 					// create a new instance of the script
-					var slideshowA = new useful.Slideshow().init({
+					var slideshowA = new Slideshow({
 						'element' : document.getElementById('slideshowa'),
 						'width' : 100,
 						'widthUnit' : '%',
@@ -83,7 +76,7 @@
 			<aside>
 
 				<!-- Cut below this -->
-				<style>@import url("./css/useful-slideshow.css");</style>
+				<style>@import url("./css/slideshow.css");</style>
 				<div id="slideshowb" class="slideshow">
 					<ul>
 						<li><a href="https://www.google.com/" target="_blank"><img title="Lorem Ipsum" alt="Lorem ipsum dolor sit amet" srcset="./img/figure_0a.jpg 2x" src="./img/figure_0.jpg"/></a></li>
@@ -98,11 +91,11 @@
 						<li><a href="https://www.google.com/" target="_blank"><img title="Duis Aute" alt="Duis aute irure dolor" srcset="./img/figure_9a.jpg 2x" src="./img/figure_9.jpg"/></a></li>
 					</ul>
 				</div>
-				<script src="./js/useful-slideshow.js"></script>
+				<script src="./js/slideshow.js"></script>
 				<script>
 				//<!--
 					// create a new instance of the script
-					var slideshowB = new useful.Slideshow().init({
+					var slideshowB = new Slideshow({
 						'element' : document.getElementById('slideshowb'),
 						'width' : 100,
 						'widthUnit' : '%',

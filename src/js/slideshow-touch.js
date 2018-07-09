@@ -1,28 +1,15 @@
-/*
-	Source:
-	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20141127, http://www.woollymittens.nl/.
-
-	License:
-	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-*/
-
-// create the constructor if needed
-var useful = useful || {};
-useful.Slideshow = useful.Slideshow || function () {};
-
-// extend the constructor
-useful.Slideshow.prototype.Touch = function (parent) {
+// extend the class
+Slideshow.prototype.Touch = function (parent) {
 
 	// PROPERTIES
-	
-	"use strict";
+
 	this.parent = parent;
 	this.config = parent.config;
 	this.x = null;
 	this.y = null;
 
 	// METHODS
-	
+
 	this.start = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -35,7 +22,7 @@ useful.Slideshow.prototype.Touch = function (parent) {
 			parent.automatic.stop();
 		};
 	};
-	
+
 	this.move = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -68,7 +55,7 @@ useful.Slideshow.prototype.Touch = function (parent) {
 			}
 		};
 	};
-	
+
 	this.end = function () {
 		var parent = this.parent, config = this.config;
 		var _this = this;
@@ -83,8 +70,3 @@ useful.Slideshow.prototype.Touch = function (parent) {
 		};
 	};
 };
-
-// return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Slideshow.Touch;
-}

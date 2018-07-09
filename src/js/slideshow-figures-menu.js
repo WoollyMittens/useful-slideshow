@@ -1,21 +1,8 @@
-/*
-	Source:
-	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20141127, http://www.woollymittens.nl/.
-
-	License:
-	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-*/
-
-// create the constructor if needed
-var useful = useful || {};
-useful.Slideshow = useful.Slideshow || function () {};
-
-// extend the constructor
-useful.Slideshow.prototype.FiguresMenu = function (parent) {
+// extend the class
+Slideshow.prototype.FiguresMenu = function (parent) {
 
 	// PROPERTIES
 
-	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
 	// build the menu options
@@ -103,8 +90,3 @@ useful.Slideshow.prototype.FiguresMenu = function (parent) {
 		element.blur();
 	};
 };
-
-// return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Slideshow.FiguresMenu;
-}

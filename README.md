@@ -1,6 +1,6 @@
-# useful.slideshow.js: Animated Slideshow
+# slideshow.js: Animated Slideshow
 
-This slideshow uses CSS3 transitions for smooth animations, especially on mobile devices. Using CSS3, makes it easy to customise the effect. Internet Explorer (<10) doesn't support CSS3 transitions, but the animations are emulated using the same stylesheet rules.
+This slideshow uses CSS3 transitions for smooth animations, especially on mobile devices. Using CSS3, makes it easy to customise the effect. Internet Explorer (\<10) doesn't support CSS3 transitions, but the animations are emulated using the same stylesheet rules.
 
 Try the <a href="http://www.woollymittens.nl/default.php?url=useful-slideshow">demo</a>.
 
@@ -9,28 +9,20 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-slideshow">d
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/useful-slideshow.css"/>
+<link rel="stylesheet" href="./css/slideshow.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/useful-slideshow.js"></script>
-```
-
-To enable the use of HTML5 tags in Internet Explorer 8 and lower, include *html5.js*.
-
-```html
-<!--[if lte IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<script src="./js/slideshow.js"></script>
 ```
 
 ### Using vanilla JavaScript
 
 ```javascript
 // create a new instance of the script
-var slideshow = new useful.Slideshow().init({
+var slideshow = new Slideshow({
 	'element' : document.getElementById('id'),
 	'width' : 100,
 	'widthUnit' : '%',

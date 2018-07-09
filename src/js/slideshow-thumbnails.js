@@ -1,21 +1,8 @@
-/*
-	Source:
-	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20141127, http://www.woollymittens.nl/.
-
-	License:
-	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-*/
-
-// create the constructor if needed
-var useful = useful || {};
-useful.Slideshow = useful.Slideshow || function () {};
-
-// extend the constructor
-useful.Slideshow.prototype.Thumbnails = function (parent) {
+// extend the class
+Slideshow.prototype.Thumbnails = function (parent) {
 
 	// PROPERTIES
 
-	"use strict";
 	this.parent = parent;
 	this.config = parent.config;
 	this.context = parent.context;
@@ -112,8 +99,7 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 			imageObject.style.height = Math.round(imageHeight) + 'px';
 			imageObject.style.left = '50%';
 			imageObject.style.top = '50%';
-			imageObject.style.marginLeft = Math.round(-imageWidth / 2) + 'px';
-			imageObject.style.marginTop = Math.round(-imageHeight / 2) + 'px';
+			imageObject.style.transform = 'translate(-50%, -50%)';
 		}
 	};
 	// centre the container around the active one
@@ -128,7 +114,7 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 		centeredPosition = (centeredPosition > 0) ? 0 : centeredPosition;
 		centeredPosition = (centeredPosition < config.scrollMax && config.scrollMax < 0) ? config.scrollMax : centeredPosition;
 		// transition to the new position
-		useful.transitions.byRules(
+		transitions.byRules(
 			config.outlets.slideUl,
 			{'marginLeft' : centeredPosition + 'px'}
 		);
@@ -159,8 +145,3 @@ useful.Slideshow.prototype.Thumbnails = function (parent) {
 	// manages the thumbnail controls
 	this.menu = new this.context.ThumbnailsMenu(this);
 };
-
-// return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Slideshow.Thumbnails;
-}

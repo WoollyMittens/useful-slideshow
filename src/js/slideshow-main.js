@@ -1,21 +1,8 @@
-/*
-	Source:
-	van Creij, Maurice (2014). "useful.slideshow.js: A simple slideshow", version 20141127, http://www.woollymittens.nl/.
-
-	License:
-	This work is licensed under a Creative Commons Attribution 3.0 Unported License.
-*/
-
-// create the constructor if needed
-var useful = useful || {};
-useful.Slideshow = useful.Slideshow || function () {};
-
-// extend the constructor
-useful.Slideshow.prototype.Main = function (config, context) {
+// extend the class
+Slideshow.prototype.Main = function (config, context) {
 
 	// PROPERTIES
 
-	"use strict";
 	this.config = config;
 	this.context = context;
 	this.element = config.element;
@@ -207,9 +194,6 @@ useful.Slideshow.prototype.Main = function (config, context) {
 	this.figures = new this.context.Figures(this);
 	// manages the thumbnails
 	this.thumbnails = new this.context.Thumbnails(this);
+	// startup
+	this.init();
 };
-
-// return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = useful.Slideshow.Main;
-}

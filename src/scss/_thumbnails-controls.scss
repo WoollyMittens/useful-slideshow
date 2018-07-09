@@ -25,8 +25,9 @@ div.slideshow {
 				width : 40px;
 				z-index : 20;
 				span {
-					background : Transparent url(../img/slideshow.png) no-repeat 0 0;
 					@include iconCenter();
+					background : Transparent url(../img/slideshow.png) no-repeat 0 0;
+					background-size: auto;
 				}
 			}
 			button:hover {
