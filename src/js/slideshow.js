@@ -34,6 +34,5 @@ var Slideshow = function (config) {
 };
 
 // return as a require.js module
-if (typeof module !== 'undefined') {
-	exports = module.exports = Slideshow;
-}
+if (typeof define != 'undefined') define(['slideshow'], function () { return Slideshow });
+if (typeof module != 'undefined') module.exports = Slideshow;
