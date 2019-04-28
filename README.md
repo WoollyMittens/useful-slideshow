@@ -9,13 +9,32 @@ Try the <a href="http://www.woollymittens.nl/default.php?url=useful-slideshow">d
 The stylesheet is best included in the header of the document.
 
 ```html
-<link rel="stylesheet" href="./css/slideshow.css"/>
+<link rel="stylesheet" href="css/slideshow.css"/>
 ```
 
 This include can be added to the header or placed inline before the script is invoked.
 
 ```html
-<script src="./js/slideshow.js"></script>
+<script src="lib/transitions.js"></script>
+<script src="js/slideshow.js"></script>
+```
+
+Or use [Require.js](https://requirejs.org/).
+
+```js
+requirejs([
+	'lib/transitions.js',
+	'js/slideshow.js'
+], function(transitions, Slideshow) {
+	...
+});
+```
+
+Or import into an MVC framework.
+
+```js
+var transitions = require('lib/transitions.js');
+var Slideshow = require('js/slideshow.js');
 ```
 
 ### Using vanilla JavaScript
